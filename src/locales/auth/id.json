@@ -1,0 +1,34 @@
+{
+  "login": {
+    "title": "Selamat Datang",
+    "subtitle": "Masuk ke Workstation AI Healthcare",
+    "emailLabel": "Alamat Email",
+    "emailPlaceholder": "dokter@rs.com",
+    "passwordLabel": "Kata Sandi",
+    "passwordPlaceholder": "Masukkan kata sandi Anda",
+    "submitBtn": "Masuk",
+    "submitting": "Memproses Masuk...",
+    "noAccount": "Belum memiliki akun?",
+    "registerLink": "Daftar Akun Baru",
+    "errorDefault": "Gagal masuk. Periksa kembali email dan kata sandi Anda."
+  },
+  "register": {
+    "title": "Pendaftaran Akun Baru",
+    "subtitle": "Buat akun resmi untuk mengakses sistem",
+    "nameLabel": "Nama Lengkap",
+    "namePlaceholder": "dr. Budi Santoso, Sp.PD",
+    "emailLabel": "Alamat Email",
+    "emailPlaceholder": "dokter@rs.com",
+    "passwordLabel": "Kata Sandi",
+    "passwordPlaceholder": "Minimal 6 karakter",
+    "roleLabel": "Peran Klinis / Staf",
+    "roleDoctor": "Dokter Spesialis / Umum (DPJP)",
+    "roleNurse": "Perawat / Tenaga PPA",
+    "roleAdmin": "Administrator Rumah Sakit",
+    "submitBtn": "Daftar Sekarang",
+    "submitting": "Membuat akun...",
+    "hasAccount": "Sudah memiliki akun?",
+    "loginLink": "Masuk di sini",
+    "errorDefault": "Gagal mendaftarkan akun."
+  }
+}

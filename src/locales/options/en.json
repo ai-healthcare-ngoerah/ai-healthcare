@@ -1,0 +1,90 @@
+{
+  "back": "Back to Home",
+  "logout": "Logout",
+  "language": "Language",
+  "title": "Hospital & Clinical Operations Hub",
+  "subtitle": "Select the clinical or operational workflow you want to execute.",
+  "features": {
+    "scribe": {
+      "badge": "Doctors & Nurses",
+      "title": "Outpatient Clinic & EMR",
+      "desc": "Doctor consultation scribe, instant structured SOAP notes, ICD-10 analysis, and follow-up planning."
+    },
+    "medicalRecords": {
+      "badge": "Clinical",
+      "title": "Medical Records & Clinical Scribe",
+      "desc": "Doctor consultation scribe, structured SOAP notes, ICD-10 analysis, and follow-up planning."
+    },
+    "urgent": {
+      "badge": "ER & Surgery",
+      "title": "Emergency & Surgery Co-Pilot",
+      "desc": "Live AI Co-Pilot for critical vitals telemetry, real-time Shock Index evaluation, and resuscitation protocols."
+    },
+    "reservation": {
+      "badge": "Patient Self-Service",
+      "title": "Patient Reservation",
+      "desc": "Book doctor consultations online, check queue status, or manage patient admissions."
+    },
+    "aiAgent": {
+      "badge": "Omnichannel",
+      "title": "AI Chatbot & Reservation",
+      "desc": "Omnichannel virtual assistant for clinic schedules, self-triage inquiries, digital reservations, and follow-up reminders."
+    },
+    "connectReservation": {
+      "badge": "Gateway",
+      "title": "Connect & Booking Channels",
+      "desc": "Integration hub for patient self-service booking channels like WhatsApp, Website, Telegram, and Gmail linked to the queue system."
+    },
+    "connectWhatsapp": {
+      "badge": "WhatsApp",
+      "title": "Connect WhatsApp Reservation",
+      "desc": "Instantly link clinic WhatsApp number for automated AI-powered patient booking and queues."
+    },
+    "rawatJalan": {
+      "badge": "Outpatient",
+      "title": "Outpatient Queue",
+      "desc": "Monitor specialist outpatient queues, patient turn numbers, and consultation progress."
+    },
+    "rawatInap": {
+      "badge": "Inpatient",
+      "title": "Inpatient Queue",
+      "desc": "Inpatient ward bed availability, patient admissions, and transfer workflows."
+    },
+    "jadwalDokter": {
+      "badge": "Schedule",
+      "title": "Doctor Schedules",
+      "desc": "Specialist DPJP practice schedules, clinic operational hours, and remaining quota."
+    },
+    "adminPanel": {
+      "badge": "System",
+      "title": "Admin Panel",
+      "desc": "Manage platform RBAC across all 6 roles, system quotas, AI model switcher, and audit logs."
+    },
+    "superadminPanel": {
+      "badge": "SaaS",
+      "title": "Superadmin Panel",
+      "desc": "AI SaaS provider governance, client account management, and platform audit trail."
+    },
+    "manageReservations": {
+      "badge": "Front Desk",
+      "title": "Admission & Queue Desk",
+      "desc": "Front desk control board for daily queue calling, patient check-in verification, and clinic reservations."
+    },
+    "dashboardAnalysis": {
+      "badge": "Data Science",
+      "title": "Analysis Dashboard",
+      "desc": "Patient cohort intelligence, ICD-10 disease surveillance, billing analytics, and interactive data science graphics."
+    }
+  },
+  "roles": {
+    "superadmin": "SuperAdmin",
+    "admin": "Administrator",
+    "doctor": "Doctor / Specialist",
+    "nurse": "Nurse",
+    "staff": "Front Desk Staff",
+    "patient": "Patient",
+    "guest": "Guest / Visitor"
+  },
+  "loginAction": "Staff / Clinical Login",
+  "guestBadge": "Guest"
+}

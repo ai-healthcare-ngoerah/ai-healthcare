@@ -1,0 +1,47 @@
+{
+  "back": "Clinical Workspace Hub",
+  "nav": {
+    "_bpjs_archived": "BPJS Claim Archived",
+    "scribe": "Medical Scribe",
+    "scribeHistory": "Medical Records History",
+    "scribeCustomize": "Customize Mapping",
+    "reservations": "Admission & Queue",
+    "connectReservation": "Connect & AI Reservation",
+    "connectWhatsapp": "Connect WhatsApp",
+    "controls": "Follow-up Controls",
+    "whatsappGateway": "AI Chatbot & Reservation",
+    "chatbotReservation": "AI Chatbot & Reservation",
+    "whatsappSummary": "AI Chatbot Summary",
+    "chatbotSummary": "AI Chatbot Summary",
+    "knowledge": "Knowledge Base",
+    "aiKnowledge": "AI Knowledge",
+    "admin": "SuperAdmin Panel",
+    "superadminPanel": "Superadmin Panel",
+    "userAccounts": "User Accounts & Roles",
+    "modelManagement": "Model Management",
+    "guide": "Operational Guide",
+    "settings": "Quota & Settings",
+    "todayQueue": "Today's Queue",
+    "onlineReservation": "Online Reservation",
+    "patientDirectory": "Patient Directory",
+    "channels": "Channels",
+    "chatLogs": "Chat Logs",
+    "summary": "Executive Summary",
+    "goToConnect": "Connect Channels",
+    "goToAdmission": "Open Admission Desk"
+  },
+  "sections": {
+    "clinical": "Clinical Care",
+    "patient": "Patient Engagement",
+    "admin": "Governance & Admin",
+    "admission": "Admission & Queue Desk",
+    "connect": "Reservation Connect"
+  },
+  "header": {
+    "toggleSidebar": "Toggle Sidebar",
+    "userDefault": "User",
+    "clinicConnected": "Clinic Connected",
+    "switchLanguage": "Switch Language"
+  },
+  "footer": "Made by Ternak Automation"
+}

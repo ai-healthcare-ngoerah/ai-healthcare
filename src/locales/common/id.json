@@ -1,0 +1,13 @@
+{
+  "cancelAction": "Tindakan dibatalkan.",
+  "cancelBtn": "Batal",
+  "confirmBtn": "Ya, Lanjutkan",
+  "saveBtn": "Simpan",
+  "saveConfirmBtn": "Ya, Simpan",
+  "discardBtn": "Ya, Batalkan",
+  "deleteBtn": "Ya, Hapus",
+  "backBtn": "Kembali",
+  "keepEditingBtn": "Lanjutkan Edit",
+  "confirmTitle": "Konfirmasi Tindakan",
+  "confirmMsg": "Apakah Anda yakin ingin melanjutkan?"
+}

@@ -1,0 +1,47 @@
+{
+  "back": "Hub Layanan Klinis",
+  "nav": {
+    "_bpjs_archived": "Klaim BPJS Diarsipkan",
+    "scribe": "Asisten Medis",
+    "scribeHistory": "Riwayat Rekam Medis",
+    "scribeCustomize": "Kustomisasi Pemetaan",
+    "reservations": "Admission & Queue",
+    "connectReservation": "Connect & AI Reservation",
+    "connectWhatsapp": "Hubungkan WhatsApp",
+    "controls": "Jadwal Kontrol Pasien",
+    "whatsappGateway": "Chatbot & Reservasi AI",
+    "chatbotReservation": "Chatbot & Reservasi AI",
+    "whatsappSummary": "Ringkasan Chatbot AI",
+    "chatbotSummary": "Ringkasan Chatbot AI",
+    "knowledge": "Basis Pengetahuan",
+    "aiKnowledge": "AI Knowledge",
+    "admin": "SuperAdmin Panel",
+    "superadminPanel": "Superadmin Panel",
+    "userAccounts": "Tata Kelola Akun & Role",
+    "modelManagement": "Manajemen Model AI",
+    "guide": "Panduan Operasional",
+    "settings": "Pengaturan & Kuota",
+    "todayQueue": "Antrean Hari Ini",
+    "onlineReservation": "Reservasi Online",
+    "patientDirectory": "Direktori Pasien",
+    "channels": "Saluran Komunikasi",
+    "chatLogs": "Log Chat",
+    "summary": "Ringkasan Eksekutif",
+    "goToConnect": "Hubungkan Saluran",
+    "goToAdmission": "Buka Loket Admisi"
+  },
+  "sections": {
+    "clinical": "Pelayanan Medis",
+    "patient": "Layanan Pasien & AI",
+    "admin": "Manajemen & Sistem",
+    "admission": "Loket Admisi & Antrean",
+    "connect": "Integrasi Reservasi"
+  },
+  "header": {
+    "toggleSidebar": "Buka/Tutup Sidebar",
+    "userDefault": "Pengguna",
+    "clinicConnected": "Klinik Terhubung",
+    "switchLanguage": "Ganti Bahasa"
+  },
+  "footer": "Dibuat oleh Ternak Automation"
+}

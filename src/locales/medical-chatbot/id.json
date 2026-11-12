@@ -1,0 +1,10 @@
+{
+  "settings": {
+    "modalTitle": "Ubah Pengaturan WhatsApp",
+    "clinicName": "Nama Klinik",
+    "whatsappNumber": "Nomor WhatsApp (mis. 628123456789)",
+    "serviceLabel": "Label Layanan",
+    "promoMessage": "Pesan Promosi (terisi otomatis saat pasien chat)",
+    "saveBtn": "Simpan Pengaturan"
+  }
+}

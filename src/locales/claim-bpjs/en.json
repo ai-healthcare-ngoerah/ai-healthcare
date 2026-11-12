@@ -1,0 +1,42 @@
+{
+  "toast": {
+    "analyzeSuccessTitle": "Analysis Complete",
+    "analyzeSuccessMsg": "BPJS claim check results have been successfully processed.",
+    "analyzeErrorTitle": "Processing Failed",
+    "analyzeErrorMsg": "Failed to evaluate BPJS claim.",
+    "defaultError": "An error occurred while contacting the AI server.",
+    "deleteSuccessMsg": "Document successfully deleted and analysis reset."
+  },
+  "deleteConfirm": {
+    "title": "Delete Document",
+    "message": "Are you sure you want to delete this document file and reset the analysis results?",
+    "confirmBtn": "Yes, Delete Document"
+  },
+  "page": {
+    "title": "Document Checking (BPJS Claim)",
+    "subtitle": "Automatically verify hospital claim completeness against BPJS requirements using AI.",
+    "uploadTitle": "Upload Document",
+    "dropzoneTitle": "Click or drag file here",
+    "dropzoneDesc": "PDF only (Max. 100 pages)",
+    "pdfError": "Only PDF files are supported at this time.",
+    "deleteBtn": "Delete",
+    "analyzingBtn": "Extracting OCR & Analyzing LLM...",
+    "startBtn": "Start AI Check"
+  },
+  "result": {
+    "complete": "Document & Rules Match (Complete)",
+    "incomplete": "Incompleteness & Mismatch Detected",
+    "suggestion": "Operational Improvement Suggestions",
+    "rag": "Rule Reference Source (RAG)",
+    "analyzingMsg": "System is reading document and evaluating claims based on BPJS rules...",
+    "emptyMsg": "AI analysis results will appear here after the document is processed."
+  },
+  "history": {
+    "title": "Check History",
+    "empty": "No check history available.",
+    "checkDate": "Check Date",
+    "viewBtn": "View Result",
+    "loadSuccess": "History loaded successfully.",
+    "loadError": "Failed to load history."
+  }
+}

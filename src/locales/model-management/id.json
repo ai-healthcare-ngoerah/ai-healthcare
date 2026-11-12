@@ -1,0 +1,101 @@
+{
+  "header": {
+    "title": "Model Management dan Client Token Tracker",
+    "subtitle": "Pusat kendali mesin LLM utama serta pelacakan konsumsi token per client IP, Rumah Sakit, dan Klinik.",
+    "refreshBtn": "Segarkan Data",
+    "refreshing": "Menyegarkan..."
+  },
+  "engineSwitcher": {
+    "title": "Dynamic AI Engine Switcher",
+    "subtitle": "Pilih mesin LLM utama faskes untuk seluruh pemrosesan otomatis.",
+    "active": "AKTIF",
+    "inUse": "Sedang Digunakan",
+    "selectBtn": "Pilih Engine Ini",
+    "switching": "Beralih Mesin..."
+  },
+  "kpi": {
+    "totalTokens": "Total Token Diproses",
+    "prompt": "Masukan",
+    "completion": "Luaran",
+    "registeredClients": "Client Faskes Terdaftar",
+    "facilitiesUnit": "Faskes",
+    "hospitalsAndClinics": "{{hospitals}} Rumah Sakit dan {{clinics}} Klinik",
+    "dominantModel": "Model Paling Dominan",
+    "dominantModelSub": "Volume Terbesar dari Seluruh Pemanggilan",
+    "avgLatency": "Rata-rata Waktu Respons",
+    "avgLatencySub": "Waktu Tanggap Inferensi Gateway"
+  },
+  "summaryTable": {
+    "title": "Tabel Ringkasan Konsumsi Token per Client Faskes",
+    "subtitle": "Akumulasi kuota token per entitas Rumah Sakit dan Klinik, IP utama, serta model favorit.",
+    "recordedBadge": "{{count}} Faskes Terdata",
+    "columns": {
+      "rank": "#",
+      "client": "Client Faskes",
+      "ip": "Alamat IP Utama",
+      "totalTokens": "Total Token",
+      "promptCompletion": "Masukan / Luaran",
+      "dominantModel": "Model AI Dominan",
+      "calls": "Panggilan",
+      "callsUnit": "req",
+      "volumeShare": "Pangsa Volume",
+      "avgLatency": "Rata-rata Latensi"
+    },
+    "types": {
+      "hospital": "Rumah Sakit",
+      "clinic": "Klinik Pratama"
+    },
+    "empty": "Belum ada data konsumsi token per client faskes."
+  },
+  "bento": {
+    "modelBreakdownTitle": "Distribusi Token Berdasarkan Model AI",
+    "tokensUnit": "token",
+    "emptyBreakdown": "Belum ada data distribusi model.",
+    "gatewayMetricsTitle": "Metrik Gateway dan Kesiapan LLM",
+    "gatewayStatusLabel": "Status Gateway Medis",
+    "gatewayStatusOperational": "100% Operasional",
+    "activeProviderLabel": "Provider Aktif Saat Ini",
+    "connectedFacilitiesLabel": "Fasilitas Terhubung",
+    "facilitiesEntityUnit": "Entitas Faskes",
+    "dataCenterLabel": "Pusat Data Gateway",
+    "dataCenterValue": "Denpasar, Bali - Waktu WITA"
+  },
+  "auditTable": {
+    "title": "Tabel Pelacak Token Client Faskes",
+    "subtitle": "Audit log rinci per alamat IP, model AI, dan kuota token yang dikonsumsi.",
+    "searchPlaceholder": "Cari faskes, alamat IP, model...",
+    "filterTypeAll": "Semua Tipe Klien",
+    "filterTypeHospital": "Rumah Sakit",
+    "filterTypeClinic": "Klinik Pratama",
+    "filterModelAll": "Semua Model AI",
+    "exportCsvBtn": "Ekspor CSV",
+    "exportCsvTitle": "Unduh log dalam format CSV",
+    "columns": {
+      "time": "Waktu - WITA",
+      "client": "Client Faskes",
+      "ip": "Alamat IP Client",
+      "model": "Model AI Digunakan",
+      "prompt": "Masukan",
+      "completion": "Luaran",
+      "totalTokens": "Total Token",
+      "latency": "Latensi"
+    },
+    "loadingLogs": "Memuat log penggunaan token...",
+    "emptyLogs": "Tidak ada catatan token yang sesuai kriteria pencarian."
+  },
+  "restricted": {
+    "title": "Akses Terbatas",
+    "desc": "Fitur Model Management hanya dapat dikonfigurasi oleh SuperAdmin dan Administrator sistem faskes.",
+    "backBtn": "Kembali ke Menu Utama"
+  },
+  "toasts": {
+    "loadErrorTitle": "Gagal Memuat Data",
+    "loadErrorMsg": "Koneksi ke backend model management terputus.",
+    "switchSuccessTitle": "Mesin AI Berhasil Diperbarui",
+    "switchSuccessMsg": "Beralih ke {{provider}}: {{model}}",
+    "switchErrorTitle": "Gagal Mengubah Engine",
+    "switchErrorMsg": "Terjadi kesalahan sistem saat memperbarui model.",
+    "exportSuccessTitle": "Data Diekspor",
+    "exportSuccessMsg": "Log audit token berhasil diunduh dalam format CSV."
+  }
+}

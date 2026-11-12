@@ -1,0 +1,45 @@
+{
+  "title": "Operational System Guide",
+  "subtitle": "Learn operational workflows and clinical feature guides for AI Healthcare.",
+  "features": {
+    "scribe": {
+      "title": "1. Medical Scribe (SOAP AI & Voice Input)",
+      "desc": "Use this assistant to automatically compile SOAP (Subjective, Objective, Assessment, Plan) medical records from physician anamnesis.",
+      "steps": [
+        "<strong>Voice / Dictation Input:</strong> Click the microphone button and dictate patient exam findings. AI automatically transcribes and structures the notes.",
+        "<strong>Manual Text Input:</strong> Type rough notes or clinical findings, and the system formats them into neat, standardized clinical SOAP records.",
+        "<strong>Save Medical Record:</strong> Click <em>Save Medical Record</em> to store data in the database and patient consultation history."
+      ]
+    },
+    "urgent": {
+      "title": "2. Emergency Mode & Operating Room (Telemetry & Shock Index)",
+      "desc": "Emergency clinical decision support with real-time vital sign monitoring and automated shock index calculations.",
+      "steps": [
+        "<strong>Activate Emergency Mode:</strong> Select <em>Emergency Mode (ED & OR)</em> at the top bar of the Medical Scribe interface.",
+        "<strong>Automated Vital Sign Detection:</strong> State patient BP and heart rate (e.g. <em>\"BP 80 over 50, pulse 125 rapid weak\"</em>). AI immediately computes the <strong>Shock Index</strong>.",
+        "<strong>Rapid Resuscitation Protocol:</strong> Receive immediate alerts for hypovolemic shock risks, fluid bolus instructions, and direct access to emergency trauma protocols."
+      ]
+    },
+    "whatsapp": {
+      "title": "3. Patient Care & WhatsApp Reminders",
+      "desc": "Automated WhatsApp appointment reminder notifications and self-service patient triage assistant.",
+      "steps": [
+        "<strong>Patient Registration:</strong> Register new appointments through the admission form with the patient's active WhatsApp number.",
+        "<strong>Automated Day-Before Reminders:</strong> The system automatically sends reminder notifications with doctor and schedule details to the patient's WhatsApp.",
+        "<strong>Self-Service Triage Chatbot:</strong> Patients can inquire about schedules and hospital facility information directly via messaging."
+      ]
+    },
+    "radiology": {
+      "title": "Radiology ASR (Optional)",
+      "desc": "A dedicated tool for Radiologists to dictate examination findings.",
+      "steps": [
+        "Click the dictation area and start speaking (e.g. \"Infiltrates noted in right apical lung...\").",
+        "AI will structure the spoken findings into a formal radiology report."
+      ]
+    },
+    "_comment_bpjs_archived": {
+      "title": "Archive: BPJS Claim Document Checking",
+      "desc": "Automated evaluation of BPJS claim document eligibility (Archived)."
+    }
+  }
+}

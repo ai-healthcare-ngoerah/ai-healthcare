@@ -1,0 +1,12 @@
+{
+  "title": "ASR Dikte Suara Radiologi",
+  "subtitle": "Konversi suara dokter spesialis radiologi (unstructured) menjadi laporan format standar yang terstruktur.",
+  "inputSectionTitle": "Masukan Suara / Teks Dikte",
+  "clickToDictate": "Klik untuk Mendikte",
+  "orTypeManual": "Atau ketik catatan ekspertise secara manual di bawah:",
+  "textareaPlaceholder": "Contoh: Tampak bercak infiltrat di apex paru kanan. Jantung dalam batas normal. Sinus kostofrenikus lancip. Kesimpulan: Sesuai gambaran TB Paru aktif.",
+  "formatBtn": "Format Laporan (AI)",
+  "formatting": "Menyusun Format Laporan...",
+  "outputSectionTitle": "Hasil Laporan Terstandarisasi",
+  "emptyOutputPlaceholder": "Laporan terstruktur (Indikasi, Temuan Organ, Kesimpulan) akan muncul di sini..."
+}

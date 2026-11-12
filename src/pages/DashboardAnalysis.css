@@ -1,0 +1,744 @@
+/* ========================================================================= */
+/* HEALTHCARE DATA SCIENCE DASHBOARD - SAKA PRECISION AESTHETICS             */
+/* ========================================================================= */
+
+.da-wrapper {
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 0 0 3.5rem;
+  color: var(--text-main, #0f172a);
+  font-family: 'DM Sans', 'Plus Jakarta Sans', system-ui, sans-serif;
+  box-sizing: border-box;
+}
+
+/* Header Section */
+.da-header {
+  background: #ffffff;
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 12px;
+  padding: 1.25rem 1.6rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 0 0 1px rgba(15, 23, 42, 0.02);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.da-header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.da-header-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #eff6ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2563eb;
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  flex-shrink: 0;
+}
+
+.da-header-title {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.da-header-subtitle {
+  margin: 0.25rem 0 0;
+  color: #64748b;
+  font-size: 0.825rem;
+  line-height: 1.45;
+}
+
+.da-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.da-refresh-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.48rem 0.9rem;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  transition: all 0.15s ease;
+}
+
+.da-refresh-btn:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+.da-sync-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.75rem;
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.da-sync-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #059669;
+  box-shadow: 0 0 0 2px rgba(5, 150, 105, 0.2);
+}
+
+/* Timeframe SAKA Pill Tabs Container */
+.da-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.da-pill-tabs {
+  background-color: #f1f5f9;
+  padding: 4px;
+  border-radius: 12px;
+  display: inline-flex;
+  gap: 4px;
+  border: 1px solid var(--border-color, #e2e8f0);
+}
+
+.da-tab-btn {
+  border-radius: 8px;
+  padding: 0.55rem 1.15rem;
+  font-size: 0.825rem;
+  font-weight: 600;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.da-tab-btn:hover {
+  color: #0f172a;
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.da-tab-btn.active {
+  background: #ffffff;
+  color: var(--primary-dark, #047857);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+  font-weight: 700;
+}
+
+/* Custom Date Range Inline Picker */
+.da-custom-date-box {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 0.4rem 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+}
+
+.da-custom-date-box label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.da-custom-date-box input[type="date"] {
+  border: none;
+  background: transparent;
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: #0f172a;
+  outline: none;
+  padding: 0.15rem 0.25rem;
+  cursor: pointer;
+}
+
+/* Tier 1: KPI Summary Strip */
+.da-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.da-kpi-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.25rem 1.4rem;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 0 0 1px rgba(15, 23, 42, 0.02);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.da-kpi-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(5, 150, 105, 0.3);
+  box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.08);
+}
+
+.da-kpi-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.da-kpi-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.da-kpi-icon-pill {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.da-kpi-value {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.15;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.025em;
+  margin-bottom: 0.4rem;
+}
+
+.da-kpi-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.775rem;
+  color: #64748b;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 0.65rem;
+  margin-top: 0.35rem;
+}
+
+.da-kpi-badge-inc {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: 700;
+  color: #047857;
+  background: #ecfdf5;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+}
+
+/* 2-Column Grid Layouts */
+.da-dual-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(340px, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.da-equal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* SAKA Card Container */
+.da-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.4rem 1.6rem;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 0 0 1px rgba(15, 23, 42, 0.02);
+  box-sizing: border-box;
+}
+
+.da-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.da-card-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.da-card-title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.015em;
+}
+
+.da-card-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Visual Bar Charts: ICD-10 Disease Frequency */
+.da-disease-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+}
+
+.da-disease-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.da-disease-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.835rem;
+}
+
+.da-disease-name {
+  font-weight: 600;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.da-icd-pill {
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: #f1f5f9;
+  color: #334155;
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+  border: 1px solid #e2e8f0;
+}
+
+.da-disease-count {
+  font-weight: 700;
+  color: #0f172a;
+  font-variant-numeric: tabular-nums;
+}
+
+.da-bar-track {
+  width: 100%;
+  height: 9px;
+  background: #f1f5f9;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+}
+
+.da-bar-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Billing & Payer Mix Section */
+.da-payer-stack {
+  margin-bottom: 1.25rem;
+}
+
+.da-payer-stacked-bar {
+  display: flex;
+  height: 14px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 0.85rem;
+  box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.08);
+}
+
+.da-payer-segment {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.da-payer-legend-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.da-payer-legend-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 0.75rem 0.85rem;
+}
+
+.da-payer-legend-title {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 0.35rem;
+}
+
+.da-legend-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+}
+
+.da-payer-legend-val {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #0f172a;
+  font-variant-numeric: tabular-nums;
+}
+
+.da-payer-legend-sub {
+  font-size: 0.72rem;
+  color: #64748b;
+  margin-top: 0.15rem;
+}
+
+/* Financial Cost Breakdown List */
+.da-cost-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+.da-cost-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.65rem 0.85rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.da-cost-name {
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: #334155;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.da-cost-num {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #0f172a;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Patient Flow & Demographics Graphics */
+.da-trend-chart-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1.25rem 1rem 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.da-bar-columns {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.65rem;
+  height: 140px;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #cbd5e1;
+}
+
+.da-col-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: flex-end;
+  gap: 0.35rem;
+}
+
+.da-col-bar {
+  width: 100%;
+  max-width: 32px;
+  border-radius: 4px 4px 0 0;
+  transition: height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.da-col-bar:hover {
+  filter: brightness(1.08);
+}
+
+.da-col-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #64748b;
+  text-align: center;
+}
+
+.da-col-val {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #0f172a;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Age & Gender Demographics Grid */
+.da-demo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.85rem;
+}
+
+.da-demo-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 0.75rem 0.85rem;
+  text-align: center;
+}
+
+.da-demo-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.da-demo-val {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0f172a;
+  font-variant-numeric: tabular-nums;
+  margin: 0.2rem 0;
+}
+
+.da-demo-sub {
+  font-size: 0.72rem;
+  color: #64748b;
+}
+
+/* Department Data Science Intelligence Table */
+.da-table-container {
+  overflow-x: auto;
+}
+
+.da-intel-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.835rem;
+  text-align: left;
+}
+
+.da-intel-table thead th {
+  background: #f8fafc;
+  padding: 0.75rem 0.85rem;
+  font-weight: 700;
+  color: #475569;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.da-intel-table tbody td {
+  padding: 0.85rem 0.85rem;
+  border-bottom: 1px solid #f1f5f9;
+  color: #0f172a;
+  vertical-align: middle;
+}
+
+.da-intel-table tbody tr:hover td {
+  background-color: #f8fafc;
+}
+
+/* Department Badge */
+.da-dept-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.da-dept-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Quick Action Strip */
+.da-action-strip {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.1rem 1.4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.da-action-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.da-action-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.da-shortcut-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.95rem;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: #334155;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.da-shortcut-btn:hover {
+  background: #ffffff;
+  color: var(--primary-color, #059669);
+  border-color: var(--primary-color, #059669);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1040px) {
+  .da-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .da-dual-grid,
+  .da-equal-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .da-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .da-filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .da-pill-tabs {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .da-tab-btn {
+    flex: 1;
+    justify-content: center;
+    padding: 0.5rem 0.65rem;
+    font-size: 0.775rem;
+  }
+
+  .da-custom-date-box {
+    width: 100%;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+
+  .da-payer-legend-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .da-demo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .da-action-strip {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .da-action-btn-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .da-shortcut-btn {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+}

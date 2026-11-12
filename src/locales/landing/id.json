@@ -1,0 +1,147 @@
+{
+  "nav": {
+    "brand": "Ternak AI Healthcare",
+    "brandSubtitle": "Anak Usaha Ternak Automation",
+    "solutions": "Solusi",
+    "about": "Tentang Kami",
+    "team": "Our Team",
+    "articles": "Artikel",
+    "tryFree": "Coba Gratis"
+  },
+  "hero": {
+    "badge": "⭐ Dipercaya oleh 15+ Rumah Sakit & Klinik",
+    "title": "Revolusi Operasional Klinik & Praktek Medis dengan USADA AI",
+    "subtitle": "Asisten rekam medis cerdas (AI Medical Scribe Voice-to-SOAP) dan sistem reservasi pasien mandiri dari Ternak AI Healthcare untuk klinik modern bebas beban administrasi.",
+    "cta": "Coba Gratis"
+  },
+  "problem": {
+    "card1": {
+      "title": "Beban Administratif",
+      "desc": "Dokter klinik mengalokasikan porsi waktu yang signifikan untuk penyusunan rekam medis (CPPT). Sementara itu, staf administrasi menghadapi beban validasi manual pada dokumentasi klinis bervolume tinggi."
+    },
+    "card2": {
+      "title": "Risiko & Dampak Signifikan",
+      "desc": "Kekeliruan administratif berpotensi menyebabkan keterlambatan penanganan dan penumpukan berkas klinis. Beban kerja berlebih memicu kelelahan kronis (burnout) pada staf medis, yang pada akhirnya dapat mendegradasi standar kualitas pelayanan."
+    }
+  },
+  "solution": {
+    "title": "Solusi: USADA AI by Ternak AI Healthcare",
+    "subtitle": "Ternak AI Healthcare menghadirkan solusi cerdas USADA AI yang dirancang khusus untuk memangkas beban kerja dokter dan staf klinik:",
+    "point1": {
+      "title": "AI Medical Scribe",
+      "desc": "Otomatisasi pembuatan resume medis SOAP (CPPT) dari rekaman suara konsultasi dokter-pasien menjadi teks klinis terstandar lengkap dengan koding ICD-10."
+    },
+    "bpjs": {
+      "title": "AI Checking BPJS",
+      "desc": "Verifikasi kelengkapan berkas dan pra-validasi kepatuhan klaim BPJS secara instan."
+    },
+    "point3": {
+      "title": "AI Patient Reservation",
+      "desc": "Sistem reservasi mandiri pasien poli klinik serta pengingat jadwal kontrol otomatis omnichannel via WhatsApp (H-3, H-1, H-0) guna meminimalkan ketidakhadiran pasien."
+    }
+  },
+  "about": {
+    "badge": "Tentang Kami",
+    "title": "Tentang Kami",
+    "subtitle": "USADA AI dari Ternak AI Healthcare berfokus menyederhanakan operasional klinik dan faskes, mengembalikan waktu dokter untuk sepenuhnya merawat pasien.",
+    "mission": {
+      "tag": "Misi",
+      "title": "Memangkas Beban Administratif",
+      "desc": "Mengeliminasi 120 menit waktu mengetik rekam medis (CPPT) setiap hari lewat teknologi suara-ke-SOAP yang akurat dan aman."
+    },
+    "vision": {
+      "tag": "Visi",
+      "title": "Digitalisasi Faskes yang Terjangkau",
+      "desc": "Mewujudkan transformasi klinik modern yang efisien tanpa instalasi rumit maupun biaya server mahal."
+    },
+    "values": {
+      "tag": "Prinsip",
+      "title": "Presisi & Kedaulatan Data Medis",
+      "desc": "Kepatuhan penuh standar PMK 24/2022, enkripsi ketat AES-256, dan integrasi HL7 FHIR SatuSehat Kemenkes RI."
+    }
+  },
+  "partners": {
+    "badge": "Jaringan Fasilitas Kesehatan",
+    "title": "Dipercaya oleh Fasilitas Kesehatan & Jaringan Klinik di Bali",
+    "subtitle": "Mendukung transformasi digitalisasi layanan rawat jalan dan klinik di seluruh wilayah Bali."
+  },
+  "team": {
+    "badge": "Tim",
+    "title": "Tim Kami",
+    "subtitle": "Kolaborasi dokter spesialis dan praktisi teknologi kecerdasan buatan.",
+    "member1": {
+      "name": "I Dewa Gede Mahesta Parawangsa",
+      "role": "Founder of Usada AI",
+      "credential": "AI Engineer di RSUP Ngoerah",
+      "desc": "Founder Usada AI dan AI Engineer di RSUP Prof. Dr. I.G.N.G. Ngoerah, memimpin arsitektur inovasi kecerdasan buatan medis, otomatisasi rekam medis CPPT SOAP, dan transformasi digital faskes."
+    },
+    "member2": {
+      "name": "Bambang Wicaksono, M.Kom",
+      "role": "Co-Founder & Chief Technology Officer",
+      "credential": "AI Research & Cloud Architecture",
+      "desc": "Merancang arsitektur model suara klinis (Voice-to-SOAP) berlatensi rendah (<50ms) dan sistem perlindungan data medis terenkripsi."
+    },
+    "member3": {
+      "name": "dr. Cynthia Dewi, MARS",
+      "role": "Medical & Hospital Advisor",
+      "credential": "Konsultan Manajemen RS & Casemix BPJS",
+      "desc": "Berpengalaman dalam manajemen faskes, pendampingan akreditasi KARS, serta optimalisasi operasional rawat jalan klinik."
+    }
+  },
+  "articles": {
+    "title": "Wawasan & Panduan Digitalisasi Klinik",
+    "readMore": "Selengkapnya",
+    "viewAll": "Lihat Semua Artikel (Selengkapnya)",
+    "article1": {
+      "tag": "Efisiensi Klinik",
+      "title": "Mengatasi Burnout Dokter Klinik: Otomasi CPPT Berbasis AI Medical Scribe di Rawat Jalan",
+      "desc": "Bagaimana transkripsi suara klinis otomatis membantu dokter menghemat 2 jam waktu pencatatan berkas setiap hari dan kembali fokus mendengarkan pasien."
+    },
+    "article2": {
+      "tag": "AI Healthcare",
+      "title": "Transformasi AI dalam Healthcare: Menjawab Tantangan Operasional Klinik Modern",
+      "desc": "Eksplorasi peran kecerdasan buatan medis dalam mengoptimalkan triase pasien, reservasi omnichannel WhatsApp, dan efisiensi alur poli klinik."
+    },
+    "article3": {
+      "tag": "Kepatuhan & Regulasi",
+      "title": "Kepatuhan PMK 24/2022 & Kedaulatan Data Rekam Medis Elektronik Berbasis Cloud AI",
+      "desc": "Standar kepatuhan Rekam Medis Elektronik (RME) di Indonesia, enkripsi data pasien AES-256, dan integrasi aman SatuSehat Kemenkes."
+    }
+  },
+  "articlesDirectory": {
+    "badge": "Pusat Edukasi Medis",
+    "title": "Wawasan & Panduan Digitalisasi Klinik",
+    "subtitle": "Koleksi riset, wawasan teknologi kecerdasan buatan klinis, dan panduan kepatuhan rekam medis untuk fasilitas kesehatan modern di Bali.",
+    "searchPlaceholder": "Cari topik artikel atau kata kunci...",
+    "categoryAll": "Semua",
+    "noResults": "Tidak ada artikel yang cocok dengan pencarian Anda.",
+    "resetFilter": "Tampilkan Semua Kategori"
+  },
+  "cta": {
+    "title": "Siap Meringankan Beban Operasional Klinik Anda?",
+    "subtitle": "Tingkatkan produktivitas dokter dan kepuasan pasien klinik Anda dengan USADA AI sekarang.",
+    "button": "Coba Gratis Sekarang"
+  },
+  "modal": {
+    "title": "Jadwalkan Konsultasi & Uji Coba Gratis Klinik",
+    "subtitle": "Diskusikan kebutuhan operasional klinik Anda bersama tim spesialis Ternak AI Healthcare & USADA AI.",
+    "name": "Nama Lengkap & Gelar",
+    "namePlaceholder": "contoh: dr. I Made Sukarta, Sp.PD",
+    "phone": "Nomor WhatsApp Aktif",
+    "phonePlaceholder": "contoh: 08123456789",
+    "clinic": "Nama Klinik / Faskes di Bali",
+    "clinicPlaceholder": "contoh: Klinik Pratama Bali Sehat, Denpasar",
+    "need": "Solusi yang Dibutuhkan",
+    "optScribe": "AI Medical Scribe (Otomasi Rekam Medis SOAP)",
+    "optReservation": "AI Patient Reservation (Reservasi & WhatsApp)",
+    "optBoth": "Paket Lengkap Digitalisasi Klinik",
+    "submit": "Kirim Permintaan Demo",
+    "submitting": "Mengirim...",
+    "success": "Terima kasih! Tim kami akan menghubungi WhatsApp Anda dalam 1x24 jam.",
+    "waDirect": "Konsultasi Cepat via WhatsApp",
+    "close": "Tutup"
+  },
+  "footer": {
+    "copyright": "© 2026 Ternak AI Healthcare. Powered by USADA AI. Seluruh Hak Cipta Dilindungi."
+  }
+}

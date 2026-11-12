@@ -1,0 +1,13 @@
+{
+  "cancelAction": "Action cancelled.",
+  "cancelBtn": "Cancel",
+  "confirmBtn": "Yes, Continue",
+  "saveBtn": "Save",
+  "saveConfirmBtn": "Yes, Save",
+  "discardBtn": "Yes, Discard",
+  "deleteBtn": "Yes, Delete",
+  "backBtn": "Back",
+  "keepEditingBtn": "Keep Editing",
+  "confirmTitle": "Confirm Action",
+  "confirmMsg": "Are you sure you want to proceed?"
+}

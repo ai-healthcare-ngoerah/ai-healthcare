@@ -1,0 +1,42 @@
+{
+  "toast": {
+    "analyzeSuccessTitle": "Analisis Selesai",
+    "analyzeSuccessMsg": "Hasil pengecekan klaim BPJS telah berhasil diproses.",
+    "analyzeErrorTitle": "Gagal Memproses",
+    "analyzeErrorMsg": "Gagal mengevaluasi klaim BPJS.",
+    "defaultError": "Terjadi kesalahan saat menghubungi server AI.",
+    "deleteSuccessMsg": "Dokumen berhasil dihapus dan analisis di-reset."
+  },
+  "deleteConfirm": {
+    "title": "Hapus Dokumen",
+    "message": "Apakah Anda yakin ingin menghapus berkas dokumen ini dan me-reset hasil analisis?",
+    "confirmBtn": "Ya, Hapus Dokumen"
+  },
+  "page": {
+    "title": "Pengecekan Dokumen (Klaim BPJS)",
+    "subtitle": "Verifikasi kelengkapan klaim rumah sakit terhadap persyaratan BPJS secara otomatis menggunakan AI.",
+    "uploadTitle": "Unggah Dokumen",
+    "dropzoneTitle": "Klik atau seret file ke sini",
+    "dropzoneDesc": "Hanya PDF (Maks. 100 halaman)",
+    "pdfError": "Hanya berkas PDF yang didukung saat ini.",
+    "deleteBtn": "Hapus",
+    "analyzingBtn": "Mengekstrak OCR & Menganalisis LLM...",
+    "startBtn": "Mulai Pengecekan AI"
+  },
+  "result": {
+    "complete": "Dokumen & Aturan Sesuai (Lengkap)",
+    "incomplete": "Deteksi Kelengkapan Dokumen",
+    "suggestion": "Saran Perbaikan Operasional",
+    "rag": "Sumber Referensi Aturan (RAG)",
+    "analyzingMsg": "Sistem sedang mengecek kelengkapan dokumen dan mengevaluasi klaim berdasarkan aturan BPJS...",
+    "emptyMsg": "Hasil analisis AI akan muncul di sini setelah dokumen diproses."
+  },
+  "history": {
+    "title": "Riwayat Pengecekan",
+    "empty": "Belum ada riwayat pengecekan.",
+    "checkDate": "Tanggal Cek",
+    "viewBtn": "Lihat Hasil",
+    "loadSuccess": "Riwayat berhasil dimuat.",
+    "loadError": "Gagal memuat riwayat."
+  }
+}

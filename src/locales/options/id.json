@@ -1,0 +1,90 @@
+{
+  "back": "Kembali ke Beranda",
+  "logout": "Logout",
+  "language": "Bahasa",
+  "title": "Hub Operasional Rumah Sakit & Klinik",
+  "subtitle": "Pilih alur kerja klinis atau operasional yang ingin Anda jalankan.",
+  "features": {
+    "scribe": {
+      "badge": "Dokter & Perawat",
+      "title": "Poliklinik & Rawat Jalan",
+      "desc": "Perekaman konsultasi dokter, penataan format SOAP instan, analisis ICD-10, dan perencanaan kontrol."
+    },
+    "medicalRecords": {
+      "badge": "Klinis",
+      "title": "Rekam Medis & Asisten Klinis",
+      "desc": "Perekaman konsultasi dokter, penataan format SOAP instan, analisis ICD-10, dan perencanaan kontrol."
+    },
+    "urgent": {
+      "badge": "UGD & Bedah",
+      "title": "Gawat Darurat & Operasi",
+      "desc": "Live AI Co-Pilot untuk evaluasi telemetri kritis, perhitungan Shock Index real-time, dan panduan resusitasi."
+    },
+    "reservation": {
+      "badge": "Mandiri",
+      "title": "Reservasi Pasien",
+      "desc": "Pendaftaran janji temu dokter mandiri, status antrean, atau manajemen admisi pasien klinik."
+    },
+    "aiAgent": {
+      "badge": "Omnichannel",
+      "title": "Chatbot & Reservasi AI",
+      "desc": "Asisten virtual omnichannel untuk informasi jadwal, triage keluhan mandiri, reservasi antrean, dan pengingat kontrol."
+    },
+    "connectReservation": {
+      "badge": "Gateway",
+      "title": "Connect & Saluran Reservasi",
+      "desc": "Penautan gateway saluran pendaftaran mandiri seperti WhatsApp, Website, Telegram, dan Gmail ke sistem antrean."
+    },
+    "connectWhatsapp": {
+      "badge": "WhatsApp",
+      "title": "Hubungkan WhatsApp Reservasi",
+      "desc": "Tautkan nomor WhatsApp faskes secara instan untuk antrean dan reservasi pasien otomatis ditenagai AI."
+    },
+    "rawatJalan": {
+      "badge": "Antrean",
+      "title": "Antrean Rawat Jalan",
+      "desc": "Monitoring antrean poliklinik spesialis, nomor giliran pasien, dan status pemeriksaan."
+    },
+    "rawatInap": {
+      "badge": "Rawat Inap",
+      "title": "Antrean Rawat Inap",
+      "desc": "Informasi ketersediaan bed bangsal, admisi pasien, dan alur alih rawat inap."
+    },
+    "jadwalDokter": {
+      "badge": "Jadwal",
+      "title": "Jadwal Dokter",
+      "desc": "Jadwal praktek dokter spesialis DPJP, jam pelayanan, dan sisa kuota konsultasi."
+    },
+    "adminPanel": {
+      "badge": "Sistem",
+      "title": "Admin Panel",
+      "desc": "Kontrol RBAC seluruh peran pengguna, kuota sistem, model AI switcher, dan audit konektor."
+    },
+    "superadminPanel": {
+      "badge": "SaaS",
+      "title": "Superadmin Panel",
+      "desc": "Tata kelola penyedia layanan SaaS AI, manajemen klien mitra, dan audit aktivitas platform."
+    },
+    "manageReservations": {
+      "badge": "Operasional",
+      "title": "Loket Admission & Antrean",
+      "desc": "Papan kontrol pemanggilan antrean loket hari ini, verifikasi check-in pasien, dan jadwal reservasi poliklinik."
+    },
+    "dashboardAnalysis": {
+      "badge": "Data Sains",
+      "title": "Dashboard Analisis",
+      "desc": "Intelijen kohort pasien, surveilans penyakit ICD-10, analitik tagihan, dan visualisasi grafik data sains."
+    }
+  },
+  "roles": {
+    "superadmin": "SuperAdmin",
+    "admin": "Administrator",
+    "doctor": "Dokter Spesialis",
+    "nurse": "Perawat",
+    "staff": "Staf Pendaftaran",
+    "patient": "Pasien",
+    "guest": "Tamu / Pengunjung"
+  },
+  "loginAction": "Masuk / Login Petugas",
+  "guestBadge": "Tamu"
+}

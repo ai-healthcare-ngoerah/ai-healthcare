@@ -1,0 +1,10 @@
+{
+  "settings": {
+    "modalTitle": "Change WhatsApp Settings",
+    "clinicName": "Clinic Name",
+    "whatsappNumber": "WhatsApp Number (e.g. 628123456789)",
+    "serviceLabel": "Service Label",
+    "promoMessage": "Promotion Message (auto-filled when patient chats)",
+    "saveBtn": "Save Settings"
+  }
+}

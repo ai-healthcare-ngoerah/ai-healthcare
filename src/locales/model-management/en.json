@@ -1,0 +1,101 @@
+{
+  "header": {
+    "title": "Model Management and Client Token Tracker",
+    "subtitle": "Control center for primary LLM engines and token consumption tracking per client IP, Hospital, and Clinic.",
+    "refreshBtn": "Refresh Data",
+    "refreshing": "Refreshing..."
+  },
+  "engineSwitcher": {
+    "title": "Dynamic AI Engine Switcher",
+    "subtitle": "Select primary LLM engine for all automated healthcare workflows.",
+    "active": "ACTIVE",
+    "inUse": "Currently In Use",
+    "selectBtn": "Select This Engine",
+    "switching": "Switching Engine..."
+  },
+  "kpi": {
+    "totalTokens": "Total Tokens Processed",
+    "prompt": "Prompt",
+    "completion": "Completion",
+    "registeredClients": "Registered Client Facilities",
+    "facilitiesUnit": "Facilities",
+    "hospitalsAndClinics": "{{hospitals}} Hospitals and {{clinics}} Clinics",
+    "dominantModel": "Most Dominant Model",
+    "dominantModelSub": "Highest Volume Across All Invocations",
+    "avgLatency": "Average Response Time",
+    "avgLatencySub": "Gateway Inference Response Time"
+  },
+  "summaryTable": {
+    "title": "Token Consumption Summary per Client Facility",
+    "subtitle": "Accumulated token quota per Hospital and Clinic entity, primary IP, and favorite model.",
+    "recordedBadge": "{{count}} Facilities Recorded",
+    "columns": {
+      "rank": "#",
+      "client": "Client Facility",
+      "ip": "Primary IP Address",
+      "totalTokens": "Total Tokens",
+      "promptCompletion": "Prompt / Completion",
+      "dominantModel": "Dominant AI Model",
+      "calls": "Invocations",
+      "callsUnit": "req",
+      "volumeShare": "Volume Share",
+      "avgLatency": "Average Latency"
+    },
+    "types": {
+      "hospital": "Hospital",
+      "clinic": "Primary Clinic"
+    },
+    "empty": "No token consumption data per client facility yet."
+  },
+  "bento": {
+    "modelBreakdownTitle": "Token Distribution by AI Model",
+    "tokensUnit": "tokens",
+    "emptyBreakdown": "No model distribution data yet.",
+    "gatewayMetricsTitle": "Gateway Metrics and LLM Readiness",
+    "gatewayStatusLabel": "Medical Gateway Status",
+    "gatewayStatusOperational": "100% Operational",
+    "activeProviderLabel": "Currently Active Provider",
+    "connectedFacilitiesLabel": "Connected Facilities",
+    "facilitiesEntityUnit": "Client Entities",
+    "dataCenterLabel": "Gateway Data Center",
+    "dataCenterValue": "Denpasar, Bali - WITA Timezone"
+  },
+  "auditTable": {
+    "title": "Client Facility Token Tracker Table",
+    "subtitle": "Detailed audit log per IP address, AI model, and consumed token quota.",
+    "searchPlaceholder": "Search facility, IP address, model...",
+    "filterTypeAll": "All Client Types",
+    "filterTypeHospital": "Hospital",
+    "filterTypeClinic": "Primary Clinic",
+    "filterModelAll": "All AI Models",
+    "exportCsvBtn": "Export CSV",
+    "exportCsvTitle": "Download logs in CSV format",
+    "columns": {
+      "time": "Time - WITA",
+      "client": "Client Facility",
+      "ip": "Client IP Address",
+      "model": "AI Model Used",
+      "prompt": "Prompt",
+      "completion": "Completion",
+      "totalTokens": "Total Tokens",
+      "latency": "Latency"
+    },
+    "loadingLogs": "Loading token usage logs...",
+    "emptyLogs": "No token records match your search criteria."
+  },
+  "restricted": {
+    "title": "Access Restricted",
+    "desc": "Model Management features can only be configured by SuperAdmin and healthcare system Administrators.",
+    "backBtn": "Back to Main Menu"
+  },
+  "toasts": {
+    "loadErrorTitle": "Failed to Load Data",
+    "loadErrorMsg": "Connection to model management backend was lost.",
+    "switchSuccessTitle": "AI Engine Successfully Updated",
+    "switchSuccessMsg": "Switched to {{provider}}: {{model}}",
+    "switchErrorTitle": "Failed to Switch Engine",
+    "switchErrorMsg": "A system error occurred while updating model.",
+    "exportSuccessTitle": "Data Exported",
+    "exportSuccessMsg": "Token audit logs successfully downloaded in CSV format."
+  }
+}

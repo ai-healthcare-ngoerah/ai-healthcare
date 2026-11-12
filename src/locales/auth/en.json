@@ -1,0 +1,34 @@
+{
+  "login": {
+    "title": "Welcome Back",
+    "subtitle": "Sign in to AI Healthcare Workstation",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "doctor@hospital.com",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "submitBtn": "Sign In",
+    "submitting": "Signing in...",
+    "noAccount": "Don't have an account?",
+    "registerLink": "Register New Account",
+    "errorDefault": "Failed to sign in. Please verify your credentials."
+  },
+  "register": {
+    "title": "Account Registration",
+    "subtitle": "Create an authorized account to access the system",
+    "nameLabel": "Full Name",
+    "namePlaceholder": "Dr. John Doe, Sp.PD",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "doctor@hospital.com",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Minimum 6 characters",
+    "roleLabel": "Clinical / Staff Role",
+    "roleDoctor": "Medical Doctor (Dokter DPJP)",
+    "roleNurse": "Nurse (Perawat / PPA)",
+    "roleAdmin": "Hospital Administrator",
+    "submitBtn": "Create Account",
+    "submitting": "Creating account...",
+    "hasAccount": "Already have an account?",
+    "loginLink": "Sign in here",
+    "errorDefault": "Failed to register account."
+  }
+}

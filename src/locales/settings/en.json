@@ -1,0 +1,10 @@
+{
+  "title": "Quota Settings",
+  "subtitle": "Monitor your AI checking quota (Gemini/Groq) usage for the current period.",
+  "errorLoad": "Failed to load quota data.",
+  "loading": "Loading quota data...",
+  "used": "Used",
+  "remaining": "Remaining Quota",
+  "monthlyLimit": "Monthly Limit",
+  "periodUsage": "Period Usage"
+}

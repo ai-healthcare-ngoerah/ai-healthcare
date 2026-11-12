@@ -1,0 +1,45 @@
+{
+  "title": "Panduan Operasional Sistem",
+  "subtitle": "Pelajari alur kerja operasional dan panduan fitur AI Healthcare.",
+  "features": {
+    "scribe": {
+      "title": "1. Asisten Medis (SOAP AI & Input Suara)",
+      "desc": "Gunakan asisten ini untuk menyusun catatan rekam medis SOAP (Subjective, Objective, Assessment, Plan) secara otomatis dari anamnesis dokter.",
+      "steps": [
+        "<strong>Input Suara / Dikte:</strong> Klik tombol mikrofon dan bicarakan hasil pemeriksaan pasien. AI akan mentranskripsi dan merangkumnya secara otomatis.",
+        "<strong>Input Teks Manual:</strong> Ketikkan catatan atau temuan kasar, lalu sistem akan menyusunnya ke dalam format SOAP klinis yang rapi dan terstandar.",
+        "<strong>Simpan Rekam Medis:</strong> Klik tombol <em>Simpan Rekam Medis</em> untuk menyimpan data ke database dan riwayat konsultasi pasien."
+      ]
+    },
+    "urgent": {
+      "title": "2. Mode Darurat & Kamar Bedah (Telemetri & Shock Index)",
+      "desc": "Dukungan keputusan klinis darurat dengan pemantauan tanda vital real-time dan kalkulasi otomatis indeks syok (Shock Index).",
+      "steps": [
+        "<strong>Aktivasi Mode Darurat:</strong> Pilih <em>Mode Darurat (IGD & OK)</em> di bilah navigasi layar Asisten Medis.",
+        "<strong>Deteksi Tanda Vital Otomatis:</strong> Sebutkan tensi dan nadi pasien (misal: <em>\"Tensi 80 per 50, nadi 125 cepat lemah\"</em>). AI akan langsung menghitung <strong>Shock Index</strong>.",
+        "<strong>Protokol Resusitasi Cepat:</strong> Dapatkan peringatan instan risiko syok hipovolemik, instruksi loading cairan, dan akses cepat ke protokol trauma darurat."
+      ]
+    },
+    "whatsapp": {
+      "title": "3. Layanan Pasien & Pengingat WhatsApp",
+      "desc": "Otomatisasi pengiriman pesan pengingat jadwal kontrol pasien serta asisten triase mandiri via WhatsApp.",
+      "steps": [
+        "<strong>Pendaftaran Pasien:</strong> Daftarkan janji temu baru melalui formulir reservasi dengan nomor WhatsApp aktif pasien.",
+        "<strong>Pengingat Otomatis H-1:</strong> Sistem secara otomatis mengirimkan notifikasi pengingat jadwal periksa dan dokter ke WhatsApp pasien.",
+        "<strong>Chatbot Triase Mandiri:</strong> Pasien dapat berkonsultasi seputar jadwal dan informasi fasilitas rumah sakit langsung dari aplikasi WhatsApp."
+      ]
+    },
+    "radiology": {
+      "title": "ASR Radiologi (Opsional)",
+      "desc": "Fitur khusus untuk Dokter Spesialis Radiologi untuk mendikte hasil bacaan penunjang.",
+      "steps": [
+        "Klik area dikte dan mulai berbicara (contoh: \"Tampak infiltrat di apex paru kanan...\").",
+        "AI akan menyusun kalimat lisan tersebut menjadi laporan radiologi formal yang terstruktur."
+      ]
+    },
+    "_comment_bpjs_archived": {
+      "title": "Arsip: Pengecekan Dokumen Klaim BPJS",
+      "desc": "Fitur evaluasi kelayakan dokumen klaim BPJS secara otomatis (Diarsipkan)."
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "title": "Radiology ASR Speech Scribe",
+  "subtitle": "Convert unstructured radiologist speech dictations into standardized clinical imaging reports.",
+  "inputSectionTitle": "Voice / Text Dictation",
+  "clickToDictate": "Click to Start Dictating",
+  "orTypeManual": "Or type examination notes manually below:",
+  "textareaPlaceholder": "Example: Infiltrates visible in apex of right lung. Heart size normal. Costophrenic sinuses sharp. Impression: Consistent with pulmonary tuberculosis.",
+  "formatBtn": "Format Report with AI",
+  "formatting": "Analyzing & Structuring Report...",
+  "outputSectionTitle": "Standardized Radiology Report",
+  "emptyOutputPlaceholder": "Structured radiology report (Clinical Info, Findings, Impression) will appear here..."
+}

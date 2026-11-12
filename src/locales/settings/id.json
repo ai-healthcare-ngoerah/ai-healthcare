@@ -1,0 +1,10 @@
+{
+  "title": "Pengaturan Kuota",
+  "subtitle": "Pantau penggunaan kuota pemeriksaan AI (Gemini/Groq) Anda untuk periode berjalan.",
+  "errorLoad": "Gagal memuat data kuota.",
+  "loading": "Memuat data kuota...",
+  "used": "Terpakai",
+  "remaining": "Sisa Kuota",
+  "monthlyLimit": "Batas Bulanan",
+  "periodUsage": "Penggunaan Periode"
+}
