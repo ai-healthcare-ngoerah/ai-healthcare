@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Activity, AlertTriangle, CheckCircle, TrendingDown, ArrowRight, Clock, Sparkles, ShieldCheck, Stethoscope, Cpu, Award, Mail } from 'lucide-react';
+import { Activity, AlertTriangle, CheckCircle, TrendingDown, ArrowRight, Clock, Sparkles, ShieldCheck, Stethoscope, Cpu, Award, MessageSquare, DollarSign, Microscope, Zap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../context/AuthContext';
 import { articlesData } from '../data/articlesData';
@@ -87,7 +87,8 @@ const Landing = () => {
           </div>
         </div>
         <div className="landing-nav-links">
-          <a href="#solusi" className="landing-nav-link">{t('landing.nav.solutions', 'Solusi')}</a>
+          <a href="#solusi" className="landing-nav-link">{t('landing.nav.solutions', 'Solusi AI')}</a>
+          <a href="#harga" className="landing-nav-link">{t('landing.nav.pricing', 'Paket & Harga')}</a>
           <a href="#tentang-kami" className="landing-nav-link">{t('landing.nav.about', 'Tentang Kami')}</a>
           <a href="#founder" className="landing-nav-link">{t('landing.nav.team', 'Our Team')}</a>
           <a href="#artikel" className="landing-nav-link">{t('landing.nav.articles', 'Artikel')}</a>
@@ -170,43 +171,202 @@ const Landing = () => {
             </div>
           </div>
 
-          {/* Solution Section (Figure breaking the Similarity of the red cards) */}
+          {/* Solution Section: 5 Core AI Healthcare Solutions */}
           <section id="solusi" className="solution-section">
             <div className="solution-header text-center">
-              <div className="pas-icon-wrapper green-icon" style={{ margin: '0 auto 1rem' }}>
-                <CheckCircle size={40} />
-              </div>
+              <span className="section-pill-badge">{t('landing.solution.badge', 'Layanan AI Healthcare')}</span>
               <h2>{t('landing.solution.title')}</h2>
               <p>{t('landing.solution.subtitle')}</p>
             </div>
 
-            <div className="solution-grid">
-              {/* Solution 1: AI Medical Scribe (Active) */}
-              <div className="solution-item">
-                <div className="solution-indicator">1</div>
-                <div>
-                  <strong>{t('landing.solution.point1.title')}</strong>
-                  <p>{t('landing.solution.point1.desc')}</p>
+            <div className="solution-grid five-services-grid">
+              {/* Service 1: AI Rekam Medis */}
+              <div className="solution-card-service">
+                <div className="service-icon-pill emerald-pill">
+                  <Stethoscope size={22} />
+                  <span>{t('landing.solution.service1.tag')}</span>
                 </div>
+                <h3>{t('landing.solution.service1.title')}</h3>
+                <p>{t('landing.solution.service1.desc')}</p>
               </div>
 
-              {/* [COMMENTED OUT - AI CHECKING BPJS CLAIMS]
-              <div className="solution-item">
-                <div className="solution-indicator">2</div>
-                <div>
-                  <strong>{t('landing.solution.bpjs.title')}</strong>
-                  <p>{t('landing.solution.bpjs.desc')}</p>
+              {/* Service 2: AI Chatbot/Helpdesk & WhatsApp Reminder */}
+              <div className="solution-card-service">
+                <div className="service-icon-pill green-pill">
+                  <MessageSquare size={22} />
+                  <span>{t('landing.solution.service2.tag')}</span>
                 </div>
+                <h3>{t('landing.solution.service2.title')}</h3>
+                <p>{t('landing.solution.service2.desc')}</p>
               </div>
-              */}
 
-              {/* Solution 3: AI Patient Reservation (Active) */}
-              <div className="solution-item">
-                <div className="solution-indicator">2</div>
-                <div>
-                  <strong>{t('landing.solution.point3.title')}</strong>
-                  <p>{t('landing.solution.point3.desc')}</p>
+              {/* Service 3: AI BPJS */}
+              <div className="solution-card-service">
+                <div className="service-icon-pill blue-pill">
+                  <ShieldCheck size={22} />
+                  <span>{t('landing.solution.service3.tag')}</span>
                 </div>
+                <h3>{t('landing.solution.service3.title')}</h3>
+                <p>{t('landing.solution.service3.desc')}</p>
+              </div>
+
+              {/* Service 4: AI Finance Health */}
+              <div className="solution-card-service">
+                <div className="service-icon-pill amber-pill">
+                  <TrendingDown size={22} />
+                  <span>{t('landing.solution.service4.tag')}</span>
+                </div>
+                <h3>{t('landing.solution.service4.title')}</h3>
+                <p>{t('landing.solution.service4.desc')}</p>
+              </div>
+
+              {/* Service 5: AI for Healthcare Research (Khusus Dokter) */}
+              <div className="solution-card-service research-card">
+                <div className="service-icon-pill purple-pill">
+                  <Microscope size={22} />
+                  <span>{t('landing.solution.service5.tag')}</span>
+                </div>
+                <h3>{t('landing.solution.service5.title')}</h3>
+                <p>{t('landing.solution.service5.desc')}</p>
+              </div>
+            </div>
+          </section>
+
+          {/* Pricing & Billing Section */}
+          <section id="harga" className="pricing-section text-center">
+            <div className="section-header-compact">
+              <span className="section-pill-badge">{t('landing.pricing.badge')}</span>
+              <h2>{t('landing.pricing.title')}</h2>
+              <p className="section-header-subtitle">{t('landing.pricing.subtitle')}</p>
+            </div>
+
+            {/* Free Trial Banner */}
+            <div className="pricing-free-trial-banner">
+              <div className="free-trial-tag-pill">
+                <Sparkles size={16} />
+                <span>{t('landing.pricing.freeTrialBanner.tag')}</span>
+              </div>
+              <h3>{t('landing.pricing.freeTrialBanner.title')}</h3>
+              <p>{t('landing.pricing.freeTrialBanner.desc')}</p>
+              <button className="btn-free-trial-cta" onClick={() => setIsDemoModalOpen(true)}>
+                <span>Klaim Free Trial 1 Bulan</span>
+                <ArrowRight size={18} />
+              </button>
+            </div>
+
+            {/* Pricing Cards Grid */}
+            <div className="pricing-grid">
+              {/* Plan 1: Paket Ekonomis */}
+              <div className="pricing-card">
+                <div className="pricing-card-top">
+                  <span className="pricing-tier-pill">{t('landing.pricing.plan1.badge')}</span>
+                  <h3>{t('landing.pricing.plan1.name')}</h3>
+                  <div className="pricing-model-badge">{t('landing.pricing.plan1.model')}</div>
+                </div>
+
+                <div className="pricing-rates-container">
+                  <div className="pricing-rate-item">
+                    <span className="rate-service-count">1 Service AI</span>
+                    <span className="rate-amount">Rp 300.000 <small>/ bln</small></span>
+                  </div>
+                  <div className="pricing-rate-item">
+                    <span className="rate-service-count">2 Service AI</span>
+                    <span className="rate-amount">Rp 500.000 <small>/ bln</small></span>
+                  </div>
+                  <div className="pricing-rate-item rate-highlight">
+                    <span className="rate-service-count">5 Service AI (Full)</span>
+                    <span className="rate-amount">Rp 1.000.000 <small>/ bln</small></span>
+                  </div>
+                </div>
+
+                <div className="pricing-maintenance-badge">
+                  <CheckCircle size={15} />
+                  <span>{t('landing.pricing.plan1.maintenance')}</span>
+                </div>
+
+                <ul className="pricing-features-list">
+                  {t('landing.pricing.plan1.features', { returnObjects: true })?.map((feat, idx) => (
+                    <li key={idx}><CheckCircle size={15} className="feat-check" /> {feat}</li>
+                  ))}
+                </ul>
+
+                <button className="pricing-cta-btn" onClick={() => setIsDemoModalOpen(true)}>
+                  {t('landing.pricing.plan1.cta')}
+                </button>
+              </div>
+
+              {/* Plan 2: Paket Standar (Best Value) */}
+              <div className="pricing-card featured-plan-card">
+                <div className="featured-ribbon-pill">{t('landing.pricing.plan2.badge')}</div>
+                <div className="pricing-card-top">
+                  <span className="pricing-tier-pill emerald-tier">{t('landing.pricing.plan2.target')}</span>
+                  <h3>{t('landing.pricing.plan2.name')}</h3>
+                  <div className="pricing-model-badge emerald-model">{t('landing.pricing.plan2.model')}</div>
+                </div>
+
+                <div className="pricing-rates-container">
+                  <div className="pricing-rate-item">
+                    <span className="rate-service-count">1 Service AI</span>
+                    <span className="rate-amount">Rp 500.000 <small>/ bln</small></span>
+                  </div>
+                  <div className="pricing-rate-item">
+                    <span className="rate-service-count">3 Service AI</span>
+                    <span className="rate-amount">Rp 1.000.000 <small>/ bln</small></span>
+                  </div>
+                  <div className="pricing-rate-item rate-highlight emerald-highlight">
+                    <span className="rate-service-count">5 Service AI (Full)</span>
+                    <span className="rate-amount">Rp 1.300.000 <small>/ bln</small></span>
+                  </div>
+                </div>
+
+                <div className="pricing-maintenance-badge emerald-maintenance">
+                  <CheckCircle size={15} />
+                  <span>{t('landing.pricing.plan2.maintenance')}</span>
+                </div>
+
+                <ul className="pricing-features-list">
+                  {t('landing.pricing.plan2.features', { returnObjects: true })?.map((feat, idx) => (
+                    <li key={idx}><CheckCircle size={15} className="feat-check emerald-check" /> {feat}</li>
+                  ))}
+                </ul>
+
+                <button className="pricing-cta-btn featured-cta-btn" onClick={() => setIsDemoModalOpen(true)}>
+                  {t('landing.pricing.plan2.cta')}
+                </button>
+              </div>
+
+              {/* Plan 3: Paket Max */}
+              <div className="pricing-card">
+                <div className="pricing-card-top">
+                  <span className="pricing-tier-pill purple-tier">{t('landing.pricing.plan3.badge')}</span>
+                  <h3>{t('landing.pricing.plan3.name')}</h3>
+                  <div className="pricing-model-badge purple-model">{t('landing.pricing.plan3.model')}</div>
+                </div>
+
+                <div className="pricing-rates-container single-enterprise-rate">
+                  <div className="enterprise-all-in-box">
+                    <span className="all-in-title">Semua 5 Layanan + Custom Riset</span>
+                    <div className="all-in-price-wrap">
+                      <span className="price-big">Rp 2.000.000</span>
+                      <span className="price-unit">/ bulan</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pricing-maintenance-badge purple-maintenance">
+                  <CheckCircle size={15} />
+                  <span>{t('landing.pricing.plan3.maintenance')}</span>
+                </div>
+
+                <ul className="pricing-features-list">
+                  {t('landing.pricing.plan3.features', { returnObjects: true })?.map((feat, idx) => (
+                    <li key={idx}><CheckCircle size={15} className="feat-check purple-check" /> {feat}</li>
+                  ))}
+                </ul>
+
+                <button className="pricing-cta-btn" onClick={() => setIsDemoModalOpen(true)}>
+                  {t('landing.pricing.plan3.cta')}
+                </button>
               </div>
             </div>
           </section>
@@ -326,7 +486,7 @@ const Landing = () => {
               <p className="section-header-subtitle">{t('landing.team.subtitle')}</p>
             </div>
 
-            <div className="team-grid single-founder-layout">
+            <div className="team-grid dual-founder-layout">
               {/* Member 1: Founder */}
               <div className="team-card horizontal-founder-card">
                 <div className="founder-avatar-wrapper">
@@ -353,87 +513,14 @@ const Landing = () => {
                     <span className="founder-credential-pill">{t('landing.team.member1.credential')}</span>
                   </div>
                   <p className="founder-desc">{t('landing.team.member1.desc')}</p>
-                  
-                  {/* Ikon Media Sosial Founder */}
-                  <div className="founder-social-icons-strip" role="list" aria-label="Media Sosial Founder">
-                    <a
-                      href="https://www.linkedin.com/in/dewa-mahesta/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="founder-social-icon-btn founder-social-linkedin"
-                      title="LinkedIn I Dewa Gede Mahesta Parawangsa"
-                      aria-label="LinkedIn"
-                    >
-                      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
-                      </svg>
-                    </a>
-                    <a
-                      href="https://www.instagram.com/ternakai.healthcare"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="founder-social-icon-btn founder-social-instagram"
-                      title="Instagram @ternakai.healthcare"
-                      aria-label="Instagram"
-                    >
-                      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-                      </svg>
-                    </a>
-                    <a
-                      href="https://www.youtube.com/@ternakai-healthcare"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="founder-social-icon-btn founder-social-youtube"
-                      title="YouTube Ternak AI Healthcare"
-                      aria-label="YouTube"
-                    >
-                      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.377.55a3.016 3.016 0 0 0-2.122 2.136C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.55 9.376.55 9.376.55s7.505 0 9.377-.55a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                      </svg>
-                    </a>
-                    <a
-                      href="https://wa.me/6281234567890?text=Halo%20Ternak%20AI%20Healthcare%2C%20saya%20ingin%20konsultasi%20layanan%20USADA%20AI"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="founder-social-icon-btn founder-social-whatsapp"
-                      title="WhatsApp Konsultasi Medis"
-                      aria-label="WhatsApp"
-                    >
-                      <img src="/icons/WA.webp" alt="WhatsApp" style={{ width: '18px', height: '18px', objectFit: 'contain' }} />
-                    </a>
-                    <a
-                      href="https://github.com/dewamahesta"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="founder-social-icon-btn founder-social-github"
-                      title="GitHub Riset AI Medis"
-                      aria-label="GitHub"
-                    >
-                      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                        <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/>
-                      </svg>
-                    </a>
-                    <a
-                      href="mailto:contact@ternak.ai"
-                      className="founder-social-icon-btn founder-social-email"
-                      title="Email contact@ternak.ai"
-                      aria-label="Email"
-                    >
-                      <Mail size={15} />
-                    </a>
-                  </div>
                 </div>
               </div>
 
-              {/* Member 2: CTO - Bambang Wicaksono, M.Kom (Dinonaktifkan sementara) */}
-              {/*
+              {/* Member 2: Co-Founder - Ida Bagus Agung Bajerapany */}
               <div className="team-card horizontal-founder-card">
                 <div className="founder-avatar-wrapper">
                   <img
-                    src="/team/founder_bambang.jpg"
+                    src="/team/gus-agung.svg?v=1.0"
                     alt={t('landing.team.member2.name')}
                     className="founder-avatar-circle"
                     loading="lazy"
@@ -457,38 +544,6 @@ const Landing = () => {
                   <p className="founder-desc">{t('landing.team.member2.desc')}</p>
                 </div>
               </div>
-              */}
-
-              {/* Member 3: Advisor - dr. Cynthia Dewi, MARS (Dinonaktifkan sementara) */}
-              {/*
-              <div className="team-card horizontal-founder-card">
-                <div className="founder-avatar-wrapper">
-                  <img
-                    src="/team/founder_cynthia.jpg"
-                    alt={t('landing.team.member3.name')}
-                    className="founder-avatar-circle"
-                    loading="lazy"
-                    onError={(e) => {
-                      e.target.style.display = 'none';
-                      const fallback = e.target.nextElementSibling;
-                      if (fallback) fallback.style.display = 'flex';
-                    }}
-                  />
-                  <div className="founder-avatar-fallback indigo-fallback" style={{ display: 'none' }}>
-                    <Award size={30} />
-                  </div>
-                </div>
-                <div className="founder-info-right">
-                  <h3>{t('landing.team.member3.name')}</h3>
-                  <div className="founder-role-row">
-                    <span className="founder-role">{t('landing.team.member3.role')}</span>
-                    <span className="founder-bullet">•</span>
-                    <span className="founder-credential-pill">{t('landing.team.member3.credential')}</span>
-                  </div>
-                  <p className="founder-desc">{t('landing.team.member3.desc')}</p>
-                </div>
-              </div>
-              */}
             </div>
           </section>
 

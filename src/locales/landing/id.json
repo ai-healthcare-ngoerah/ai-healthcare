@@ -2,7 +2,8 @@
   "nav": {
     "brand": "Ternak AI Healthcare",
     "brandSubtitle": "Anak Usaha Ternak Automation",
-    "solutions": "Solusi",
+    "solutions": "Solusi AI",
+    "pricing": "Paket & Harga",
     "about": "Tentang Kami",
     "team": "Our Team",
     "articles": "Artikel",
@@ -25,19 +26,126 @@
     }
   },
   "solution": {
-    "title": "Solusi: USADA AI by Ternak AI Healthcare",
-    "subtitle": "Ternak AI Healthcare menghadirkan solusi cerdas USADA AI yang dirancang khusus untuk memangkas beban kerja dokter dan staf klinik:",
-    "point1": {
-      "title": "AI Medical Scribe",
-      "desc": "Otomatisasi pembuatan resume medis SOAP (CPPT) dari rekaman suara konsultasi dokter-pasien menjadi teks klinis terstandar lengkap dengan koding ICD-10."
+    "badge": "Layanan AI Healthcare",
+    "title": "5 Layanan AI Healthcare Unggulan USADA AI",
+    "subtitle": "Solusi terintegrasi kecerdasan buatan medis yang dirancang khusus untuk memangkas beban kerja dokter, mengoptimalkan casemix BPJS, dan menyehatkan keuangan faskes:",
+    "service1": {
+      "tag": "Dokumentasi Klinis",
+      "title": "1. AI Rekam Medis",
+      "desc": "Otomatisasi pembuatan resume medis SOAP (CPPT) dari rekaman percakapan dokter-pasien secara real-time, terintegrasi koding diagnosis ICD-10 & tindakan ICD-9-CM sesuai standar akreditasi."
     },
-    "bpjs": {
-      "title": "AI Checking BPJS",
-      "desc": "Verifikasi kelengkapan berkas dan pra-validasi kepatuhan klaim BPJS secara instan."
+    "service2": {
+      "tag": "Omnichannel Pasien",
+      "title": "2. AI Chatbot/Helpdesk & WhatsApp Reminder",
+      "desc": "Pendaftaran mandiri pasien poli rawat jalan via WhatsApp 24/7, triase keluhan otomatis, serta notifikasi pengingat jadwal kontrol (H-3, H-1, H-0) guna menekan angka ketidakhadiran pasien."
     },
-    "point3": {
-      "title": "AI Patient Reservation",
-      "desc": "Sistem reservasi mandiri pasien poli klinik serta pengingat jadwal kontrol otomatis omnichannel via WhatsApp (H-3, H-1, H-0) guna meminimalkan ketidakhadiran pasien."
+    "service3": {
+      "tag": "Kepatuhan Casemix",
+      "title": "3. AI BPJS",
+      "desc": "Pra-validasi berkas klaim BPJS Kesehatan secara otomatis, pencegahan pending dan dispute claim sebelum diajukan, verifikasi syarat berkas casemix, dan deteksi potensi fraud."
+    },
+    "service4": {
+      "tag": "Kesehatan Finansial RS",
+      "title": "4. AI Finance Health",
+      "desc": "Rekonsiliasi otomatis tarif paket INA-CBGs terhadap tarif riil faskes, pemantauan margin tindakan medis, analisis efisiensi belanja operasional, dan pembukuan biaya faskes yang akurat."
+    },
+    "service5": {
+      "tag": "Riset Medis Klinis",
+      "title": "5. AI for Healthcare Research (Khusus Dokter)",
+      "desc": "Asisten riset klinis dokter berbasis RAG dan PubMed, sintesis literatur medis internasional, analisis komparasi studi kasus pasien, serta perumusan draf publikasi jurnal ilmiah."
+    }
+  },
+  "pricing": {
+    "badge": "Investasi & Langganan",
+    "title": "Paket Layanan & Biaya Berlangganan",
+    "subtitle": "Pilihan fleksibel sesuai skala faskes Anda. Tersedia integrasi Cloud API cepat maupun deployment AI Lokal On-Premise yang privat.",
+    "freeTrialBanner": {
+      "badge": "Penawaran Khusus Faskes Baru",
+      "tag": "Penawaran Khusus Faskes Baru",
+      "title": "🎁 FREE TRIAL 1 BULAN PENUH UNTUK 3 RS / KLINIK PERTAMA!",
+      "desc": "Nikmati seluruh kapabilitas kecerdasan buatan USADA AI secara gratis tanpa komitmen untuk 3 fasilitas kesehatan pertama di Bali. Buktikan efisiensinya sekarang!",
+      "cta": "Klaim Free Trial 1 Bulan"
+    },
+    "plan1": {
+      "name": "Paket Ekonomis",
+      "badge": "RS Tier 3 & Klinik",
+      "target": "RS Tier 3 & Jaringan Klinik",
+      "model": "Model Cloud API Key (DeepSeek & Google API Key)",
+      "maintenance": "Sudah include maintenance max 1x per bulan",
+      "rate1Label": "1 Service AI",
+      "rate1Price": "Rp 300rb / bln",
+      "rate2Label": "2 Service AI",
+      "rate2Price": "Rp 500rb / bln",
+      "rate3Label": "5 Service AI (Full Suite)",
+      "rate3Price": "Rp 1 jt / bln",
+      "feature1": "Akses Cloud API Gateway Cepat & Ringan",
+      "feature2": "Pilihan Model AI DeepSeek / Google Gemini",
+      "feature3": "Sudah include maintenance sistem max 1x per bulan",
+      "pricingOptions": [
+        { "count": "1 Service AI", "price": "Rp 300.000", "period": "/ bulan" },
+        { "count": "2 Service AI", "price": "Rp 500.000", "period": "/ bulan" },
+        { "count": "5 Service AI (Full Suite)", "price": "Rp 1.000.000", "period": "/ bulan" }
+      ],
+      "features": [
+        "Akses Cloud API Gateway Cepat",
+        "Pilihan Model DeepSeek / Google Gemini",
+        "Setup Mudah Tanpa Server Lokal Tambahan",
+        "Maintenance Sistem Maksimal 1x per Bulan",
+        "Dukungan Teknis Standar Jam Kerja"
+      ],
+      "cta": "Pilih Paket Ekonomis"
+    },
+    "plan2": {
+      "name": "Paket Standar",
+      "badge": "Best Value ⭐",
+      "target": "RS Tier 3 & Tier 2",
+      "model": "Deploy AI Lokal + Autonomous Agent (Security)",
+      "maintenance": "Sudah include 2x maintenance per bulan",
+      "rate1Label": "1 Service AI",
+      "rate1Price": "Rp 500k / bln",
+      "rate2Label": "3 Service AI",
+      "rate2Price": "Rp 1 jt / bln",
+      "rate3Label": "5 Service AI (Full Suite)",
+      "rate3Price": "Rp 1,3 jt / bln",
+      "feature1": "Deploy AI Lokal On-Premise + Security Agent",
+      "feature2": "Kedaulatan & privasi data rekam medis terjamin",
+      "feature3": "Sudah include 2x maintenance berkala per bulan",
+      "pricingOptions": [
+        { "count": "1 Service AI", "price": "Rp 500.000", "period": "/ bulan" },
+        { "count": "3 Service AI", "price": "Rp 1.000.000", "period": "/ bulan" },
+        { "count": "5 Service AI (Full Suite)", "price": "Rp 1.300.000", "period": "/ bulan" }
+      ],
+      "features": [
+        "Deploy Model AI Lokal On-Premise Faskes",
+        "Keamanan & Kedaulatan Data Pasien Terjamin",
+        "Autonomous AI Agent Khusus Operasional Faskes",
+        "Maintenance Berkala 2x per Bulan",
+        "Dukungan Integrasi Rekam Medis Elektronik (RME)"
+      ],
+      "cta": "Klaim Free Trial 1 Bulan"
+    },
+    "plan3": {
+      "name": "Paket Max",
+      "badge": "Full Enterprise",
+      "target": "RS Tier 3 & RS Rujukan",
+      "model": "Deploy AI Lokal + Agent + Research + Pengembangan",
+      "maintenance": "Sudah include maintenance intensif 5x per bulan",
+      "rateLabel": "Semua 5 Layanan + Riset & Pengembangan",
+      "ratePrice": "Rp 2 jt / bln",
+      "feature1": "Full Suite 5 Layanan AI Medis + On-Premise Agent",
+      "feature2": "Modul AI for Healthcare Research khusus dokter faskes",
+      "feature3": "Sudah include maintenance intensif 5x per bulan",
+      "pricingOptions": [
+        { "count": "All 5 Services + Research & Pengembangan", "price": "Rp 2.000.000", "period": "/ bulan" }
+      ],
+      "features": [
+        "Deploy Full-Stack AI Lokal & Security Agent",
+        "Modul AI Healthcare Research Khusus Dokter",
+        "Riset & Custom Pengembangan Fitur Faskes",
+        "Maintenance Intensif 5x per Bulan",
+        "Priority 24/7 SLA & Dedicated AI Engineer"
+      ],
+      "cta": "Konsultasi Paket Max"
     }
   },
   "about": {
@@ -76,10 +184,10 @@
       "desc": "Founder Usada AI dan AI Engineer di RSUP Prof. Dr. I.G.N.G. Ngoerah, memimpin arsitektur inovasi kecerdasan buatan medis, otomatisasi rekam medis CPPT SOAP, dan transformasi digital faskes."
     },
     "member2": {
-      "name": "Bambang Wicaksono, M.Kom",
-      "role": "Co-Founder & Chief Technology Officer",
-      "credential": "AI Research & Cloud Architecture",
-      "desc": "Merancang arsitektur model suara klinis (Voice-to-SOAP) berlatensi rendah (<50ms) dan sistem perlindungan data medis terenkripsi."
+      "name": "Ida Bagus Agung Bajerapany",
+      "role": "Co-Founder of Usada AI",
+      "credential": "Software Engineer, Data Scientist & AI Engineer",
+      "desc": "Co-Founder Usada AI dan Software Engineer di RSUP Prof. Dr. I.G.N.G. Ngoerah serta mahasiswa Teknologi Informasi Universitas Udayana (UNUD). Berfokus pada pengembangan sistem web cerdas, rekayasa data analitik, dan solusi kecerdasan buatan klinis untuk faskes modern."
     },
     "member3": {
       "name": "dr. Cynthia Dewi, MARS",

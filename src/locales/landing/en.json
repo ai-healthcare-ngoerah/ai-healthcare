@@ -2,7 +2,8 @@
   "nav": {
     "brand": "Ternak AI Healthcare",
     "brandSubtitle": "A Subsidiary of Ternak Automation",
-    "solutions": "Solutions",
+    "solutions": "AI Solutions",
+    "pricing": "Pricing & Plans",
     "about": "About Us",
     "team": "Our Team",
     "articles": "Articles",
@@ -25,19 +26,126 @@
     }
   },
   "solution": {
-    "title": "Solution: USADA AI by Ternak AI Healthcare",
-    "subtitle": "Ternak AI Healthcare introduces intelligent USADA AI solutions specifically designed to streamline doctor and clinic staff workflows:",
-    "point1": {
-      "title": "AI Medical Scribe",
-      "desc": "Automated creation of standardized SOAP clinical notes (CPPT) from doctor-patient consultation voice recordings, complete with ICD-10 diagnostic coding."
+    "badge": "AI Healthcare Services",
+    "title": "5 Core AI Healthcare Solutions by USADA AI",
+    "subtitle": "An integrated suite of clinical artificial intelligence technologies designed to minimize doctor overhead, optimize BPJS casemix, and strengthen healthcare facility finance:",
+    "service1": {
+      "tag": "Clinical Documentation",
+      "title": "1. AI Rekam Medis",
+      "desc": "Real-time Voice-to-SOAP (CPPT) clinical consultation summarization, automated ICD-10 diagnostic and ICD-9-CM procedure coding meeting hospital accreditation standards."
     },
-    "bpjs": {
-      "title": "AI Checking BPJS",
-      "desc": "Instant file completeness verification and pre-validation of BPJS claim compliance."
+    "service2": {
+      "tag": "Omnichannel Patient Flow",
+      "title": "2. AI Chatbot/Helpdesk & WhatsApp Reminder",
+      "desc": "24/7 automated outpatient clinic booking via WhatsApp, smart symptom triage, and proactive follow-up reminders (D-3, D-1, D-0) to drastically minimize patient no-shows."
     },
-    "point3": {
-      "title": "AI Patient Reservation",
-      "desc": "Self-service clinic appointment reservation system and automated omnichannel WhatsApp reminders (D-3, D-1, D-0) to minimize patient no-shows."
+    "service3": {
+      "tag": "Claim & Casemix Compliance",
+      "title": "3. AI BPJS",
+      "desc": "Instant pre-validation of BPJS Health insurance claim files, early detection of potential dispute/pending claims, casemix completeness verification, and hospital claim fraud prevention."
+    },
+    "service4": {
+      "tag": "Hospital Financial Health",
+      "title": "4. AI Finance Health",
+      "desc": "Automated reconciliation of INA-CBGs tariff bundles against real hospital costs, medical procedure margin monitoring, clinical procurement efficiency, and transparent hospital billing."
+    },
+    "service5": {
+      "tag": "Evidence-Based Research",
+      "title": "5. AI for Healthcare Research (For Doctors)",
+      "desc": "Doctor clinical research assistant powered by RAG and PubMed, synthesizing global medical literature, comparative patient case analytics, and clinical research manuscript drafting."
+    }
+  },
+  "pricing": {
+    "badge": "Investment & Plans",
+    "title": "Service Packages & Subscription Rates",
+    "subtitle": "Flexible options tailored to your healthcare facility scale, featuring fast Cloud API gateways or fully private on-premise deployments.",
+    "freeTrialBanner": {
+      "badge": "Exclusive Clinic Offer",
+      "tag": "Exclusive Clinic Offer",
+      "title": "🎁 1-MONTH FULL FREE TRIAL FOR THE FIRST 3 HOSPITALS / CLINICS!",
+      "desc": "Test all our AI Healthcare capabilities completely free with zero commitment for the first 3 healthcare facilities in Bali. Experience immediate operational efficiency today!",
+      "cta": "Claim 1-Month Free Trial"
+    },
+    "plan1": {
+      "name": "Economy Package",
+      "badge": "Clinics & Tier 3 Hospitals",
+      "target": "Tier 3 Hospitals & Clinic Networks",
+      "model": "Cloud API Key Model (DeepSeek & Google API Key)",
+      "maintenance": "Includes regular maintenance max 1x / month",
+      "rate1Label": "1 AI Service",
+      "rate1Price": "Rp 300k / mo",
+      "rate2Label": "2 AI Services",
+      "rate2Price": "Rp 500k / mo",
+      "rate3Label": "5 AI Services (Full Suite)",
+      "rate3Price": "Rp 1M / mo",
+      "feature1": "Fast & Lightweight Cloud API Gateway",
+      "feature2": "DeepSeek / Google Gemini Model Options",
+      "feature3": "Includes system maintenance max 1x per month",
+      "pricingOptions": [
+        { "count": "1 AI Service", "price": "Rp 300,000", "period": "/ month" },
+        { "count": "2 AI Services", "price": "Rp 500,000", "period": "/ month" },
+        { "count": "5 AI Services (Full Suite)", "price": "Rp 1,000,000", "period": "/ month" }
+      ],
+      "features": [
+        "Fast Cloud API Gateway Access",
+        "DeepSeek & Google Gemini Model Options",
+        "Quick Setup Without Local Server Hardware",
+        "System Maintenance 1x per Month",
+        "Standard Technical Support"
+      ],
+      "cta": "Choose Economy Plan"
+    },
+    "plan2": {
+      "name": "Standard Package",
+      "badge": "Best Value ⭐",
+      "target": "Tier 3 & Tier 2 Hospitals",
+      "model": "Local AI On-Premise Deployment + Autonomous Agent (Security)",
+      "maintenance": "Includes regular maintenance 2x / month",
+      "rate1Label": "1 AI Service",
+      "rate1Price": "Rp 500k / mo",
+      "rate2Label": "3 AI Services",
+      "rate2Price": "Rp 1M / mo",
+      "rate3Label": "5 AI Services (Full Suite)",
+      "rate3Price": "Rp 1.3M / mo",
+      "feature1": "Local AI On-Premise Deployment + Security Agent",
+      "feature2": "Guaranteed patient data sovereignty and privacy",
+      "feature3": "Includes routine maintenance 2x per month",
+      "pricingOptions": [
+        { "count": "1 AI Service", "price": "Rp 500,000", "period": "/ month" },
+        { "count": "3 AI Services", "price": "Rp 1,000,000", "period": "/ month" },
+        { "count": "5 AI Services (Full Suite)", "price": "Rp 1,300,000", "period": "/ month" }
+      ],
+      "features": [
+        "On-Premise Local AI Model Deployment",
+        "Guaranteed Patient Data Sovereignty & Privacy",
+        "Dedicated Healthcare Autonomous AI Agent",
+        "System Maintenance 2x per Month",
+        "Hospital Information System (HIS/EMR) Integration"
+      ],
+      "cta": "Claim 1-Month Free Trial"
+    },
+    "plan3": {
+      "name": "Max Package",
+      "badge": "Full Enterprise",
+      "target": "Tier 3 & Referral Hospitals",
+      "model": "Local AI Deployment + Agent + Research + Custom Development",
+      "maintenance": "Includes intensive maintenance 5x / month",
+      "rateLabel": "All 5 Services + Research & Development",
+      "ratePrice": "Rp 2M / mo",
+      "feature1": "Full Suite 5 Medical AI Services + On-Premise Agent",
+      "feature2": "AI for Healthcare Research module for facility doctors",
+      "feature3": "Includes intensive maintenance 5x per month",
+      "pricingOptions": [
+        { "count": "All 5 Services + Research & Development", "price": "Rp 2,000,000", "period": "/ month" }
+      ],
+      "features": [
+        "Full-Stack Local AI & Security Agent Deployment",
+        "AI Healthcare Research Module for Doctors",
+        "Custom Clinical Feature Development & Research",
+        "Intensive Maintenance 5x per Month",
+        "Priority 24/7 SLA & Dedicated AI Engineer"
+      ],
+      "cta": "Consult Max Package"
     }
   },
   "about": {
@@ -76,10 +184,10 @@
       "desc": "Founder of Usada AI and AI Engineer at RSUP Ngoerah, pioneering clinical artificial intelligence architecture, automated CPPT SOAP medical scribe, and digital healthcare transformation."
     },
     "member2": {
-      "name": "Bambang Wicaksono, M.Kom",
-      "role": "Co-Founder & Chief Technology Officer",
-      "credential": "AI Research & Cloud Architecture",
-      "desc": "Architecting low-latency (<50ms) Voice-to-SOAP speech processing models and encrypted medical record security."
+      "name": "Ida Bagus Agung Bajerapany",
+      "role": "Co-Founder of Usada AI",
+      "credential": "Software Engineer, Data Scientist & AI Engineer",
+      "desc": "Co-Founder of Usada AI and Software Engineer at RSUP Prof. Dr. I.G.N.G. Ngoerah and Information Technology Udayana University (UNUD). Specializing in intelligent web systems, data science analytics, and clinical AI solutions for modern healthcare."
     },
     "member3": {
       "name": "dr. Cynthia Dewi, MARS",

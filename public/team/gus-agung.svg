@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" width="480" height="480">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="50%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0e7490" />
+    </linearGradient>
+    <linearGradient id="avatarGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#3b82f6" />
+    </linearGradient>
+    <linearGradient id="skinGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fcd34d" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+    <linearGradient id="suitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#06b6d4" flood-opacity="0.25" />
+    </filter>
+  </defs>
+
+  <!-- Background Circle with Border -->
+  <circle cx="240" cy="240" r="230" fill="url(#bgGrad)" stroke="url(#avatarGlow)" stroke-width="8" filter="url(#cardShadow)" />
+
+  <!-- Subtle Tech Grid Accent -->
+  <g opacity="0.15" stroke="#38bdf8" stroke-width="1.5">
+    <circle cx="240" cy="240" r="180" fill="none" stroke-dasharray="6,8" />
+    <circle cx="240" cy="240" r="140" fill="none" />
+    <line x1="60" y1="240" x2="420" y2="240" stroke-dasharray="4,6" />
+    <line x1="240" y1="60" x2="240" y2="420" stroke-dasharray="4,6" />
+  </g>
+
+  <!-- Developer Silhouette / Illustration -->
+  <g transform="translate(0, 10)">
+    <!-- Shoulders & Coat -->
+    <path d="M120 440 C120 350, 160 330, 240 330 C320 330, 360 350, 360 440 Z" fill="url(#suitGrad)" stroke="#334155" stroke-width="3" />
+    
+    <!-- Shirt Collar & Tie / Inner Tech V -->
+    <polygon points="210,330 240,380 270,330 240,345" fill="#f8fafc" />
+    <polygon points="232,345 248,345 245,410 235,410" fill="#0284c7" />
+
+    <!-- Neck -->
+    <rect x="216" y="270" width="48" height="65" rx="8" fill="url(#skinGrad)" />
+
+    <!-- Head & Ears -->
+    <circle cx="168" cy="210" r="18" fill="url(#skinGrad)" />
+    <circle cx="312" cy="210" r="18" fill="url(#skinGrad)" />
+    <ellipse cx="240" cy="210" rx="68" ry="82" fill="url(#skinGrad)" />
+
+    <!-- Modern Haircut -->
+    <path d="M172 195 C165 140, 210 110, 250 110 C295 110, 318 135, 312 185 C300 155, 275 140, 240 142 C205 144, 185 165, 172 195 Z" fill="#0f172a" />
+    <path d="M168 185 C164 165, 175 135, 215 125 C195 135, 180 155, 178 185 Z" fill="#1e293b" />
+
+    <!-- Tech Smart Glasses -->
+    <rect x="186" y="192" width="44" height="28" rx="6" fill="#0f172a" opacity="0.85" stroke="#38bdf8" stroke-width="3" />
+    <rect x="250" y="192" width="44" height="28" rx="6" fill="#0f172a" opacity="0.85" stroke="#38bdf8" stroke-width="3" />
+    <line x1="230" y1="204" x2="250" y2="204" stroke="#38bdf8" stroke-width="3" />
+    <!-- Glasses shine -->
+    <line x1="192" y1="198" x2="208" y2="198" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.8" />
+    <line x1="256" y1="198" x2="272" y2="198" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.8" />
+
+    <!-- Friendly Smile -->
+    <path d="M222 254 Q240 268 258 254" fill="none" stroke="#b45309" stroke-width="3.5" stroke-linecap="round" />
+  </g>
+
+  <!-- AI / Data Scientist Floating Badge -->
+  <g transform="translate(325, 325)">
+    <circle cx="36" cy="36" r="34" fill="#0f172a" stroke="#06b6d4" stroke-width="3.5" filter="url(#cardShadow)" />
+    <!-- Code / Data Waves Icon -->
+    <path d="M26 36 L31 30 M26 36 L31 42 M46 36 L41 30 M46 36 L41 42 M38 27 L34 45" fill="none" stroke="#22d3ee" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+</svg>
