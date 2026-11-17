@@ -363,8 +363,8 @@ const Landing = () => {
                   <Sparkles size={22} />
                 </div>
                 <div className="bottom-trial-text">
-                  <h4>{t('landing.pricing.freeTrialBanner.title', 'Free Trial 1 Bulan Penuh untuk 3 RS / Klinik Pertama')}</h4>
-                  <p>{t('landing.pricing.freeTrialBanner.desc', 'Khusus Paket Standar (Best Value): Nikmati deploy AI lokal, security autonomous agent, dan 3 layanan AI secara gratis tanpa komitmen untuk 3 fasilitas kesehatan pertama di Bali. Buktikan efisiensinya sekarang!')}</p>
+                  <h4>{t('landing.pricing.freeTrialBanner.title', 'Free Trial 1 Bulan untuk 3 RS & Klinik Pertama')}</h4>
+                  <p>{t('landing.pricing.freeTrialBanner.desc', 'Coba Paket Standar langsung di server klinik Anda selama 30 hari—gratis dan tanpa komitmen kontrak.')}</p>
                 </div>
               </div>
               <button
