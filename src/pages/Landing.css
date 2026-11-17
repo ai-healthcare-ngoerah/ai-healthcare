@@ -498,69 +498,6 @@
   margin-right: auto;
 }
 
-/* Free Trial Banner */
-.pricing-free-trial-banner {
-  background: linear-gradient(135deg, #064e3b 0%, #065f46 50%, #047857 100%);
-  border-radius: 18px;
-  padding: 1.75rem 2.25rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-  margin-bottom: 3rem;
-  box-shadow: 0 10px 25px -5px rgba(5, 150, 105, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-.free-trial-tag-pill {
-  display: inline-block;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(8px);
-  color: #a7f3d0;
-  font-size: 0.75rem;
-  font-weight: 700;
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.4rem;
-}
-
-.free-trial-content h3 {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin: 0 0 0.35rem 0;
-}
-
-.free-trial-content p {
-  font-size: 0.95rem;
-  color: #d1fae5;
-  margin: 0;
-  line-height: 1.5;
-}
-
-.btn-free-trial-cta {
-  background: #ffffff;
-  color: #065f46;
-  font-size: 0.95rem;
-  font-weight: 700;
-  padding: 0.85rem 1.85rem;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
-  white-space: nowrap;
-}
-
-.btn-free-trial-cta:hover {
-  background: #ecfdf5;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
-}
-
 /* Pricing Grid */
 .pricing-grid {
   display: grid;
@@ -616,7 +553,8 @@
   letter-spacing: 0.06em;
 }
 
-.pricing-card-header {
+.pricing-card-header,
+.pricing-card-top {
   margin-bottom: 1.25rem;
   text-align: left;
 }
@@ -632,12 +570,19 @@
   margin-bottom: 0.5rem;
 }
 
-.featured-tier-pill {
+.featured-tier-pill,
+.pricing-tier-pill.emerald-tier {
   background: #d1fae5;
   color: #065f46;
 }
 
-.pricing-card-header h3 {
+.pricing-tier-pill.purple-tier {
+  background: #ede9fe;
+  color: #6b21a8;
+}
+
+.pricing-card-header h3,
+.pricing-card-top h3 {
   font-size: 1.4rem;
   font-weight: 800;
   color: #0f172a;
@@ -652,6 +597,77 @@
   line-height: 1.4;
 }
 
+.pricing-model-badge.emerald-model {
+  color: #059669;
+}
+
+.pricing-model-badge.purple-model {
+  color: #7c3aed;
+}
+
+.pricing-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.25rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  flex-grow: 1;
+  text-align: left;
+}
+
+.pricing-features-list li {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #334155;
+  line-height: 1.45;
+}
+
+.pricing-features-list .feat-check {
+  color: #10b981;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.pricing-features-list .feat-check.emerald-check {
+  color: #059669;
+}
+
+.pricing-features-list .feat-check.purple-check {
+  color: #8b5cf6;
+}
+
+.pricing-maintenance-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #ecfdf5;
+  color: #065f46;
+  font-size: 0.825rem;
+  font-weight: 600;
+  padding: 0.55rem 0.85rem;
+  border-radius: 8px;
+  margin-bottom: 1.25rem;
+  border: 1px solid #a7f3d0;
+  text-align: left;
+}
+
+.featured-maintenance-badge,
+.pricing-maintenance-badge.emerald-maintenance {
+  background: #d1fae5;
+  border-color: #6ee7b7;
+  color: #065f46;
+}
+
+.pricing-maintenance-badge.purple-maintenance {
+  background: #f5f3ff;
+  border-color: #ddd6fe;
+  color: #6b21a8;
+}
+
 .pricing-rates-container {
   background: #f8fafc;
   border-radius: 14px;
@@ -663,9 +679,40 @@
   border: 1px solid #f1f5f9;
 }
 
-.pricing-rates-container.max-package-container {
+.pricing-rates-container.single-enterprise-rate {
   background: #f5f3ff;
   border-color: #ede9fe;
+}
+
+.enterprise-all-in-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  text-align: left;
+}
+
+.all-in-title {
+  font-size: 0.825rem;
+  color: #6b21a8;
+  font-weight: 600;
+}
+
+.all-in-price-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+
+.all-in-price-wrap .price-big {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #4c1d95;
+}
+
+.all-in-price-wrap .price-unit {
+  font-size: 0.85rem;
+  color: #7c3aed;
+  font-weight: 600;
 }
 
 .pricing-rate-item {
@@ -682,11 +729,6 @@
   border-bottom: none;
 }
 
-.pricing-rate-item.max-rate-item {
-  border-bottom: none;
-  padding: 0.25rem 0;
-}
-
 .rate-service-count {
   color: #64748b;
   font-weight: 500;
@@ -697,58 +739,20 @@
   font-weight: 700;
 }
 
-.rate-amount.highlight-rate {
+.rate-amount small {
+  font-size: 0.775rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.rate-highlight .rate-amount {
   color: #059669;
   font-size: 0.975rem;
   font-weight: 800;
 }
 
-.pricing-maintenance-badge {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: #ecfdf5;
-  color: #065f46;
-  font-size: 0.825rem;
-  font-weight: 600;
-  padding: 0.55rem 0.85rem;
-  border-radius: 8px;
-  margin-bottom: 1.25rem;
-  border: 1px solid #a7f3d0;
-}
-
-.featured-maintenance-badge {
-  background: #d1fae5;
-  border-color: #6ee7b7;
-}
-
-.pricing-features-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 1.75rem 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-  flex-grow: 1;
-  text-align: left;
-}
-
-.pricing-features-list li {
-  position: relative;
-  padding-left: 1.5rem;
-  font-size: 0.875rem;
-  color: #334155;
-  line-height: 1.45;
-}
-
-.pricing-features-list li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: #10b981;
-  font-weight: 800;
-  font-size: 0.95rem;
+.emerald-highlight .rate-amount {
+  color: #047857;
 }
 
 .pricing-cta-btn {
@@ -761,6 +765,104 @@
   cursor: pointer;
   transition: all 0.2s ease;
   margin-top: auto;
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+}
+
+.pricing-cta-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+  border-color: #94a3b8;
+}
+
+.pricing-cta-btn.featured-cta-btn {
+  background: #10b981;
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+}
+
+.pricing-cta-btn.featured-cta-btn:hover {
+  background: #059669;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
+}
+
+/* ==========================================================================
+   Repositioned Free Trial Guarantee Bar Below Cards
+   ========================================================================== */
+.pricing-bottom-free-trial-bar {
+  margin-top: 2.75rem;
+  background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 50%, #ffffff 100%);
+  border: 1.5px solid #a7f3d0;
+  border-radius: 20px;
+  padding: 1.5rem 2.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  box-shadow: 0 8px 24px -4px rgba(16, 185, 129, 0.12);
+  text-align: left;
+}
+
+.bottom-trial-content {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.trial-gift-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #10b981;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.bottom-trial-text h4 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #064e3b;
+  margin: 0 0 0.25rem 0;
+  line-height: 1.3;
+}
+
+.bottom-trial-text p {
+  font-size: 0.9rem;
+  color: #047857;
+  margin: 0;
+  line-height: 1.45;
+  max-width: 650px;
+}
+
+.bottom-trial-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #059669;
+  color: #ffffff;
+  padding: 0.8rem 1.6rem;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.25);
+}
+
+.bottom-trial-cta-btn:hover {
+  background: #047857;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(5, 150, 105, 0.35);
 }
 
 .btn-secondary {
@@ -776,15 +878,23 @@
 }
 
 @media (max-width: 768px) {
-  .pricing-free-trial-banner {
+  .pricing-bottom-free-trial-bar {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+    text-align: center;
     padding: 1.5rem;
+    gap: 1.25rem;
   }
 
-  .btn-free-trial-cta {
-    width: 100%;
+  .bottom-trial-content {
+    flex-direction: column;
     text-align: center;
+    gap: 0.75rem;
+  }
+
+  .bottom-trial-cta-btn {
+    width: 100%;
+    justify-content: center;
   }
 
   .five-services-grid {

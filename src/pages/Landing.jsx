@@ -240,20 +240,6 @@ const Landing = () => {
               <p className="section-header-subtitle">{t('landing.pricing.subtitle')}</p>
             </div>
 
-            {/* Free Trial Banner */}
-            <div className="pricing-free-trial-banner">
-              <div className="free-trial-tag-pill">
-                <Sparkles size={16} />
-                <span>{t('landing.pricing.freeTrialBanner.tag')}</span>
-              </div>
-              <h3>{t('landing.pricing.freeTrialBanner.title')}</h3>
-              <p>{t('landing.pricing.freeTrialBanner.desc')}</p>
-              <button className="btn-free-trial-cta" onClick={() => setIsDemoModalOpen(true)}>
-                <span>Klaim Free Trial 1 Bulan</span>
-                <ArrowRight size={18} />
-              </button>
-            </div>
-
             {/* Pricing Cards Grid */}
             <div className="pricing-grid">
               {/* Plan 1: Paket Ekonomis */}
@@ -262,6 +248,17 @@ const Landing = () => {
                   <span className="pricing-tier-pill">{t('landing.pricing.plan1.badge')}</span>
                   <h3>{t('landing.pricing.plan1.name')}</h3>
                   <div className="pricing-model-badge">{t('landing.pricing.plan1.model')}</div>
+                </div>
+
+                <ul className="pricing-features-list">
+                  {t('landing.pricing.plan1.features', { returnObjects: true })?.map((feat, idx) => (
+                    <li key={idx}><CheckCircle size={15} className="feat-check" /> {feat}</li>
+                  ))}
+                </ul>
+
+                <div className="pricing-maintenance-badge">
+                  <CheckCircle size={15} />
+                  <span>{t('landing.pricing.plan1.maintenance')}</span>
                 </div>
 
                 <div className="pricing-rates-container">
@@ -279,17 +276,6 @@ const Landing = () => {
                   </div>
                 </div>
 
-                <div className="pricing-maintenance-badge">
-                  <CheckCircle size={15} />
-                  <span>{t('landing.pricing.plan1.maintenance')}</span>
-                </div>
-
-                <ul className="pricing-features-list">
-                  {t('landing.pricing.plan1.features', { returnObjects: true })?.map((feat, idx) => (
-                    <li key={idx}><CheckCircle size={15} className="feat-check" /> {feat}</li>
-                  ))}
-                </ul>
-
                 <button className="pricing-cta-btn" onClick={() => setIsDemoModalOpen(true)}>
                   {t('landing.pricing.plan1.cta')}
                 </button>
@@ -302,6 +288,17 @@ const Landing = () => {
                   <span className="pricing-tier-pill emerald-tier">{t('landing.pricing.plan2.target')}</span>
                   <h3>{t('landing.pricing.plan2.name')}</h3>
                   <div className="pricing-model-badge emerald-model">{t('landing.pricing.plan2.model')}</div>
+                </div>
+
+                <ul className="pricing-features-list">
+                  {t('landing.pricing.plan2.features', { returnObjects: true })?.map((feat, idx) => (
+                    <li key={idx}><CheckCircle size={15} className="feat-check emerald-check" /> {feat}</li>
+                  ))}
+                </ul>
+
+                <div className="pricing-maintenance-badge emerald-maintenance">
+                  <CheckCircle size={15} />
+                  <span>{t('landing.pricing.plan2.maintenance')}</span>
                 </div>
 
                 <div className="pricing-rates-container">
@@ -319,17 +316,6 @@ const Landing = () => {
                   </div>
                 </div>
 
-                <div className="pricing-maintenance-badge emerald-maintenance">
-                  <CheckCircle size={15} />
-                  <span>{t('landing.pricing.plan2.maintenance')}</span>
-                </div>
-
-                <ul className="pricing-features-list">
-                  {t('landing.pricing.plan2.features', { returnObjects: true })?.map((feat, idx) => (
-                    <li key={idx}><CheckCircle size={15} className="feat-check emerald-check" /> {feat}</li>
-                  ))}
-                </ul>
-
                 <button className="pricing-cta-btn featured-cta-btn" onClick={() => setIsDemoModalOpen(true)}>
                   {t('landing.pricing.plan2.cta')}
                 </button>
@@ -343,6 +329,17 @@ const Landing = () => {
                   <div className="pricing-model-badge purple-model">{t('landing.pricing.plan3.model')}</div>
                 </div>
 
+                <ul className="pricing-features-list">
+                  {t('landing.pricing.plan3.features', { returnObjects: true })?.map((feat, idx) => (
+                    <li key={idx}><CheckCircle size={15} className="feat-check purple-check" /> {feat}</li>
+                  ))}
+                </ul>
+
+                <div className="pricing-maintenance-badge purple-maintenance">
+                  <CheckCircle size={15} />
+                  <span>{t('landing.pricing.plan3.maintenance')}</span>
+                </div>
+
                 <div className="pricing-rates-container single-enterprise-rate">
                   <div className="enterprise-all-in-box">
                     <span className="all-in-title">Semua 5 Layanan + Custom Riset</span>
@@ -353,21 +350,31 @@ const Landing = () => {
                   </div>
                 </div>
 
-                <div className="pricing-maintenance-badge purple-maintenance">
-                  <CheckCircle size={15} />
-                  <span>{t('landing.pricing.plan3.maintenance')}</span>
-                </div>
-
-                <ul className="pricing-features-list">
-                  {t('landing.pricing.plan3.features', { returnObjects: true })?.map((feat, idx) => (
-                    <li key={idx}><CheckCircle size={15} className="feat-check purple-check" /> {feat}</li>
-                  ))}
-                </ul>
-
                 <button className="pricing-cta-btn" onClick={() => setIsDemoModalOpen(true)}>
                   {t('landing.pricing.plan3.cta')}
                 </button>
               </div>
+            </div>
+
+            {/* Free Trial Guarantee Bar Below Cards */}
+            <div className="pricing-bottom-free-trial-bar">
+              <div className="bottom-trial-content">
+                <div className="trial-gift-icon">
+                  <Sparkles size={22} />
+                </div>
+                <div className="bottom-trial-text">
+                  <h4>{t('landing.pricing.freeTrialBanner.title', 'Free Trial 1 Bulan Penuh untuk 3 RS / Klinik Pertama')}</h4>
+                  <p>{t('landing.pricing.freeTrialBanner.desc', 'Nikmati seluruh kapabilitas kecerdasan buatan USADA AI secara gratis tanpa komitmen untuk 3 fasilitas kesehatan pertama di Bali. Buktikan efisiensinya sekarang!')}</p>
+                </div>
+              </div>
+              <button
+                type="button"
+                className="btn-primary bottom-trial-cta-btn"
+                onClick={() => setIsDemoModalOpen(true)}
+              >
+                <span>{t('landing.pricing.freeTrialBanner.cta', 'Klaim Free Trial 1 Bulan')}</span>
+                <ArrowRight size={16} />
+              </button>
             </div>
           </section>
 
