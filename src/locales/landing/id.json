@@ -63,33 +63,30 @@
       "badge": "Penawaran Khusus Faskes Baru",
       "tag": "Penawaran Khusus Faskes Baru",
       "title": "🎁 FREE TRIAL 1 BULAN PENUH UNTUK 3 RS / KLINIK PERTAMA!",
-      "desc": "Nikmati seluruh kapabilitas kecerdasan buatan USADA AI secara gratis tanpa komitmen untuk 3 fasilitas kesehatan pertama di Bali. Buktikan efisiensinya sekarang!",
-      "cta": "Klaim Free Trial 1 Bulan"
+      "desc": "Khusus Paket Standar (Best Value): Nikmati deploy AI lokal, security autonomous agent, dan 3 layanan AI unggulan secara gratis tanpa komitmen untuk 3 fasilitas kesehatan pertama di Bali. Buktikan efisiensinya sekarang!",
+      "cta": "Klaim Free Trial Paket Standar"
     },
     "plan1": {
       "name": "Paket Ekonomis",
       "badge": "RS Tier 3 & Klinik",
-      "target": "RS Tier 3 & Jaringan Klinik",
-      "model": "Model Cloud API Key (DeepSeek & Google API Key)",
+      "target": "RS Tier 3 & Klinik",
+      "model": "Model API Key (DeepSeek & Google API Key)",
       "maintenance": "Sudah include maintenance max 1x per bulan",
       "rate1Label": "1 Service AI",
-      "rate1Price": "Rp 300rb / bln",
-      "rate2Label": "2 Service AI",
-      "rate2Price": "Rp 500rb / bln",
-      "rate3Label": "5 Service AI (Full Suite)",
-      "rate3Price": "Rp 1 jt / bln",
+      "rate1Price": "Rp 300.000 / bln",
+      "rate2Label": "3 Service AI",
+      "rate2Price": "Rp 600.000 / bln",
       "feature1": "Akses Cloud API Gateway Cepat & Ringan",
       "feature2": "Pilihan Model AI DeepSeek / Google Gemini",
       "feature3": "Sudah include maintenance sistem max 1x per bulan",
       "pricingOptions": [
-        { "count": "1 Service AI", "price": "Rp 300.000", "period": "/ bulan" },
-        { "count": "2 Service AI", "price": "Rp 500.000", "period": "/ bulan" },
-        { "count": "5 Service AI (Full Suite)", "price": "Rp 1.000.000", "period": "/ bulan" }
+        { "count": "1 Service AI (Normal)", "price": "Rp 300.000", "period": "/ bulan" },
+        { "count": "3 Service AI", "price": "Rp 600.000", "period": "/ bulan" }
       ],
       "features": [
-        "Akses Cloud API Gateway Cepat",
-        "Pilihan Model DeepSeek / Google Gemini",
-        "Setup Mudah Tanpa Server Lokal Tambahan",
+        "Model API Key (DeepSeek & Google API Key)",
+        "Pilihan 1 Service AI (Rp 300rb) atau 3 Service AI (Rp 600rb)",
+        "Setup Cepat Tanpa Perlu Server Lokal Tambahan",
         "Maintenance Sistem Maksimal 1x per Bulan",
         "Dukungan Teknis Standar Jam Kerja"
       ],
@@ -99,51 +96,46 @@
       "name": "Paket Standar",
       "badge": "Best Value ⭐",
       "target": "RS Tier 3 & Tier 2",
-      "model": "Deploy AI Lokal + Autonomous Agent (Security)",
-      "maintenance": "Sudah include 2x maintenance per bulan",
-      "rate1Label": "1 Service AI",
-      "rate1Price": "Rp 500k / bln",
-      "rate2Label": "3 Service AI",
-      "rate2Price": "Rp 1 jt / bln",
-      "rate3Label": "5 Service AI (Full Suite)",
-      "rate3Price": "Rp 1,3 jt / bln",
+      "model": "Deploy AI Lokal + Agent (Security)",
+      "maintenance": "Sudah include 2x big maintenance per bulan",
+      "rate1Label": "3 Service AI",
+      "rate1Price": "Rp 1.000.000 / bln",
+      "freeTrialNotice": "Free trial 1 bulan untuk 3 RS / klinik pertama",
       "feature1": "Deploy AI Lokal On-Premise + Security Agent",
       "feature2": "Kedaulatan & privasi data rekam medis terjamin",
-      "feature3": "Sudah include 2x maintenance berkala per bulan",
+      "feature3": "Sudah include 2x big maintenance berkala per bulan",
       "pricingOptions": [
-        { "count": "1 Service AI", "price": "Rp 500.000", "period": "/ bulan" },
-        { "count": "3 Service AI", "price": "Rp 1.000.000", "period": "/ bulan" },
-        { "count": "5 Service AI (Full Suite)", "price": "Rp 1.300.000", "period": "/ bulan" }
+        { "count": "3 Service AI", "price": "Rp 1.000.000", "period": "/ bulan" }
       ],
       "features": [
-        "Deploy Model AI Lokal On-Premise Faskes",
-        "Keamanan & Kedaulatan Data Pasien Terjamin",
-        "Autonomous AI Agent Khusus Operasional Faskes",
-        "Maintenance Berkala 2x per Bulan",
-        "Dukungan Integrasi Rekam Medis Elektronik (RME)"
+        "Deploy AI Lokal On-Premise + Agent Security",
+        "Paket Lengkap 3 Service AI Utama",
+        "Keamanan & Kedaulatan Penuh Data Pasien",
+        "Include 2x Big Maintenance per Bulan",
+        "Free Trial 1 Bulan untuk 3 RS / Klinik Pertama"
       ],
-      "cta": "Klaim Free Trial 1 Bulan"
+      "cta": "Klaim Free Trial Paket Standar"
     },
     "plan3": {
       "name": "Paket Max",
       "badge": "Full Enterprise",
-      "target": "RS Tier 3 & RS Rujukan",
-      "model": "Deploy AI Lokal + Agent + Research + Pengembangan",
-      "maintenance": "Sudah include maintenance intensif 5x per bulan",
-      "rateLabel": "Semua 5 Layanan + Riset & Pengembangan",
-      "ratePrice": "Rp 2 jt / bln",
+      "target": "RS Tier 3",
+      "model": "Deploy AI Lokal + Agent + Research + 5 Service",
+      "maintenance": "Sudah include 3x big maintenance per bulan",
+      "rateLabel": "Semua 5 Layanan AI + Modul Research Medis",
+      "ratePrice": "Rp 2.000.000 / bln",
       "feature1": "Full Suite 5 Layanan AI Medis + On-Premise Agent",
       "feature2": "Modul AI for Healthcare Research khusus dokter faskes",
-      "feature3": "Sudah include maintenance intensif 5x per bulan",
+      "feature3": "Sudah include 3x big maintenance intensif per bulan",
       "pricingOptions": [
-        { "count": "All 5 Services + Research & Pengembangan", "price": "Rp 2.000.000", "period": "/ bulan" }
+        { "count": "5 Service AI + Research & Pengembangan", "price": "Rp 2.000.000", "period": "/ bulan" }
       ],
       "features": [
-        "Deploy Full-Stack AI Lokal & Security Agent",
+        "Deploy AI Lokal + Autonomous Agent On-Premise",
+        "Full Suite Semua 5 Layanan AI Medis",
         "Modul AI Healthcare Research Khusus Dokter",
-        "Riset & Custom Pengembangan Fitur Faskes",
-        "Maintenance Intensif 5x per Bulan",
-        "Priority 24/7 SLA & Dedicated AI Engineer"
+        "Include 3x Big Maintenance per Bulan",
+        "Custom Riset & Pengembangan Fitur Faskes"
       ],
       "cta": "Konsultasi Paket Max"
     }

@@ -63,35 +63,32 @@
       "badge": "Exclusive Clinic Offer",
       "tag": "Exclusive Clinic Offer",
       "title": "🎁 1-MONTH FULL FREE TRIAL FOR THE FIRST 3 HOSPITALS / CLINICS!",
-      "desc": "Test all our AI Healthcare capabilities completely free with zero commitment for the first 3 healthcare facilities in Bali. Experience immediate operational efficiency today!",
-      "cta": "Claim 1-Month Free Trial"
+      "desc": "Exclusive for Standard Package (Best Value): Experience on-premise local AI, autonomous security agent, and 3 core AI services completely free with zero commitment for the first 3 healthcare facilities in Bali. Experience immediate operational efficiency today!",
+      "cta": "Claim Standard Free Trial"
     },
     "plan1": {
       "name": "Economy Package",
       "badge": "Clinics & Tier 3 Hospitals",
-      "target": "Tier 3 Hospitals & Clinic Networks",
-      "model": "Cloud API Key Model (DeepSeek & Google API Key)",
+      "target": "Tier 3 Hospitals & Clinics",
+      "model": "API Key Model (DeepSeek & Google API Key)",
       "maintenance": "Includes regular maintenance max 1x / month",
       "rate1Label": "1 AI Service",
       "rate1Price": "Rp 300k / mo",
-      "rate2Label": "2 AI Services",
-      "rate2Price": "Rp 500k / mo",
-      "rate3Label": "5 AI Services (Full Suite)",
-      "rate3Price": "Rp 1M / mo",
+      "rate2Label": "3 AI Services",
+      "rate2Price": "Rp 600k / mo",
       "feature1": "Fast & Lightweight Cloud API Gateway",
       "feature2": "DeepSeek / Google Gemini Model Options",
       "feature3": "Includes system maintenance max 1x per month",
       "pricingOptions": [
-        { "count": "1 AI Service", "price": "Rp 300,000", "period": "/ month" },
-        { "count": "2 AI Services", "price": "Rp 500,000", "period": "/ month" },
-        { "count": "5 AI Services (Full Suite)", "price": "Rp 1,000,000", "period": "/ month" }
+        { "count": "1 AI Service (Normal)", "price": "Rp 300,000", "period": "/ month" },
+        { "count": "3 AI Services", "price": "Rp 600,000", "period": "/ month" }
       ],
       "features": [
-        "Fast Cloud API Gateway Access",
-        "DeepSeek & Google Gemini Model Options",
+        "API Key Model (DeepSeek & Google API Key)",
+        "Option for 1 AI Service (Rp 300k) or 3 AI Services (Rp 600k)",
         "Quick Setup Without Local Server Hardware",
-        "System Maintenance 1x per Month",
-        "Standard Technical Support"
+        "System Maintenance Max 1x per Month",
+        "Standard Business Hours Support"
       ],
       "cta": "Choose Economy Plan"
     },
@@ -99,51 +96,46 @@
       "name": "Standard Package",
       "badge": "Best Value ⭐",
       "target": "Tier 3 & Tier 2 Hospitals",
-      "model": "Local AI On-Premise Deployment + Autonomous Agent (Security)",
-      "maintenance": "Includes regular maintenance 2x / month",
-      "rate1Label": "1 AI Service",
-      "rate1Price": "Rp 500k / mo",
-      "rate2Label": "3 AI Services",
-      "rate2Price": "Rp 1M / mo",
-      "rate3Label": "5 AI Services (Full Suite)",
-      "rate3Price": "Rp 1.3M / mo",
+      "model": "Local AI On-Premise Deployment + Agent (Security)",
+      "maintenance": "Includes 2x big maintenance per month",
+      "rate1Label": "3 AI Services",
+      "rate1Price": "Rp 1M / mo",
+      "freeTrialNotice": "1-Month Free Trial for the First 3 Hospitals / Clinics",
       "feature1": "Local AI On-Premise Deployment + Security Agent",
       "feature2": "Guaranteed patient data sovereignty and privacy",
-      "feature3": "Includes routine maintenance 2x per month",
+      "feature3": "Includes 2x big maintenance per month",
       "pricingOptions": [
-        { "count": "1 AI Service", "price": "Rp 500,000", "period": "/ month" },
-        { "count": "3 AI Services", "price": "Rp 1,000,000", "period": "/ month" },
-        { "count": "5 AI Services (Full Suite)", "price": "Rp 1,300,000", "period": "/ month" }
+        { "count": "3 AI Services", "price": "Rp 1,000,000", "period": "/ month" }
       ],
       "features": [
-        "On-Premise Local AI Model Deployment",
+        "On-Premise Local AI Model + Security Agent",
+        "Full 3 Core AI Services Included",
         "Guaranteed Patient Data Sovereignty & Privacy",
-        "Dedicated Healthcare Autonomous AI Agent",
-        "System Maintenance 2x per Month",
-        "Hospital Information System (HIS/EMR) Integration"
+        "Includes 2x Big Maintenance per Month",
+        "1-Month Free Trial for First 3 Hospitals / Clinics"
       ],
-      "cta": "Claim 1-Month Free Trial"
+      "cta": "Claim Standard Free Trial"
     },
     "plan3": {
       "name": "Max Package",
       "badge": "Full Enterprise",
-      "target": "Tier 3 & Referral Hospitals",
-      "model": "Local AI Deployment + Agent + Research + Custom Development",
-      "maintenance": "Includes intensive maintenance 5x / month",
-      "rateLabel": "All 5 Services + Research & Development",
+      "target": "Tier 3 Hospitals",
+      "model": "Local AI Deployment + Agent + Research + 5 Services",
+      "maintenance": "Includes 3x big maintenance per month",
+      "rateLabel": "All 5 AI Services + Clinical Research Module",
       "ratePrice": "Rp 2M / mo",
       "feature1": "Full Suite 5 Medical AI Services + On-Premise Agent",
       "feature2": "AI for Healthcare Research module for facility doctors",
-      "feature3": "Includes intensive maintenance 5x per month",
+      "feature3": "Includes 3x big maintenance per month",
       "pricingOptions": [
-        { "count": "All 5 Services + Research & Development", "price": "Rp 2,000,000", "period": "/ month" }
+        { "count": "5 AI Services + Research & Development", "price": "Rp 2,000,000", "period": "/ month" }
       ],
       "features": [
-        "Full-Stack Local AI & Security Agent Deployment",
-        "AI Healthcare Research Module for Doctors",
-        "Custom Clinical Feature Development & Research",
-        "Intensive Maintenance 5x per Month",
-        "Priority 24/7 SLA & Dedicated AI Engineer"
+        "Full-Stack Local AI + Autonomous Security Agent",
+        "Full Suite of All 5 Medical AI Services",
+        "AI Healthcare Research Module for Facility Doctors",
+        "Includes 3x Big Maintenance per Month",
+        "Custom Clinical Feature Development & Research"
       ],
       "cta": "Consult Max Package"
     }

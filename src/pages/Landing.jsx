@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CheckCircle, TrendingDown, ArrowRight, Clock, Sparkles, ShieldCheck, Stethoscope, Cpu, MessageSquare, Microscope, Mic, FileText } from 'lucide-react';
+import { CheckCircle, TrendingDown, ArrowRight, Clock, Sparkles, ShieldCheck, Stethoscope, Cpu, MessageSquare, Microscope } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../context/AuthContext';
 import { articlesData } from '../data/articlesData';
@@ -121,7 +121,7 @@ const Landing = () => {
       </nav>
 
       <main className="landing-content-wrapper">
-        {/* Authentic Software Showcase: Hero Section */}
+        {/* Hero Section */}
         <section className="hero-section text-center">
           <div className="hero-content">
             <div className="hero-kicker-trust">
@@ -135,114 +135,6 @@ const Landing = () => {
               <button className="btn-primary btn-large" onClick={handleCobaGratis}>
                 {t('landing.hero.cta')}
               </button>
-            </div>
-
-            {/* Authentic Live Workstation Frame (Showing the real product UI) */}
-            <div className="hero-app-frame">
-              {/* App Window Top Bar */}
-              <div className="app-frame-topbar">
-                <div className="window-controls">
-                  <span className="window-dot dot-close"></span>
-                  <span className="window-dot dot-minimize"></span>
-                  <span className="window-dot dot-maximize"></span>
-                </div>
-                <div className="app-frame-title">
-                  <Stethoscope size={14} className="window-icon" />
-                  <span className="window-app-name">USADA AI Medical Workstation</span>
-                  <span className="window-divider">•</span>
-                  <span className="window-session">Poli Rawat Jalan — dr. Ida Bagus</span>
-                </div>
-                <div className="app-frame-status">
-                  <span className="live-pulse-dot"></span>
-                  <span className="status-label">Voice Scribe Aktif</span>
-                </div>
-              </div>
-
-              {/* App Window Body: Dual Workstation Layout */}
-              <div className="app-frame-body text-left">
-                {/* Left Pane: Live Clinical Audio Stream & Transcription */}
-                <div className="frame-pane pane-transcription">
-                  <div className="pane-header">
-                    <div className="pane-title-wrap">
-                      <Mic size={15} className="pane-icon" />
-                      <h4>Live Ambient Recording</h4>
-                    </div>
-                    <div className="soundwave-bars" aria-label="Audio stream active">
-                      <span className="wave-bar"></span>
-                      <span className="wave-bar"></span>
-                      <span className="wave-bar"></span>
-                      <span className="wave-bar"></span>
-                      <span className="wave-bar"></span>
-                    </div>
-                  </div>
-                  <div className="transcript-bubbles">
-                    <div className="dialogue-item dialogue-doctor">
-                      <span className="dialogue-speaker">Dokter:</span>
-                      <p className="dialogue-text">"Selamat pagi Bu Ketut. Ada keluhan apa yang dirasakan beberapa hari ini?"</p>
-                    </div>
-                    <div className="dialogue-item dialogue-patient">
-                      <span className="dialogue-speaker">Pasien:</span>
-                      <p className="dialogue-text">"Pagi dok. Sudah 3 hari tenggorokan sakit buat menelan, ada batuk kering dan badan agak meriang semalam."</p>
-                    </div>
-                    <div className="dialogue-item dialogue-doctor">
-                      <span className="dialogue-speaker">Dokter:</span>
-                      <p className="dialogue-text">"Baik, kita periksa fisik ya. Tekanan darah normal 120/80, suhu 37.8°C, faring tampak hiperemis."</p>
-                    </div>
-                  </div>
-                  <div className="pane-footer-info">
-                    <span className="tech-chip">Engine: Ambient Speech-to-Text</span>
-                    <span className="latency-chip">Latency: 180ms</span>
-                  </div>
-                </div>
-
-                {/* Right Pane: Structured SOAP Notes & Automated ICD-10 Coding */}
-                <div className="frame-pane pane-soap">
-                  <div className="pane-header">
-                    <div className="pane-title-wrap">
-                      <FileText size={15} className="pane-icon" />
-                      <h4>Resume Medis SOAP Terstruktur</h4>
-                    </div>
-                    <span className="status-badge-verified">Kepatuhan CPPT 100%</span>
-                  </div>
-                  <div className="soap-records">
-                    <div className="soap-item">
-                      <span className="soap-label label-s">S</span>
-                      <div className="soap-content">
-                        <strong>Subjektif:</strong> Nyeri menelan sejak 3 hari, batuk non-produktif, riwayat subfebris semalam.
-                      </div>
-                    </div>
-                    <div className="soap-item">
-                      <span className="soap-label label-o">O</span>
-                      <div className="soap-content">
-                        <strong>Objektif:</strong> TD 120/80 mmHg, N 82x/m, RR 18x/m, T 37.8°C. Faring: hiperemis (+), tonsil T1/T1 tenang.
-                      </div>
-                    </div>
-                    <div className="soap-item">
-                      <span className="soap-label label-a">A</span>
-                      <div className="soap-content">
-                        <strong>Asesmen:</strong> Faringitis Akut / ISPA
-                        <div className="icd-tags">
-                          <span className="icd-tag icd-primary">ICD-10: J06.9 (Acute Upper Respiratory Infection)</span>
-                          <span className="icd-tag icd-valid">✓ BPJS Casemix Match</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="soap-item">
-                      <span className="soap-label label-p">P</span>
-                      <div className="soap-content">
-                        <strong>Planning:</strong> Paracetamol 500mg 3x1 prn, Ambroxol 30mg 3x1, edukasi hidrasi cairan hangat.
-                      </div>
-                    </div>
-                  </div>
-                  <div className="pane-footer-info pane-footer-soap">
-                    <span className="satusehat-sync">
-                      <span className="satusehat-dot"></span>
-                      Siap Ekspor SatuSehat FHIR & SIMRS
-                    </span>
-                    <span className="auto-saved-badge">Auto-Saved</span>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </section>
@@ -352,6 +244,12 @@ const Landing = () => {
                   <div className="pricing-model-badge">{t('landing.pricing.plan1.model')}</div>
                 </div>
 
+                <div className="pricing-headline-price">
+                  <span className="price-amount">Rp 300.000</span>
+                  <span className="price-period">/ bulan</span>
+                  <span className="price-tag-sub">1 Service AI (Normal)</span>
+                </div>
+
                 <ul className="pricing-features-list">
                   {t('landing.pricing.plan1.features', { returnObjects: true })?.map((feat, idx) => (
                     <li key={idx}><CheckCircle size={15} className="feat-check" /> {feat}</li>
@@ -364,17 +262,13 @@ const Landing = () => {
                 </div>
 
                 <div className="pricing-rates-container">
-                  <div className="pricing-rate-item">
-                    <span className="rate-service-count">1 Service AI</span>
+                  <div className="pricing-rate-item rate-highlight">
+                    <span className="rate-service-count">1 Service AI (Normal)</span>
                     <span className="rate-amount">Rp 300.000 <small>/ bln</small></span>
                   </div>
                   <div className="pricing-rate-item">
-                    <span className="rate-service-count">2 Service AI</span>
-                    <span className="rate-amount">Rp 500.000 <small>/ bln</small></span>
-                  </div>
-                  <div className="pricing-rate-item rate-highlight">
-                    <span className="rate-service-count">5 Service AI (Full)</span>
-                    <span className="rate-amount">Rp 1.000.000 <small>/ bln</small></span>
+                    <span className="rate-service-count">3 Service AI</span>
+                    <span className="rate-amount">Rp 600.000 <small>/ bln</small></span>
                   </div>
                 </div>
 
@@ -392,6 +286,12 @@ const Landing = () => {
                   <div className="pricing-model-badge emerald-model">{t('landing.pricing.plan2.model')}</div>
                 </div>
 
+                <div className="pricing-headline-price">
+                  <span className="price-amount emerald-amount">Rp 1.000.000</span>
+                  <span className="price-period">/ bulan</span>
+                  <span className="price-tag-sub emerald-tag-sub">3 Service AI (Best Value)</span>
+                </div>
+
                 <ul className="pricing-features-list">
                   {t('landing.pricing.plan2.features', { returnObjects: true })?.map((feat, idx) => (
                     <li key={idx}><CheckCircle size={15} className="feat-check emerald-check" /> {feat}</li>
@@ -404,17 +304,9 @@ const Landing = () => {
                 </div>
 
                 <div className="pricing-rates-container">
-                  <div className="pricing-rate-item">
-                    <span className="rate-service-count">1 Service AI</span>
-                    <span className="rate-amount">Rp 500.000 <small>/ bln</small></span>
-                  </div>
-                  <div className="pricing-rate-item">
-                    <span className="rate-service-count">3 Service AI</span>
-                    <span className="rate-amount">Rp 1.000.000 <small>/ bln</small></span>
-                  </div>
                   <div className="pricing-rate-item rate-highlight emerald-highlight">
-                    <span className="rate-service-count">5 Service AI (Full)</span>
-                    <span className="rate-amount">Rp 1.300.000 <small>/ bln</small></span>
+                    <span className="rate-service-count">3 Service AI + 2x Big Maintenance</span>
+                    <span className="rate-amount">Rp 1.000.000 <small>/ bln</small></span>
                   </div>
                 </div>
 
@@ -431,6 +323,12 @@ const Landing = () => {
                   <div className="pricing-model-badge purple-model">{t('landing.pricing.plan3.model')}</div>
                 </div>
 
+                <div className="pricing-headline-price">
+                  <span className="price-amount purple-amount">Rp 2.000.000</span>
+                  <span className="price-period">/ bulan</span>
+                  <span className="price-tag-sub purple-tag-sub">5 Service AI + Research</span>
+                </div>
+
                 <ul className="pricing-features-list">
                   {t('landing.pricing.plan3.features', { returnObjects: true })?.map((feat, idx) => (
                     <li key={idx}><CheckCircle size={15} className="feat-check purple-check" /> {feat}</li>
@@ -444,7 +342,7 @@ const Landing = () => {
 
                 <div className="pricing-rates-container single-enterprise-rate">
                   <div className="enterprise-all-in-box">
-                    <span className="all-in-title">Semua 5 Layanan + Custom Riset</span>
+                    <span className="all-in-title">Semua 5 Layanan AI + Modul Research</span>
                     <div className="all-in-price-wrap">
                       <span className="price-big">Rp 2.000.000</span>
                       <span className="price-unit">/ bulan</span>
@@ -466,7 +364,7 @@ const Landing = () => {
                 </div>
                 <div className="bottom-trial-text">
                   <h4>{t('landing.pricing.freeTrialBanner.title', 'Free Trial 1 Bulan Penuh untuk 3 RS / Klinik Pertama')}</h4>
-                  <p>{t('landing.pricing.freeTrialBanner.desc', 'Nikmati seluruh kapabilitas kecerdasan buatan USADA AI secara gratis tanpa komitmen untuk 3 fasilitas kesehatan pertama di Bali. Buktikan efisiensinya sekarang!')}</p>
+                  <p>{t('landing.pricing.freeTrialBanner.desc', 'Khusus Paket Standar (Best Value): Nikmati deploy AI lokal, security autonomous agent, dan 3 layanan AI secara gratis tanpa komitmen untuk 3 fasilitas kesehatan pertama di Bali. Buktikan efisiensinya sekarang!')}</p>
                 </div>
               </div>
               <button
@@ -474,7 +372,7 @@ const Landing = () => {
                 className="btn-primary bottom-trial-cta-btn"
                 onClick={() => setIsDemoModalOpen(true)}
               >
-                <span>{t('landing.pricing.freeTrialBanner.cta', 'Klaim Free Trial 1 Bulan')}</span>
+                <span>{t('landing.pricing.freeTrialBanner.cta', 'Klaim Free Trial Paket Standar')}</span>
                 <ArrowRight size={16} />
               </button>
             </div>
