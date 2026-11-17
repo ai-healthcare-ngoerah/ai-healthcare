@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CheckCircle, TrendingDown, ArrowRight, Clock, Sparkles, ShieldCheck, Stethoscope, Cpu, MessageSquare, Microscope } from 'lucide-react';
+import { CheckCircle, TrendingDown, ArrowRight, Clock, Sparkles, ShieldCheck, Stethoscope, Cpu, MessageSquare, Microscope, Mic, FileText } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../context/AuthContext';
 import { articlesData } from '../data/articlesData';
@@ -121,13 +121,13 @@ const Landing = () => {
       </nav>
 
       <main className="landing-content-wrapper">
-        {/* Figure/Ground: Hero Section pops out with dark gradient */}
+        {/* Authentic Software Showcase: Hero Section */}
         <section className="hero-section text-center">
           <div className="hero-content">
-            <div className="hero-badge-pill">
+            <div className="hero-kicker-trust">
               <span>{t('landing.hero.badge')}</span>
             </div>
-            <h1 style={{ color: '#ffffff' }}>{t('landing.hero.title')}</h1>
+            <h1>{t('landing.hero.title')}</h1>
             <p className="subtitle">
               {t('landing.hero.subtitle')}
             </p>
@@ -136,12 +136,114 @@ const Landing = () => {
                 {t('landing.hero.cta')}
               </button>
             </div>
-          </div>
-          {/* Continuity: Wave divider leading down */}
-          <div className="wave-divider">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-              <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" className="shape-fill"></path>
-            </svg>
+
+            {/* Authentic Live Workstation Frame (Showing the real product UI) */}
+            <div className="hero-app-frame">
+              {/* App Window Top Bar */}
+              <div className="app-frame-topbar">
+                <div className="window-controls">
+                  <span className="window-dot dot-close"></span>
+                  <span className="window-dot dot-minimize"></span>
+                  <span className="window-dot dot-maximize"></span>
+                </div>
+                <div className="app-frame-title">
+                  <Stethoscope size={14} className="window-icon" />
+                  <span className="window-app-name">USADA AI Medical Workstation</span>
+                  <span className="window-divider">•</span>
+                  <span className="window-session">Poli Rawat Jalan — dr. Ida Bagus</span>
+                </div>
+                <div className="app-frame-status">
+                  <span className="live-pulse-dot"></span>
+                  <span className="status-label">Voice Scribe Aktif</span>
+                </div>
+              </div>
+
+              {/* App Window Body: Dual Workstation Layout */}
+              <div className="app-frame-body text-left">
+                {/* Left Pane: Live Clinical Audio Stream & Transcription */}
+                <div className="frame-pane pane-transcription">
+                  <div className="pane-header">
+                    <div className="pane-title-wrap">
+                      <Mic size={15} className="pane-icon" />
+                      <h4>Live Ambient Recording</h4>
+                    </div>
+                    <div className="soundwave-bars" aria-label="Audio stream active">
+                      <span className="wave-bar"></span>
+                      <span className="wave-bar"></span>
+                      <span className="wave-bar"></span>
+                      <span className="wave-bar"></span>
+                      <span className="wave-bar"></span>
+                    </div>
+                  </div>
+                  <div className="transcript-bubbles">
+                    <div className="dialogue-item dialogue-doctor">
+                      <span className="dialogue-speaker">Dokter:</span>
+                      <p className="dialogue-text">"Selamat pagi Bu Ketut. Ada keluhan apa yang dirasakan beberapa hari ini?"</p>
+                    </div>
+                    <div className="dialogue-item dialogue-patient">
+                      <span className="dialogue-speaker">Pasien:</span>
+                      <p className="dialogue-text">"Pagi dok. Sudah 3 hari tenggorokan sakit buat menelan, ada batuk kering dan badan agak meriang semalam."</p>
+                    </div>
+                    <div className="dialogue-item dialogue-doctor">
+                      <span className="dialogue-speaker">Dokter:</span>
+                      <p className="dialogue-text">"Baik, kita periksa fisik ya. Tekanan darah normal 120/80, suhu 37.8°C, faring tampak hiperemis."</p>
+                    </div>
+                  </div>
+                  <div className="pane-footer-info">
+                    <span className="tech-chip">Engine: Ambient Speech-to-Text</span>
+                    <span className="latency-chip">Latency: 180ms</span>
+                  </div>
+                </div>
+
+                {/* Right Pane: Structured SOAP Notes & Automated ICD-10 Coding */}
+                <div className="frame-pane pane-soap">
+                  <div className="pane-header">
+                    <div className="pane-title-wrap">
+                      <FileText size={15} className="pane-icon" />
+                      <h4>Resume Medis SOAP Terstruktur</h4>
+                    </div>
+                    <span className="status-badge-verified">Kepatuhan CPPT 100%</span>
+                  </div>
+                  <div className="soap-records">
+                    <div className="soap-item">
+                      <span className="soap-label label-s">S</span>
+                      <div className="soap-content">
+                        <strong>Subjektif:</strong> Nyeri menelan sejak 3 hari, batuk non-produktif, riwayat subfebris semalam.
+                      </div>
+                    </div>
+                    <div className="soap-item">
+                      <span className="soap-label label-o">O</span>
+                      <div className="soap-content">
+                        <strong>Objektif:</strong> TD 120/80 mmHg, N 82x/m, RR 18x/m, T 37.8°C. Faring: hiperemis (+), tonsil T1/T1 tenang.
+                      </div>
+                    </div>
+                    <div className="soap-item">
+                      <span className="soap-label label-a">A</span>
+                      <div className="soap-content">
+                        <strong>Asesmen:</strong> Faringitis Akut / ISPA
+                        <div className="icd-tags">
+                          <span className="icd-tag icd-primary">ICD-10: J06.9 (Acute Upper Respiratory Infection)</span>
+                          <span className="icd-tag icd-valid">✓ BPJS Casemix Match</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="soap-item">
+                      <span className="soap-label label-p">P</span>
+                      <div className="soap-content">
+                        <strong>Planning:</strong> Paracetamol 500mg 3x1 prn, Ambroxol 30mg 3x1, edukasi hidrasi cairan hangat.
+                      </div>
+                    </div>
+                  </div>
+                  <div className="pane-footer-info pane-footer-soap">
+                    <span className="satusehat-sync">
+                      <span className="satusehat-dot"></span>
+                      Siap Ekspor SatuSehat FHIR & SIMRS
+                    </span>
+                    <span className="auto-saved-badge">Auto-Saved</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
