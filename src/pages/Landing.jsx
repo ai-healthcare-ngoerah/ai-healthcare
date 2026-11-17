@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Activity, AlertTriangle, CheckCircle, TrendingDown, ArrowRight, Clock, Sparkles, ShieldCheck, Stethoscope, Cpu, Award, MessageSquare, DollarSign, Microscope, Zap } from 'lucide-react';
+import { CheckCircle, TrendingDown, ArrowRight, Clock, Sparkles, ShieldCheck, Stethoscope, Cpu, MessageSquare, Microscope } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../context/AuthContext';
 import { articlesData } from '../data/articlesData';
@@ -577,22 +577,8 @@ const Landing = () => {
                   </div>
                 );
               })}
-
-              {/* [COMMENTED OUT - BPJS CLAIMS & COST CONTROL ARTICLES]
-              <div className="article-card">
-                <span className="article-tag">Kepatuhan BPJS</span>
-                <h3>Strategi Menghindari Pending Klaim BPJS di Klinik</h3>
-                <p>Panduan lengkap verifikasi berkas klaim digital agar tidak terjadi retur dan pending dari BPJS Kesehatan.</p>
-              </div>
-              <div className="article-card">
-                <span className="article-tag">Efisiensi Biaya</span>
-                <h3>Optimasi Patient Flow dan Pengendalian Biaya Operasional Poli</h3>
-                <p>Penerapan algoritma penjadwalan cerdas untuk menekan waktu tunggu dan memangkas biaya administrasi klinik.</p>
-              </div>
-              */}
             </div>
 
-            {/* Conditionally display "Selengkapnya / Lihat Semua Artikel" if more than 3 articles */}
             {articlesData.length > 3 && (
               <div className="view-all-articles-wrapper text-center">
                 <button
