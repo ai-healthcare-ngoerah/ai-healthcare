@@ -74,7 +74,7 @@ const Layout = () => {
       <aside className={`sidebar ${isSidebarOpen ? '' : 'sidebar-closed'}`}>
         <div className="sidebar-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <img src="/logos/brand/logo-black.webp" alt="Ternak Automation Logo" style={{ height: '28px' }} />
+            <img src="/logos/brand/logo-black.webp" alt="Usada Tech Logo" style={{ height: '28px' }} />
             <h2>Ternak Ai Healthcare</h2>
           </div>
           <button

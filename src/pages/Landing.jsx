@@ -80,10 +80,10 @@ const Landing = () => {
       {/* Navbar */}
       <nav className="landing-navbar">
         <div className="landing-logo">
-          <img src="/logos/brand/logo-black.webp" alt="Ternak AI Healthcare Logo" style={{ height: '36px' }} />
+          <img src="/logos/brand/logo-black.webp" alt="Usada Tech - USADA AI Logo" style={{ height: '36px' }} />
           <div className="landing-logo-text">
             <h2>{t('landing.nav.brand', 'Ternak AI Healthcare')}</h2>
-            <span className="landing-logo-subtitle">{t('landing.nav.brandSubtitle', 'Anak Usaha Ternak Automation')}</span>
+            <span className="landing-logo-subtitle">{t('landing.nav.brandSubtitle', 'Sistem Otomasi Klinis oleh Usada Tech')}</span>
           </div>
         </div>
         <div className="landing-nav-links">
@@ -597,9 +597,21 @@ const Landing = () => {
             <div className="cta-content">
               <h2 style={{ color: '#ffffff' }}>{t('landing.cta.title')}</h2>
               <p>{t('landing.cta.subtitle')}</p>
-              <button className="btn-primary btn-large cta-btn-inverted" onClick={handleCobaGratis}>
-                {t('landing.cta.button')}
-              </button>
+              <div className="cta-actions-wrapper">
+                <button
+                  className="btn-primary btn-large cta-btn-inverted"
+                  onClick={() => setIsDemoModalOpen(true)}
+                >
+                  {t('landing.cta.button')}
+                </button>
+              </div>
+              <div className="cta-trust-row">
+                <span>✓ {t('landing.cta.trust1', 'Uji coba 1 bulan gratis untuk 3 faskes pertama')}</span>
+                <span className="cta-trust-bullet">•</span>
+                <span>✓ {t('landing.cta.trust2', 'Deploy AI lokal aman di server RS/klinik')}</span>
+                <span className="cta-trust-bullet">•</span>
+                <span>✓ {t('landing.cta.trust3', 'Kepatuhan penuh regulasi PMK 24/2022 & SatuSehat')}</span>
+              </div>
             </div>
             <div className="cta-shapes">
               <div className="css-shape shape-circle-small"></div>

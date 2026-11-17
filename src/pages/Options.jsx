@@ -1,9 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   ArrowLeft, LogOut, User, ChevronDown, Globe,
-  LogIn, ArrowUpRight
+  LogIn, ArrowUpRight, ChevronLeft, ChevronRight
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import './Options.css';
@@ -14,6 +14,13 @@ const Options = () => {
   const { t, i18n } = useTranslation();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
+
+  // Deck carousel states
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [animDirection, setAnimDirection] = useState(null); // 'next' | 'prev' | null
+  const [incomingIndex, setIncomingIndex] = useState(null);
+  const [touchStartX, setTouchStartX] = useState(null);
+  const isAnimatingRef = useRef(false);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -196,6 +203,137 @@ const Options = () => {
   ];
 
   const options = allOptions.filter(opt => opt.visible);
+  const total = options.length;
+  const safeCurrentIndex = total > 0 ? currentIndex % total : 0;
+  const activeCard = total > 0 ? options[safeCurrentIndex] : null;
+
+  const handleNext = useCallback(() => {
+    if (isAnimatingRef.current || total <= 1) return;
+    isAnimatingRef.current = true;
+    setAnimDirection('next');
+    setTimeout(() => {
+      setCurrentIndex((prev) => (prev + 1) % total);
+      setAnimDirection(null);
+      isAnimatingRef.current = false;
+    }, 280);
+  }, [total]);
+
+  const handlePrev = useCallback(() => {
+    if (isAnimatingRef.current || total <= 1) return;
+    isAnimatingRef.current = true;
+    const prevIdx = (safeCurrentIndex - 1 + total) % total;
+    setIncomingIndex(prevIdx);
+    setAnimDirection('prev');
+    setTimeout(() => {
+      setCurrentIndex(prevIdx);
+      setIncomingIndex(null);
+      setAnimDirection(null);
+      isAnimatingRef.current = false;
+    }, 280);
+  }, [safeCurrentIndex, total]);
+
+  const handleJumpTo = useCallback((idx) => {
+    if (isAnimatingRef.current || idx === safeCurrentIndex || total <= 1) return;
+    isAnimatingRef.current = true;
+    if (idx > safeCurrentIndex) {
+      setAnimDirection('next');
+    } else {
+      setIncomingIndex(idx);
+      setAnimDirection('prev');
+    }
+    setTimeout(() => {
+      setCurrentIndex(idx);
+      setIncomingIndex(null);
+      setAnimDirection(null);
+      isAnimatingRef.current = false;
+    }, 280);
+  }, [safeCurrentIndex, total]);
+
+  // Keyboard navigation: left / right arrows to switch, Enter to open module
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        handleNext();
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        handlePrev();
+      } else if (e.key === 'Enter') {
+        if (activeCard && !isAnimatingRef.current) {
+          navigate(activeCard.path);
+        }
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handleNext, handlePrev, activeCard, navigate]);
+
+  // Touch swipe support for mobile
+  const handleTouchStart = (e) => {
+    if (e.touches && e.touches.length > 0) {
+      setTouchStartX(e.touches[0].clientX);
+    }
+  };
+
+  const handleTouchEnd = (e) => {
+    if (touchStartX === null) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 45) {
+      if (diff > 0) {
+        handleNext();
+      } else {
+        handlePrev();
+      }
+    }
+    setTouchStartX(null);
+  };
+
+  const getCardAtOffset = (offset) => {
+    if (total === 0) return null;
+    return options[(safeCurrentIndex + offset) % total];
+  };
+
+  const renderCardContent = (option) => {
+    if (!option) return null;
+    return (
+      <>
+        <div className="option-card-top">
+          {option.badge ? (
+            <span
+              className="option-card-badge"
+              style={{
+                backgroundColor: option.badgeBg || '#f1f5f9',
+                color: option.badgeColor || '#0f172a'
+              }}
+            >
+              {option.badge}
+            </span>
+          ) : <span className="option-card-badge-placeholder" />}
+          <div className="option-card-arrow">
+            <ArrowUpRight size={18} />
+          </div>
+        </div>
+
+        <div className="option-icon-center">
+          <div
+            className="option-icon"
+            style={{
+              backgroundColor: option.iconBg || '#ecfdf5',
+              borderColor: option.iconBorder || 'rgba(5, 150, 105, 0.15)'
+            }}
+          >
+            {option.icon}
+          </div>
+        </div>
+
+        <div className="option-content-center">
+          <h2>{option.title}</h2>
+        </div>
+      </>
+    );
+  };
 
   return (
     <div className="options-page">
@@ -329,51 +467,106 @@ const Options = () => {
         <p>{t('options.subtitle')}</p>
       </div>
 
-      <div className="options-grid">
-        {options.map((option) => (
-          <div
-            key={option.id}
-            className="option-card group"
-            onClick={() => {
-              navigate(option.path);
-            }}
+      <div className="options-deck-container">
+        <div className="options-deck-row">
+          <button
+            className="deck-side-btn prev-btn"
+            onClick={handlePrev}
+            aria-label="Sebelumnya"
+            title="Sebelumnya (←)"
           >
-            <div className="option-card-top">
+            <ChevronLeft size={24} />
+          </button>
+
+          <div
+            className="options-deck-stage"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
+            {/* Layer 3: 3rd card stacked behind */}
+            {total > 3 && (
               <div
-                className="option-icon"
-                style={{
-                  backgroundColor: option.iconBg || '#ecfdf5',
-                  borderColor: option.iconBorder || 'rgba(5, 150, 105, 0.15)'
+                key={`layer-3-${(safeCurrentIndex + 3) % total}`}
+                className={`deck-card deck-layer-3 ${animDirection === 'next' ? 'deck-step-up-2' : ''}`}
+              >
+                {renderCardContent(getCardAtOffset(3))}
+              </div>
+            )}
+
+            {/* Layer 2: 2nd card stacked behind */}
+            {total > 2 && (
+              <div
+                key={`layer-2-${(safeCurrentIndex + 2) % total}`}
+                className={`deck-card deck-layer-2 ${animDirection === 'next' ? 'deck-step-up-1' : ''}`}
+              >
+                {renderCardContent(getCardAtOffset(2))}
+              </div>
+            )}
+
+            {/* Layer 1: 1st card stacked behind */}
+            {total > 1 && (
+              <div
+                key={`layer-1-${(safeCurrentIndex + 1) % total}`}
+                className={`deck-card deck-layer-1 ${animDirection === 'next' ? 'deck-step-up-0' : ''}`}
+              >
+                {renderCardContent(getCardAtOffset(1))}
+              </div>
+            )}
+
+            {/* Layer 0: Active front card (1:1 square ratio) */}
+            {activeCard && (
+              <div
+                key={`layer-0-${safeCurrentIndex}`}
+                className={`deck-card deck-layer-0 ${animDirection === 'next' ? 'deck-exit-left' : ''} ${animDirection === 'prev' ? 'deck-step-back-1' : ''}`}
+                onClick={() => {
+                  if (!isAnimatingRef.current) {
+                    navigate(activeCard.path);
+                  }
                 }}
               >
-                {option.icon}
+                {renderCardContent(activeCard)}
               </div>
-              <div className="option-card-actions">
-                {option.badge && (
-                  <span
-                    className="option-card-badge"
-                    style={{
-                      backgroundColor: option.badgeBg || '#f1f5f9',
-                      color: option.badgeColor || '#0f172a'
-                    }}
-                  >
-                    {option.badge}
-                  </span>
-                )}
-                <div className="option-card-arrow">
-                  <ArrowUpRight size={17} />
-                </div>
+            )}
+
+            {/* Incoming card from left when switching to Prev */}
+            {animDirection === 'prev' && incomingIndex !== null && options[incomingIndex] && (
+              <div
+                key={`incoming-prev-${incomingIndex}`}
+                className="deck-card deck-layer-0 deck-enter-from-left"
+              >
+                {renderCardContent(options[incomingIndex])}
               </div>
-            </div>
-            <div className="option-content">
-              <h2>{option.title}</h2>
-            </div>
+            )}
           </div>
-        ))}
+
+          <button
+            className="deck-side-btn next-btn"
+            onClick={handleNext}
+            aria-label="Berikutnya"
+            title="Berikutnya (→)"
+          >
+            <ChevronRight size={24} />
+          </button>
+        </div>
+
+        {/* Deck Navigation Controls */}
+        <div className="deck-controls">
+          <div className="deck-dots">
+            {options.map((opt, idx) => (
+              <button
+                key={opt.id}
+                className={`deck-dot ${idx === safeCurrentIndex ? 'active' : ''}`}
+                onClick={() => handleJumpTo(idx)}
+                aria-label={`Pilih ${opt.title}`}
+                title={opt.title}
+              />
+            ))}
+          </div>
+        </div>
       </div>
 
       <footer className="global-footer" style={{ marginTop: 'auto', background: 'transparent' }}>
-        &copy; 2026 Made by Ternak Automation
+        &copy; 2026 Dikembangkan oleh Usada Tech
       </footer>
     </div>
   );

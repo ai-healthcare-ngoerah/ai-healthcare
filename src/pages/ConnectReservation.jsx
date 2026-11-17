@@ -75,8 +75,8 @@ const ConnectReservation = () => {
     }
     return saved;
   });
-  const [serviceLabel, setServiceLabel] = useState(() => localStorage.getItem('omni_wa_label') || 'Ternak Automation');
-  const [wahaSessionName, setWahaSessionName] = useState(() => localStorage.getItem('omni_wa_session') || 'Ternak-Automation');
+  const [serviceLabel, setServiceLabel] = useState(() => localStorage.getItem('omni_wa_label') || 'Usada Tech');
+  const [wahaSessionName, setWahaSessionName] = useState(() => localStorage.getItem('omni_wa_session') || 'Usada-Tech');
   const [isEditingSettings, setIsEditingSettings] = useState(false);
   const [waViewMode, setWaViewMode] = useState('overview');
   const [connectionStatus, setConnectionStatus] = useState('CONNECTED'); // 'CONNECTED', 'SCAN_QR', 'DISCONNECTED'
@@ -744,7 +744,7 @@ const ConnectReservation = () => {
                             placeholder={t('whatsapp.wahaControlQr.accountNamePlaceholder', 'Contoh: RS Bali Royal Hotline')}
                           />
                         ) : (
-                          <div className="cr-meta-item-val">{serviceLabel || 'Ternak Automation'}</div>
+                          <div className="cr-meta-item-val">{serviceLabel || 'Usada Tech'}</div>
                         )}
                       </div>
                       <div>

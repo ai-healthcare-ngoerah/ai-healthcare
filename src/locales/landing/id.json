@@ -1,7 +1,7 @@
 {
   "nav": {
     "brand": "Ternak AI Healthcare",
-    "brandSubtitle": "Anak Usaha Ternak Automation",
+    "brandSubtitle": "Sistem Otomasi Klinis oleh Usada Tech",
     "solutions": "Solusi AI",
     "pricing": "Paket & Harga",
     "about": "Tentang Kami",
@@ -12,7 +12,7 @@
   "hero": {
     "badge": "⭐ Dipercaya oleh 15+ Rumah Sakit & Klinik",
     "title": "Revolusi Operasional Klinik & Praktek Medis dengan USADA AI",
-    "subtitle": "Asisten rekam medis cerdas (AI Medical Scribe Voice-to-SOAP) dan sistem reservasi pasien mandiri dari Ternak AI Healthcare untuk klinik modern bebas beban administrasi.",
+    "subtitle": "Sistem otomasi faskes modern dari Usada Tech: AI Medical Scribe (Voice-to-SOAP) dan reservasi pasien WhatsApp terintegrasi SIMRS. Pangkas 2 jam ketik resume medis dokter, percepat antrean poli, aman di server lokal faskes Anda.",
     "cta": "Coba Gratis"
   },
   "problem": {
@@ -143,7 +143,7 @@
   "about": {
     "badge": "Tentang Kami",
     "title": "Tentang Kami",
-    "subtitle": "USADA AI dari Ternak AI Healthcare berfokus menyederhanakan operasional klinik dan faskes, mengembalikan waktu dokter untuk sepenuhnya merawat pasien.",
+    "subtitle": "Usada Tech berfokus merekayasa sistem kecerdasan buatan klinis untuk menyederhanakan alur kerja fasilitas kesehatan, mengeliminasi berkas manual, dan mengembalikan fokus tenaga medis seutuhnya kepada pasien.",
     "mission": {
       "tag": "Misi",
       "title": "Memangkas Beban Administratif",
@@ -218,13 +218,16 @@
     "resetFilter": "Tampilkan Semua Kategori"
   },
   "cta": {
-    "title": "Siap Meringankan Beban Operasional Klinik Anda?",
-    "subtitle": "Tingkatkan produktivitas dokter dan kepuasan pasien klinik Anda dengan USADA AI sekarang.",
-    "button": "Coba Gratis Sekarang"
+    "title": "Modernisasi Operasional Faskes Anda Tanpa Risiko Finansial",
+    "subtitle": "Mulai integrasi AI Medical Scribe lokal dan automasi reservasi WhatsApp hari ini. Dapatkan pendampingan implementasi langsung serta uji coba gratis 1 bulan penuh tanpa komitmen untuk fasilitas kesehatan Anda.",
+    "button": "Jadwalkan Konsultasi & Klaim Free Trial",
+    "trust1": "Uji coba 1 bulan gratis untuk 3 faskes pertama",
+    "trust2": "Deploy AI lokal aman di server RS/klinik",
+    "trust3": "Kepatuhan penuh regulasi PMK 24/2022 & SatuSehat"
   },
   "modal": {
     "title": "Jadwalkan Konsultasi & Uji Coba Gratis Klinik",
-    "subtitle": "Diskusikan kebutuhan operasional klinik Anda bersama tim spesialis Ternak AI Healthcare & USADA AI.",
+    "subtitle": "Konsultasikan kebutuhan digitalisasi faskes Anda bersama tim spesialis kecerdasan buatan klinis Usada Tech.",
     "name": "Nama Lengkap & Gelar",
     "namePlaceholder": "contoh: dr. I Made Sukarta, Sp.PD",
     "phone": "Nomor WhatsApp Aktif",
@@ -242,6 +245,6 @@
     "close": "Tutup"
   },
   "footer": {
-    "copyright": "© 2026 Ternak AI Healthcare. Powered by USADA AI. Seluruh Hak Cipta Dilindungi."
+    "copyright": "© 2026 Usada Tech • USADA AI Healthcare. Seluruh Hak Cipta Dilindungi."
   }
 }

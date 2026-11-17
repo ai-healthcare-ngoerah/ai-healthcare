@@ -2,8 +2,8 @@
   "back": "Back to Home",
   "logout": "Logout",
   "language": "Language",
-  "title": "Hospital & Clinical Operations Hub",
-  "subtitle": "Select the clinical or operational workflow you want to execute.",
+  "title": "Clinical & Operations Control Center",
+  "subtitle": "Select an automated clinical module to launch your healthcare facility workflow.",
   "features": {
     "scribe": {
       "badge": "Doctors & Nurses",

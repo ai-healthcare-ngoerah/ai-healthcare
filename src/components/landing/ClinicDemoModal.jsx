@@ -37,7 +37,7 @@ const ClinicDemoModal = ({ isOpen, onClose }) => {
   };
 
   const waText = encodeURIComponent(
-    `Halo Tim Ternak AI Healthcare & USADA AI, saya ingin menjadwalkan demo gratis untuk klinik kami di Bali.`
+    `Halo Tim Usada Tech, saya ingin berkonsultasi mengenai implementasi USADA AI dan mengklaim uji coba gratis 1 bulan untuk fasilitas kesehatan kami di Bali.`
   );
   const waUrl = `https://wa.me/6281234567890?text=${waText}`;
 

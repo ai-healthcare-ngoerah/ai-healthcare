@@ -155,8 +155,8 @@ const ArticlesList = () => {
       <footer className="articles-footer text-center">
         <p>
           {lang === 'en'
-            ? '© 2026 Ternak AI Healthcare (Subsidiary of Ternak Automation). Powered by USADA AI. All Rights Reserved.'
-            : '© 2026 Ternak AI Healthcare (Anak Usaha Ternak Automation). Powered by USADA AI. Seluruh Hak Cipta Dilindungi.'}
+            ? '© 2026 Usada Tech • USADA AI Healthcare. All Rights Reserved.'
+            : '© 2026 Usada Tech • USADA AI Healthcare. Seluruh Hak Cipta Dilindungi.'}
         </p>
       </footer>
 

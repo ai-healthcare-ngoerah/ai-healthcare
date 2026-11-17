@@ -1,7 +1,7 @@
 {
   "nav": {
     "brand": "Ternak AI Healthcare",
-    "brandSubtitle": "A Subsidiary of Ternak Automation",
+    "brandSubtitle": "Clinical Automation Systems by Usada Tech",
     "solutions": "AI Solutions",
     "pricing": "Pricing & Plans",
     "about": "About Us",
@@ -12,7 +12,7 @@
   "hero": {
     "badge": "⭐ Trusted by 15+ Hospitals & Clinics",
     "title": "Revolutionize Clinic Operations & Medical Practice with USADA AI",
-    "subtitle": "Smart medical scribe (Voice-to-SOAP) and automated patient reservation by Ternak AI Healthcare for modern clinics free from administrative burden.",
+    "subtitle": "Modern clinical automation by Usada Tech: AI Medical Scribe (Voice-to-SOAP) and WhatsApp patient reservations integrated with SIMRS. Save 2 hours of doctor documentation daily, streamline clinic queues, and secure patient data locally on-premise.",
     "cta": "Try for Free"
   },
   "problem": {
@@ -143,7 +143,7 @@
   "about": {
     "badge": "About Us",
     "title": "About Us",
-    "subtitle": "USADA AI by Ternak AI Healthcare focuses on simplifying clinic and healthcare facility operations, returning doctors' full focus to patient care.",
+    "subtitle": "Usada Tech engineers clinical artificial intelligence systems that eliminate manual paperwork, streamline hospital workflows, and return healthcare providers' focus entirely to patient care.",
     "mission": {
       "tag": "Mission",
       "title": "Eliminate Administrative Overhead",
@@ -218,13 +218,16 @@
     "resetFilter": "Show All Categories"
   },
   "cta": {
-    "title": "Ready to Lighten Your Clinic's Operational Burden?",
-    "subtitle": "Boost doctor productivity and clinic patient satisfaction with USADA AI today.",
-    "button": "Try for Free Now"
+    "title": "Modernize Your Clinical Operations Without Financial Risk",
+    "subtitle": "Deploy local AI Medical Scribe and automated WhatsApp reservations today. Receive dedicated on-site implementation support and a full 1-month commitment-free trial for your healthcare facility.",
+    "button": "Schedule Consultation & Claim Free Trial",
+    "trust1": "Full 1-month free trial for early health facilities",
+    "trust2": "Secure local on-premise AI deployment",
+    "trust3": "Full compliance with MoH Reg No. 24/2022 & SatuSehat"
   },
   "modal": {
     "title": "Schedule a Consultation & Free Clinic Trial",
-    "subtitle": "Discuss your clinic's operational needs with the Ternak AI Healthcare & USADA AI specialist team.",
+    "subtitle": "Consult your clinical digitization requirements with the Usada Tech medical AI specialist team.",
     "name": "Full Name & Degree",
     "namePlaceholder": "e.g., dr. I Made Sukarta, Sp.PD",
     "phone": "Active WhatsApp Number",
@@ -242,6 +245,6 @@
     "close": "Close"
   },
   "footer": {
-    "copyright": "© 2026 Ternak AI Healthcare. Powered by USADA AI. All Rights Reserved."
+    "copyright": "© 2026 Usada Tech • USADA AI Healthcare. All Rights Reserved."
   }
 }
