@@ -49,11 +49,11 @@ const Layout = () => {
 
   const isSuperAdmin = user?.role === 'superadmin';
 
-  const isSystemContext = location.pathname.startsWith('/app/admin') || 
-                          location.pathname.startsWith('/app/superadmin') ||
-                          location.pathname.startsWith('/app/model-management') ||
-                          location.pathname.startsWith('/app/panduan') || 
-                          location.pathname.startsWith('/app/pengaturan');
+  const isSystemContext = location.pathname.startsWith('/app/admin') ||
+    location.pathname.startsWith('/app/superadmin') ||
+    location.pathname.startsWith('/app/model-management') ||
+    location.pathname.startsWith('/app/panduan') ||
+    location.pathname.startsWith('/app/pengaturan');
 
   const isReservationContext = location.pathname.startsWith('/app/ai-agent/reservasi');
 
@@ -61,7 +61,11 @@ const Layout = () => {
 
   const isDashboardContext = location.pathname.startsWith('/app/dashboard');
 
-  const isAiContext = isReservationContext || isConnectContext || isDashboardContext || location.pathname.startsWith('/app/antrean');
+  const isBpjsContext = location.pathname.startsWith('/app/bpjs-claim') ||
+    location.pathname.startsWith('/app/claim-verification') ||
+    location.pathname.startsWith('/app/pengecekan-dokumen');
+
+  const isAiContext = isReservationContext || isConnectContext || isDashboardContext || isBpjsContext || location.pathname.startsWith('/app/antrean');
 
   return (
     <div className="layout-container">
@@ -74,8 +78,8 @@ const Layout = () => {
       <aside className={`sidebar ${isSidebarOpen ? '' : 'sidebar-closed'}`}>
         <div className="sidebar-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <img src="/logos/brand/logo-black.webp" alt="Usada Tech Logo" style={{ height: '28px' }} />
-            <h2>Ternak Ai Healthcare</h2>
+            <img src="/logos/brand/logo-black.webp" alt="USADA AI Logo" style={{ height: '28px' }} />
+            <h2>USADA AI</h2>
           </div>
           <button
             onClick={() => setIsSidebarOpen(false)}
@@ -237,6 +241,29 @@ const Layout = () => {
                 <span>{t('layout.nav.goToAdmission', "Buka Loket Admisi")}</span>
               </button>
             </>
+          ) : isBpjsContext ? (
+            <>
+              {/* Context: Casemix & Verifikasi Klaim BPJS */}
+              <div className="sidebar-section-header">
+                {t('layout.sections.bpjsClaim', 'Casemix & Klaim BPJS')}
+              </div>
+              <NavLink to="/app/bpjs-claim" end onClick={closeSidebarOnMobile} className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+                <FileCheck size={18} />
+                <span>{t('layout.nav.documentChecking', 'Pengecekan Dokumen')}</span>
+              </NavLink>
+              <NavLink to="/app/bpjs-claim/history" onClick={closeSidebarOnMobile} className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+                <Clock size={18} />
+                <span>{t('layout.nav.documentHistory', 'Riwayat Pengecekan')}</span>
+              </NavLink>
+              <NavLink to="/app/bpjs-claim/knowledge" onClick={closeSidebarOnMobile} className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+                <BookOpen size={18} />
+                <span>{t('layout.nav.bpjsKnowledge', 'Basis Pengetahuan BPJS')}</span>
+              </NavLink>
+              <NavLink to="/app/claim-verification" onClick={closeSidebarOnMobile} className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+                <ShieldCheck size={18} />
+                <span>{t('layout.nav.claimVerification', 'Verifikasi Klaim SIMRS')}</span>
+              </NavLink>
+            </>
           ) : isDashboardContext ? (
             <>
               {/* Context: Dashboard Analisis Data Sains */}
@@ -295,17 +322,13 @@ const Layout = () => {
                 <FileText size={18} />
                 <span>{t('layout.nav.scribeHistory')}</span>
               </NavLink>
-              <NavLink to="/app/asisten-medis/kustomisasi" onClick={closeSidebarOnMobile} className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+              {/* <NavLink to="/app/asisten-medis/kustomisasi" onClick={closeSidebarOnMobile} className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
                 <Sliders size={18} />
                 <span>{t('layout.nav.scribeCustomize', 'Kustomisasi Pemetaan')}</span>
-              </NavLink>
+              </NavLink> */}
               <NavLink to="/app/asisten-medis/ai-knowledge" onClick={closeSidebarOnMobile} className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
                 <BookOpen size={18} />
-                <span>{t('layout.nav.aiKnowledge', 'AI Knowledge')}</span>
-              </NavLink>
-              <NavLink to="/app/dashboard-analisis" onClick={closeSidebarOnMobile} className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
-                <BarChart3 size={18} />
-                <span>Dashboard Analisis</span>
+                <span>{t('layout.nav.aiKnowledge', 'Basis Pengetahuan AI')}</span>
               </NavLink>
             </>
           )}
@@ -360,7 +383,12 @@ const Layout = () => {
                 <span>{t('layout.header.clinicConnected', 'Clinic Connected')}</span>
               </span>
               {/* Active Workspace Domain Indicator */}
-              {isReservationContext ? (
+              {isBpjsContext ? (
+                <span className="data-chip data-chip-sage" style={{ border: 'none', background: '#ecfdf5', color: '#065f46' }}>
+                  <FileCheck size={13} />
+                  <span>{t('layout.sections.bpjsClaim', 'Casemix & Klaim BPJS')}</span>
+                </span>
+              ) : isReservationContext ? (
                 <span className="data-chip data-chip-ochre" style={{ border: '1px solid #fde68a' }}>
                   <Calendar size={13} />
                   <span>{t('layout.sections.admission', 'Loket Admisi')}</span>
@@ -369,6 +397,11 @@ const Layout = () => {
                 <span className="data-chip data-chip-ochre" style={{ border: '1px solid #a7f3d0' }}>
                   <Layers size={13} />
                   <span>{t('layout.sections.connect', 'Connect Reservation')}</span>
+                </span>
+              ) : isDashboardContext ? (
+                <span className="data-chip data-chip-sage" style={{ border: '1px solid #bfdbfe', background: '#eff6ff', color: '#1d4ed8' }}>
+                  <BarChart3 size={13} />
+                  <span>Data Sains Kesehatan</span>
                 </span>
               ) : isSystemContext ? (
                 <span className="data-chip data-chip-terracotta" style={{ border: '1px solid #fecaca' }}>
@@ -430,7 +463,7 @@ const Layout = () => {
                 </div>
                 <div className="header-user-info" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', lineHeight: 1.2 }}>
                   <span style={{ fontSize: '0.85rem', fontWeight: 600 }}>{user?.name || user?.email?.split('@')[0] || t('layout.header.userDefault')}</span>
-                  <span style={{ fontSize: '0.65rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{user?.role || 'Staff Medis'}</span>
+                  <span style={{ fontSize: '0.65rem', color: user?.role === 'demo' ? '#059669' : 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: user?.role === 'demo' ? 700 : 500 }}>{user?.role === 'demo' ? 'DEMO EVALUATOR' : (user?.role || 'Staff Medis')}</span>
                 </div>
                 <ChevronDown size={14} color="var(--text-muted)" style={{ transform: isDropdownOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s', marginLeft: '0.25rem' }} />
               </button>

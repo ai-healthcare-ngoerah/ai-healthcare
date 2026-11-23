@@ -29,9 +29,9 @@ export const AuthProvider = ({ children }) => {
         }
       }
 
-      // Auto-recover session with default SuperAdmin credentials if token is missing or expired
+      // Auto-recover session with demo account if token is missing or expired
       try {
-        const data = await authLogin('superadmin@rs.com', 'SuperAdmin123!');
+        const data = await authLogin('demousadaai@rs.com', 'Demo123!');
         setToken(data.access_token);
         setUser(data.user);
       } catch {

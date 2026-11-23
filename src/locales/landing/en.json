@@ -1,6 +1,6 @@
 {
   "nav": {
-    "brand": "Ternak AI Healthcare",
+    "brand": "USADA AI",
     "brandSubtitle": "Clinical Automation Systems by Usada Tech",
     "solutions": "AI Solutions",
     "pricing": "Pricing & Plans",
@@ -11,8 +11,8 @@
   },
   "hero": {
     "badge": "⭐ Trusted by 15+ Hospitals & Clinics",
-    "title": "Revolutionize Clinic Operations & Medical Practice with USADA AI",
-    "subtitle": "Modern clinical automation by Usada Tech: AI Medical Scribe (Voice-to-SOAP) and WhatsApp patient reservations integrated with SIMRS. Save 2 hours of doctor documentation daily, streamline clinic queues, and secure patient data locally on-premise.",
+    "title": "Automate Clinical Records & Patient Flow with USADA AI",
+    "subtitle": "The USADA AI platform is engineered by Usada Tech: transcribing doctor consultations into instant SOAP notes and managing WhatsApp patient reservations directly into local SIMRS. Save 2 hours of doctor documentation daily, streamline clinic queues, and secure patient data locally on-premise.",
     "cta": "Try for Free"
   },
   "problem": {
@@ -27,32 +27,32 @@
   },
   "solution": {
     "badge": "AI Healthcare Services",
-    "title": "5 Core AI Healthcare Solutions by USADA AI",
-    "subtitle": "An integrated suite of clinical artificial intelligence technologies designed to minimize doctor overhead, optimize BPJS casemix, and strengthen healthcare facility finance:",
+    "title": "5 Core Clinical Modules in the USADA AI Platform",
+    "subtitle": "Engineered by Usada Tech to reduce physician documentation time, accelerate BPJS claim validation, and secure patient data on local servers:",
     "service1": {
       "tag": "Clinical Documentation",
       "title": "1. AI Rekam Medis",
-      "desc": "Real-time Voice-to-SOAP (CPPT) clinical consultation summarization, automated ICD-10 diagnostic and ICD-9-CM procedure coding meeting hospital accreditation standards."
+      "desc": "Automated SOAP (CPPT) medical notes from doctor-patient conversations, complete with ICD-10 diagnostic and ICD-9-CM procedure coding."
     },
     "service2": {
-      "tag": "Omnichannel Patient Flow",
-      "title": "2. AI Chatbot/Helpdesk & WhatsApp Reminder",
-      "desc": "24/7 automated outpatient clinic booking via WhatsApp, smart symptom triage, and proactive follow-up reminders (D-3, D-1, D-0) to drastically minimize patient no-shows."
+      "tag": "Patient Care",
+      "title": "2. AI Chatbot & WhatsApp Reminder",
+      "desc": "24/7 outpatient WhatsApp registration, initial symptom triage, and automated follow-up visit reminders so patients never miss their appointments."
     },
     "service3": {
       "tag": "Claim & Casemix Compliance",
       "title": "3. AI BPJS",
-      "desc": "Instant pre-validation of BPJS Health insurance claim files, early detection of potential dispute/pending claims, casemix completeness verification, and hospital claim fraud prevention."
+      "desc": "Pre-validation of BPJS Kesehatan and casemix claim files prior to submission, preventing pending or disputed claims for faster reimbursement."
     },
     "service4": {
       "tag": "Hospital Financial Health",
       "title": "4. AI Finance Health",
-      "desc": "Automated reconciliation of INA-CBGs tariff bundles against real hospital costs, medical procedure margin monitoring, clinical procurement efficiency, and transparent hospital billing."
+      "desc": "Reconciliation of INA-CBGs package rates against actual clinic costs, tracking medical procedure margins and operational expenses transparently."
     },
     "service5": {
-      "tag": "Evidence-Based Research",
+      "tag": "Clinical Research",
       "title": "5. AI for Healthcare Research (For Doctors)",
-      "desc": "Doctor clinical research assistant powered by RAG and PubMed, synthesizing global medical literature, comparative patient case analytics, and clinical research manuscript drafting."
+      "desc": "Clinical research assistant for doctors to search PubMed literature, compare patient case studies, and reference up-to-date scientific evidence."
     }
   },
   "pricing": {
@@ -63,7 +63,7 @@
       "badge": "Exclusive Clinic Offer",
       "tag": "Exclusive Clinic Offer",
       "title": "1-Month Free Trial for the First 3 Clinics & Hospitals",
-      "desc": "Run our Standard Plan directly on your local servers for 30 days—completely free with zero commitment.",
+      "desc": "Run our Standard Plan directly on your local servers for 30 days, completely free with zero commitment.",
       "cta": "Claim Standard Free Trial"
     },
     "plan1": {
@@ -74,18 +74,18 @@
       "maintenance": "Includes regular maintenance max 1x / month",
       "rate1Label": "1 AI Service",
       "rate1Price": "Rp 300k / mo",
-      "rate2Label": "3 AI Services",
-      "rate2Price": "Rp 600k / mo",
+      "rate2Label": "2 AI Services",
+      "rate2Price": "Rp 500k / mo",
       "feature1": "Fast & Lightweight Cloud API Gateway",
       "feature2": "DeepSeek / Google Gemini Model Options",
       "feature3": "Includes system maintenance max 1x per month",
       "pricingOptions": [
-        { "count": "1 AI Service (Normal)", "price": "Rp 300,000", "period": "/ month" },
-        { "count": "3 AI Services", "price": "Rp 600,000", "period": "/ month" }
+        { "count": "1 AI Service", "price": "Rp 300,000", "strike": "Rp 450,000", "period": "/ month" },
+        { "count": "2 AI Services", "price": "Rp 500,000", "strike": "Rp 750,000", "period": "/ month" }
       ],
       "features": [
         "API Key Model (DeepSeek & Google API Key)",
-        "Option for 1 AI Service (Rp 300k) or 3 AI Services (Rp 600k)",
+        "Option for 1 AI Service (Rp 300k) or 2 AI Services (Rp 500k)",
         "Quick Setup Without Local Server Hardware",
         "System Maintenance Max 1x per Month",
         "Standard Business Hours Support"
@@ -105,7 +105,7 @@
       "feature2": "Guaranteed patient data sovereignty and privacy",
       "feature3": "Includes 2x big maintenance per month",
       "pricingOptions": [
-        { "count": "3 AI Services", "price": "Rp 1,000,000", "period": "/ month" }
+        { "count": "3 AI Services", "price": "Rp 1,000,000", "strike": "Rp 1,600,000", "period": "/ month" }
       ],
       "features": [
         "On-Premise Local AI Model + Security Agent",
@@ -119,6 +119,7 @@
     "plan3": {
       "name": "Max Package",
       "badge": "Full Enterprise",
+      "ribbon": "Best Performance ⚡",
       "target": "Tier 3 Hospitals",
       "model": "Local AI Deployment + Agent + Research + 5 Services",
       "maintenance": "Includes 3x big maintenance per month",
@@ -162,8 +163,8 @@
   },
   "partners": {
     "badge": "Healthcare Network",
-    "title": "Trusted by Healthcare Facilities & Clinic Networks in Bali",
-    "subtitle": "Supporting the digital transformation of outpatient and clinic services across Bali."
+    "title": "This service is currently used by leading reputable hospitals",
+    "subtitle": "Powering clinical operational modernization, claim compliance, and patient workflow efficiency across trusted healthcare facilities."
   },
   "team": {
     "badge": "Team",
@@ -171,15 +172,15 @@
     "subtitle": "A collaboration of clinical specialists and artificial intelligence technology practitioners.",
     "member1": {
       "name": "I Dewa Gede Mahesta Parawangsa",
-      "role": "Founder of Usada AI",
+      "role": "Founder & Lead Architect, Usada Tech",
       "credential": "AI Engineer at RSUP Ngoerah",
-      "desc": "Founder of Usada AI and AI Engineer at RSUP Ngoerah, pioneering clinical artificial intelligence architecture, automated CPPT SOAP medical scribe, and digital healthcare transformation."
+      "desc": "Founder of Usada Tech and AI Engineer at RSUP Ngoerah, pioneering USADA AI product architecture, automated CPPT SOAP medical scribe, and digital healthcare transformation."
     },
     "member2": {
       "name": "Ida Bagus Agung Bajerapany",
-      "role": "Co-Founder of Usada AI",
+      "role": "Co-Founder & Lead Engineer, Usada Tech",
       "credential": "Software Engineer, Data Scientist & AI Engineer",
-      "desc": "Co-Founder of Usada AI and Software Engineer at RSUP Prof. Dr. I.G.N.G. Ngoerah and Information Technology Udayana University (UNUD). Specializing in intelligent web systems, data science analytics, and clinical AI solutions for modern healthcare."
+      "desc": "Co-Founder of Usada Tech and Software Engineer at RSUP Prof. Dr. I.G.N.G. Ngoerah. Specializing in intelligent web systems, data science analytics, and USADA AI product integrations."
     },
     "member3": {
       "name": "dr. Cynthia Dewi, MARS",
@@ -227,14 +228,23 @@
   },
   "modal": {
     "title": "Schedule a Consultation & Free Clinic Trial",
-    "subtitle": "Consult your clinical digitization requirements with the Usada Tech medical AI specialist team.",
+    "subtitle": "Consult your healthcare facility digitization needs with the Usada Tech specialist team for USADA AI implementation.",
     "name": "Full Name & Degree",
     "namePlaceholder": "e.g., dr. I Made Sukarta, Sp.PD",
     "phone": "Active WhatsApp Number",
     "phonePlaceholder": "e.g., +62 812-3456-7890",
     "clinic": "Clinic / Healthcare Facility Name in Bali",
     "clinicPlaceholder": "e.g., Bali Sehat Primary Clinic, Denpasar",
-    "need": "Required Solution",
+    "need": "AI Solutions Needed",
+    "needHint": "Select one or more AI services you wish to evaluate",
+    "needError": "Please select at least one AI service.",
+    "services": {
+      "scribe": "AI Medical Scribe (SOAP/CPPT)",
+      "bpjs": "BPJS Claim Verification (Casemix)",
+      "admission": "Smart Admission & Queue",
+      "connect": "Connect & WhatsApp AI",
+      "analytics": "Data Science Analytics Dashboard"
+    },
     "optScribe": "AI Medical Scribe (SOAP Notes Automation)",
     "optReservation": "AI Patient Reservation (Booking & WhatsApp)",
     "optBoth": "Complete Clinic Digitalization Suite",
@@ -245,6 +255,6 @@
     "close": "Close"
   },
   "footer": {
-    "copyright": "© 2026 Usada Tech • USADA AI Healthcare. All Rights Reserved."
+    "copyright": "© 2026 Usada Tech. All rights reserved. USADA AI is a clinical automation platform engineered by Usada Tech."
   }
 }

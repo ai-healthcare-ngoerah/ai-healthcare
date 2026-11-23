@@ -52,20 +52,65 @@ export const authMe = () => apiFetch('/auth/me');
 // ---- Dashboard ----
 export const getDashboardStats = () => apiFetch('/dashboard/stats');
 
-// ---- Knowledge Base [ARCHIVED / DEPRECATED - BPJS CLAIMS] ----
-export const getKnowledgeReferences = async () => [];
-export const addKnowledgeReferenceText = async () => ({});
-export const updateKnowledgeReferenceText = async () => ({});
-export const deleteKnowledgeReference = async () => ({});
-export const addKnowledgeReferenceFile = async () => ({});
+// BPJS Claims and pre-submission document checking
+export const getKnowledgeReferences = () => apiFetch('/bpjs/references');
 
-// ---- Quota ----
+export const getKnowledgeReference = (id) => apiFetch(`/bpjs/references/${id}`);
+
+export const addKnowledgeReferenceText = (title, content, source = 'Teks Manual') =>
+  apiFetch('/bpjs/references/text', {
+    method: 'POST',
+    body: { title, content, source }
+  });
+
+export const addKnowledgeReferenceFile = (file) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  return apiFetch('/bpjs/references/file', {
+    method: 'POST',
+    body: formData,
+    isForm: true
+  });
+};
+
+export const updateKnowledgeReferenceText = (id, title, content) =>
+  apiFetch(`/bpjs/references/${id}`, {
+    method: 'PUT',
+    body: { title, content }
+  });
+
+export const deleteKnowledgeReference = (id) =>
+  apiFetch(`/bpjs/references/${id}`, { method: 'DELETE' });
+
+// Quota
 export const getQuota = () => apiFetch('/quota/me');
 
-// ---- Documents (BPJS claim check) [ARCHIVED / DEPRECATED - BPJS CLAIMS] ----
-export const checkDocumentClaim = async () => ({ status: 'disabled' });
-export const getDocumentHistory = async () => [];
-export const getDocumentHistoryById = async () => ({});
+export const checkDocumentClaim = async (file, claimType = 'umum') => {
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('claim_type', claimType);
+  return apiFetch('/bpjs/check-document-claim', {
+    method: 'POST',
+    body: formData,
+    isForm: true
+  });
+};
+
+export const checkClaimText = (claimText, claimType = 'umum', simrsPayload = null) =>
+  apiFetch('/bpjs/check-claim', {
+    method: 'POST',
+    body: simrsPayload || { claim_text: claimText, claim_type: claimType }
+  });
+
+export const evaluateDisputeRisk = (payload) =>
+  apiFetch('/bpjs/claims/dispute-risk', { method: 'POST', body: payload });
+
+export const getDocumentHistory = () => apiFetch('/bpjs/history');
+
+export const getDocumentHistoryById = (checkId) => apiFetch(`/bpjs/history/${checkId}`);
+
+export const verifyClaim = (payload) =>
+  apiFetch('/claims/verify', { method: 'POST', body: payload });
 
 // ---- Settings (WhatsApp promo) ----
 export const getWhatsappSettings = () => apiFetch('/settings/whatsapp');
@@ -244,6 +289,66 @@ export const getFullAnalytics = (timeframe = 'today', startDate, endDate) => {
   if (endDate) params.append('end_date', endDate);
   return apiFetch(`/analytics/full?${params.toString()}`);
 };
+
+// Finance health, reconciliation, and margin intelligence
+export const getFinanceOverview = () => apiFetch('/finance/overview');
+
+export const reconcileEncounter = (payload) =>
+  apiFetch('/finance/reconcile', { method: 'POST', body: payload });
+
+export const getDepartmentalMargins = () => apiFetch('/finance/margins/departments');
+
+export const detectFinanceLeakages = () =>
+  apiFetch('/finance/leakage/detect', { method: 'POST' });
+
+export const getCashflowForecast = () => apiFetch('/finance/forecast');
+
+// Healthcare research copilot and literature synthesis
+export const submitResearchTask = (payload) =>
+  apiFetch('/research/tasks', { method: 'POST', body: payload });
+
+export const getResearchTaskStatus = (taskId) =>
+  apiFetch(`/research/tasks/${taskId}`);
+
+export const analyzeMedicalVision = (payload) =>
+  apiFetch('/research/vision/analyze', { method: 'POST', body: payload });
+
+export const searchPubMedLiterature = (query, maxResults = 5) =>
+  apiFetch('/research/literature/search', {
+    method: 'POST',
+    body: { query, max_results: maxResults }
+  });
+
+export const correlateMultimodalFindings = (payload) =>
+  apiFetch('/research/multimodal/correlate', { method: 'POST', body: payload });
+
+export const draftCareCaseReport = (payload) =>
+  apiFetch('/research/case-report/draft', { method: 'POST', body: payload });
+
+// Helpdesk ticket escalation and chatbot feedback
+export const escalateToHuman = (payload) =>
+  apiFetch('/helpdesk/escalate', { method: 'POST', body: payload });
+
+export const listEscalationTickets = (status = null) => {
+  const qs = status ? `?status=${encodeURIComponent(status)}` : '';
+  return apiFetch(`/helpdesk/tickets${qs}`);
+};
+
+export const assignEscalationTicket = (ticketId, staffId, staffName) =>
+  apiFetch(`/helpdesk/tickets/${ticketId}/assign`, {
+    method: 'PATCH',
+    body: { staff_id: staffId, staff_name: staffName }
+  });
+
+export const resolveEscalationTicket = (ticketId, resolutionNotes) =>
+  apiFetch(`/helpdesk/tickets/${ticketId}/resolve`, {
+    method: 'POST',
+    body: { resolution_notes: resolutionNotes }
+  });
+
+export const sendChatbotFeedback = (payload) =>
+  apiFetch('/chatbot/feedback', { method: 'POST', body: payload });
+
 
 
 

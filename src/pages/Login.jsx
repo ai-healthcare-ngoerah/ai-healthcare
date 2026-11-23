@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Lock, Mail, AlertCircle, Globe } from 'lucide-react';
+import { Lock, Mail, AlertCircle, Globe, Sparkles } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useTranslation } from 'react-i18next';
 
@@ -20,6 +20,19 @@ const Login = () => {
 
     try {
       await login(email, password);
+      navigate('/options');
+    } catch (err) {
+      setError(err.message || t('auth.login.errorDefault'));
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleQuickDemoLogin = async () => {
+    setError('');
+    setIsLoading(true);
+    try {
+      await login('demousadaai@rs.com', 'Demo123!');
       navigate('/options');
     } catch (err) {
       setError(err.message || t('auth.login.errorDefault'));
@@ -108,8 +121,45 @@ const Login = () => {
             </div>
           </div>
 
-          <button type="submit" className="btn-primary" style={{ width: '100%', justifyContent: 'center', marginBottom: '1.5rem' }} disabled={isLoading}>
+          <button type="submit" className="btn-primary" style={{ width: '100%', justifyContent: 'center', marginBottom: '0.75rem' }} disabled={isLoading}>
             {isLoading ? t('auth.login.submitting') : t('auth.login.submitBtn')}
+          </button>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', margin: '0.75rem 0 1rem' }}>
+            <div style={{ flex: 1, height: '1px', backgroundColor: '#e2e8f0' }} />
+            <span style={{ fontSize: '0.75rem', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              {t('auth.login.or', 'atau')}
+            </span>
+            <div style={{ flex: 1, height: '1px', backgroundColor: '#e2e8f0' }} />
+          </div>
+
+          <button
+            type="button"
+            onClick={handleQuickDemoLogin}
+            disabled={isLoading}
+            style={{
+              width: '100%',
+              padding: '0.75rem 1rem',
+              borderRadius: 'var(--radius-md)',
+              border: '1px solid #10b981',
+              backgroundColor: '#ecfdf5',
+              color: '#047857',
+              fontWeight: 600,
+              fontSize: '0.875rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.5rem',
+              cursor: 'pointer',
+              marginBottom: '1.5rem',
+              transition: 'all 0.2s',
+              boxShadow: '0 1px 2px rgba(16, 185, 129, 0.1)'
+            }}
+            onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#d1fae5'}
+            onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#ecfdf5'}
+          >
+            <Sparkles size={16} color="#059669" />
+            <span>{t('auth.login.demoBtn', 'Masuk Cepat Akun Demo')}</span>
           </button>
         </form>
 

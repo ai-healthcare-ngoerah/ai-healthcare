@@ -24,7 +24,7 @@ const ArticlesList = () => {
   };
 
   const waText = encodeURIComponent(
-    'Halo Tim Ternak AI Healthcare & USADA AI, saya ingin konsultasi mengenai implementasi sistem untuk klinik kami di Bali.'
+    'Halo Tim Usada Tech, saya ingin berkonsultasi mengenai implementasi USADA AI untuk klinik kami di Bali.'
   );
   const waUrl = `https://wa.me/6281234567890?text=${waText}`;
 
@@ -38,10 +38,10 @@ const ArticlesList = () => {
             <span>{lang === 'en' ? 'Back to Home' : 'Kembali ke Beranda'}</span>
           </button>
           <div className="nav-brand-wrap" onClick={() => navigate('/')}>
-            <img src="/logos/brand/logo-black.webp" alt="Ternak AI Healthcare" style={{ height: '32px' }} />
+            <img src="/logos/brand/logo-black.webp" alt="USADA AI" style={{ height: '32px' }} />
             <div className="nav-brand-title">
-              <strong>Ternak AI Healthcare</strong>
-              <span>USADA AI</span>
+              <strong>USADA AI</strong>
+              <span>oleh Usada Tech</span>
             </div>
           </div>
         </div>
@@ -90,29 +90,41 @@ const ArticlesList = () => {
             const data = art[lang] || art.id;
             return (
               <div key={art.slug} className="directory-article-card">
-                <div className="card-top-meta">
-                  <span className="card-tag">{data.tag}</span>
-                  <span className="card-read-time">
-                    <Clock size={13} />
-                    <span>{data.readTime}</span>
-                  </span>
-                </div>
+                {art.image && (
+                  <div className="directory-thumb-wrapper">
+                    <img
+                      src={art.image}
+                      alt={data.title}
+                      className="directory-thumb-img"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+                <div className="directory-card-body">
+                  <div className="card-top-meta">
+                    <span className="card-tag">{data.tag}</span>
+                    <span className="card-read-time">
+                      <Clock size={13} />
+                      <span>{data.readTime}</span>
+                    </span>
+                  </div>
 
-                <h3>{data.title}</h3>
-                <p>{data.excerpt}</p>
+                  <h3>{data.title}</h3>
+                  <p>{data.excerpt}</p>
 
-                <div className="card-bottom-bar">
-                  <span className="card-date">
-                    <Calendar size={13} />
-                    <span>{data.date}</span>
-                  </span>
-                  <button
-                    className="card-read-more-btn"
-                    onClick={() => navigate(`/artikel/${art.slug}`)}
-                  >
-                    <span>{t('landing.articles.readMore', 'Selengkapnya')}</span>
-                    <ArrowRight size={14} />
-                  </button>
+                  <div className="card-bottom-bar">
+                    <span className="card-date">
+                      <Calendar size={13} />
+                      <span>{data.date}</span>
+                    </span>
+                    <button
+                      className="card-read-more-btn"
+                      onClick={() => navigate(`/artikel/${art.slug}`)}
+                    >
+                      <span>{t('landing.articles.readMore', 'Selengkapnya')}</span>
+                      <ArrowRight size={14} />
+                    </button>
+                  </div>
                 </div>
               </div>
             );

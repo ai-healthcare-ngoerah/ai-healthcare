@@ -15,6 +15,11 @@
       "title": "Rekam Medis & Asisten Klinis",
       "desc": "Perekaman konsultasi dokter, penataan format SOAP instan, analisis ICD-10, dan perencanaan kontrol."
     },
+    "bpjsClaim": {
+      "badge": "Casemix",
+      "title": "Verifikasi Klaim BPJS",
+      "desc": "Pemeriksaan otomatis berkas klaim, telaah kelengkapan dokumen pendukung, dan deteksi risiko pending klaim."
+    },
     "urgent": {
       "badge": "UGD & Bedah",
       "title": "Gawat Darurat & Operasi",
@@ -83,8 +88,11 @@
     "nurse": "Perawat",
     "staff": "Staf Pendaftaran",
     "patient": "Pasien",
+    "demo": "Demo Evaluator",
     "guest": "Tamu / Pengunjung"
   },
   "loginAction": "Masuk / Login Petugas",
-  "guestBadge": "Tamu"
+  "guestBadge": "Tamu",
+  "demoModeBadge": "Demo Mode: 5 Layanan Otomasi AI Unggulan",
+  "demoSubtitle": "Jelajahi dan uji langsung modul kecerdasan buatan klinis serta operasional faskes."
 }

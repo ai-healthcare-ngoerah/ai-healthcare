@@ -352,7 +352,7 @@ export default function AIKnowledge() {
               <BookOpen size={20} />
             </div>
             <h1 style={{ fontSize: '1.45rem', fontWeight: 700, color: 'var(--text-main)', margin: 0 }}>
-              {t('scribe.aiKnowledge.title', 'AI Knowledge')}
+              {t('scribe.aiKnowledge.title', 'Basis Pengetahuan AI')}
             </h1>
           </div>
           <p style={{ margin: 0, fontSize: '0.875rem', color: 'var(--text-muted)' }}>

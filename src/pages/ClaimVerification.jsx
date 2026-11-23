@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { verifyClaim } from '../services/api';
 import './ClaimVerification.css';
 
 const ClaimVerification = () => {
@@ -49,26 +50,17 @@ const ClaimVerification = () => {
     setSuccessMessage('');
 
     try {
-      const response = await fetch('http://localhost:8001/api/claims/verify', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          patient_id: patientId,
-          icd_code: icdCode,
-          claim_amount: Number(claimAmount)
-        })
+      await verifyClaim({
+        patient_id: patientId,
+        icd_code: icdCode,
+        claim_amount: Number(claimAmount)
       });
 
-      if (response.ok) {
-        setSuccessMessage('Claim Submitted Successfully');
-        setStatus('Pending Audit');
-      } else {
-        const errorData = await response.json();
-        alert(`Error: ${errorData.detail || 'Failed to submit claim'}`);
-      }
+      setSuccessMessage('Claim Submitted Successfully');
+      setStatus('Pending Audit');
     } catch (error) {
       console.error('Submission failed', error);
-      alert('Network error. Failed to submit claim.');
+      alert(`Error: ${error.message || 'Failed to submit claim'}`);
     } finally {
       setTimeout(() => {
         setIsSubmitting(false);

@@ -1,13 +1,14 @@
 export const articlesData = [
   {
     slug: 'burnout-dokter-klinik-ai-medical-scribe',
+    image: '/images/article-medical-scribe.webp',
     id: {
       tag: 'Efisiensi Klinik',
-      title: 'Mengatasi Burnout Dokter Klinik: Otomasi CPPT Berbasis AI Medical Scribe di Rawat Jalan',
+      title: 'Mengatasi Kelelahan Dokter: Catat Rekam Medis Otomatis dengan AI Scribe',
       readTime: '5 menit baca',
       date: 'Oktober 2026',
       author: 'Tim Klinis USADA AI',
-      excerpt: 'Bagaimana transkripsi suara klinis otomatis membantu dokter klinik menghemat hingga 2 jam waktu pencatatan berkas setiap hari dan kembali fokus mendengarkan pasien.',
+      excerpt: 'Cara praktis menghemat hingga 2 jam waktu ketik rekam medis SOAP setiap hari, sehingga dokter bisa kembali fokus mendengarkan pasien.',
       content: [
         {
           type: 'paragraph',
@@ -53,11 +54,11 @@ export const articlesData = [
     },
     en: {
       tag: 'Clinic Efficiency',
-      title: 'Overcoming Clinic Doctor Burnout: AI Medical Scribe Automation in Outpatient Care',
+      title: 'Overcoming Doctor Burnout: Automated Medical Scribing in Outpatient Care',
       readTime: '5 min read',
       date: 'October 2026',
       author: 'USADA AI Clinical Team',
-      excerpt: 'How automated clinical voice transcription helps clinic doctors save up to 2 hours of documentation time daily and refocus their energy on listening to patients.',
+      excerpt: 'How automated clinical voice notes save clinic doctors up to 2 hours of daily typing, returning focus to patient care.',
       content: [
         {
           type: 'paragraph',
@@ -104,13 +105,14 @@ export const articlesData = [
   },
   {
     slug: 'transformasi-ai-healthcare-klinik-modern',
+    image: '/images/article-patient-flow.webp',
     id: {
-      tag: 'AI Healthcare',
-      title: 'Transformasi AI dalam Healthcare: Menjawab Tantangan Operasional Klinik Modern',
+      tag: 'Layanan Pasien',
+      title: 'Digitalisasi Alur Pasien: Pendaftaran WhatsApp & Pengingat Kontrol Otomatis',
       readTime: '6 menit baca',
       date: 'Oktober 2026',
       author: 'Tim Solusi Inovasi USADA AI',
-      excerpt: 'Eksplorasi peran kecerdasan buatan medis dalam mengoptimalkan triase pasien, reservasi omnichannel WhatsApp, dan efisiensi alur poli klinik.',
+      excerpt: 'Gunakan WhatsApp untuk pendaftaran pasien 24 jam dan kirim pengingat jadwal kontrol otomatis agar pasien tidak melewatkan pemeriksaan.',
       content: [
         {
           type: 'paragraph',
@@ -155,12 +157,12 @@ export const articlesData = [
       ]
     },
     en: {
-      tag: 'AI Healthcare',
-      title: 'AI Transformation in Healthcare: Solving Modern Clinic Operational Challenges',
+      tag: 'Patient Care',
+      title: 'Digital Patient Flow: 24/7 WhatsApp Booking and Automated Visit Reminders',
       readTime: '6 min read',
       date: 'October 2026',
       author: 'USADA AI Innovation Team',
-      excerpt: 'Exploring the vital role of medical artificial intelligence in optimizing patient triage, omnichannel WhatsApp reservations, and clinic workflow efficiency.',
+      excerpt: 'Use WhatsApp for round-the-clock outpatient booking and automated appointment reminders to minimize clinic no-shows.',
       content: [
         {
           type: 'paragraph',
@@ -207,13 +209,14 @@ export const articlesData = [
   },
   {
     slug: 'keamanan-data-rekam-medis-elektronik-pmk-24',
+    image: '/images/article-data-security.webp',
     id: {
       tag: 'Kepatuhan & Regulasi',
-      title: 'Kepatuhan PMK 24/2022 & Kedaulatan Data Rekam Medis Elektronik Berbasis Cloud AI',
+      title: 'Standar Keamanan Rekam Medis: Menjaga Privasi Pasien Sesuai Aturan Kemenkes',
       readTime: '4 menit baca',
       date: 'Oktober 2026',
       author: 'Tim Regulasi & Keamanan USADA AI',
-      excerpt: 'Standar kepatuhan Rekam Medis Elektronik (RME) di Indonesia, enkripsi data pasien AES-256, dan integrasi aman SatuSehat Kemenkes.',
+      excerpt: 'Panduan praktis menjaga keamanan data rekam medis elektronik klinik agar patuh standar PMK 24/2022 dan terintegrasi SatuSehat.',
       content: [
         {
           type: 'paragraph',
@@ -259,11 +262,11 @@ export const articlesData = [
     },
     en: {
       tag: 'Compliance & Regulation',
-      title: 'MoH Regulation No. 24/2022 Compliance & EMR Data Sovereignty in Cloud AI',
+      title: 'Medical Record Privacy: Meeting Ministry of Health Security Standards',
       readTime: '4 min read',
       date: 'October 2026',
       author: 'USADA AI Compliance & Security Team',
-      excerpt: 'Electronic Medical Record (EMR) compliance standards in Indonesia, AES-256 patient data encryption, and secure SatuSehat integration.',
+      excerpt: 'A practical guide to securing electronic medical records in compliance with PMK 24/2022 and SatuSehat integration.',
       content: [
         {
           type: 'paragraph',
@@ -310,13 +313,14 @@ export const articlesData = [
   },
   {
     slug: 'telemedisin-integrasi-ai-klinik-primer',
+    image: '/images/article-telemedicine.webp',
     id: {
       tag: 'Inovasi Layanan',
-      title: 'Telemedisin & Asisten Klinis AI: Memperluas Jangkauan Layanan Klinik di Luar Jam Praktek',
+      title: 'Layanan Konsultasi Online: Buka Telemedisin Praktis Tanpa Beban Tambahan',
       readTime: '4 menit baca',
       date: 'Oktober 2026',
       author: 'Tim Inovasi Digital USADA AI',
-      excerpt: 'Bagaimana integrasi telekonsultasi cerdas membantu klinik di Bali menjangkau pasien wisatawan dan warga lokal tanpa membebani jadwal dokter jaga.',
+      excerpt: 'Cara klinik menjangkau pasien dan wisatawan di luar jam operasional dengan catatan keluhan yang langsung terdata rapi.',
       content: [
         {
           type: 'paragraph',
@@ -350,11 +354,11 @@ export const articlesData = [
     },
     en: {
       tag: 'Service Innovation',
-      title: 'Telemedicine & Clinical AI: Expanding Clinic Reach Beyond Operating Hours',
+      title: 'Online Consultations: Practical Telemedicine for Modern Clinics',
       readTime: '4 min read',
       date: 'October 2026',
       author: 'USADA AI Digital Innovation Team',
-      excerpt: 'How intelligent teleconsultation helps Bali clinics serve international travelers and local residents without overwhelming on-call physicians.',
+      excerpt: 'How modern clinics extend their outpatient services after hours while keeping medical notes neatly synchronized.',
       content: [
         {
           type: 'paragraph',
@@ -389,13 +393,14 @@ export const articlesData = [
   },
   {
     slug: 'efisiensi-antrean-triase-otomatis-poli',
+    image: '/images/article-queue-triage.webp',
     id: {
       tag: 'Manajemen Pasien',
-      title: 'Optimalisasi Manajemen Antrean Poli dengan Sistem Triase Mandiri Berbasis AI',
+      title: 'Bebas Antrean Panjang: Atur Jadwal Datang Pasien dengan Triase Mandiri',
       readTime: '5 menit baca',
       date: 'Oktober 2026',
       author: 'Tim Alur Klinis USADA AI',
-      excerpt: 'Menghilangkan penumpukan antrean pagi hari di klinik melalui triase keluhan awal dan prediksi durasi konsultasi dokter.',
+      excerpt: 'Cegah penumpukan ruang tunggu di pagi hari dengan pembagian jam kedatangan pasien berdasarkan keluhan awal.',
       content: [
         {
           type: 'paragraph',
@@ -429,11 +434,11 @@ export const articlesData = [
     },
     en: {
       tag: 'Patient Flow',
-      title: 'Optimizing Outpatient Queue Management with AI Self-Triage Systems',
+      title: 'Shorter Wait Times: Smart Arrival Scheduling for Busy Outpatient Clinics',
       readTime: '5 min read',
       date: 'October 2026',
       author: 'USADA AI Clinical Workflow Team',
-      excerpt: 'Eliminating morning waiting room congestion in clinics through automated pre-arrival triage and consultation slot forecasting.',
+      excerpt: 'Prevent morning waiting room congestion by staggering arrival times based on preliminary symptom triage.',
       content: [
         {
           type: 'paragraph',

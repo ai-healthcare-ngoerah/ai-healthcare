@@ -15,6 +15,11 @@
       "title": "Medical Records & Clinical Scribe",
       "desc": "Doctor consultation scribe, structured SOAP notes, ICD-10 analysis, and follow-up planning."
     },
+    "bpjsClaim": {
+      "badge": "Casemix",
+      "title": "BPJS Claim Verification",
+      "desc": "Automated pre-submission audit of claim dossiers, document checklist verification, and dispute risk scoring."
+    },
     "urgent": {
       "badge": "ER & Surgery",
       "title": "Emergency & Surgery Co-Pilot",
@@ -83,8 +88,11 @@
     "nurse": "Nurse",
     "staff": "Front Desk Staff",
     "patient": "Patient",
+    "demo": "Demo Evaluator",
     "guest": "Guest / Visitor"
   },
   "loginAction": "Staff / Clinical Login",
-  "guestBadge": "Guest"
+  "guestBadge": "Guest",
+  "demoModeBadge": "Demo Mode: 5 Core AI Services",
+  "demoSubtitle": "Explore and test our clinical and operational healthcare AI modules directly."
 }

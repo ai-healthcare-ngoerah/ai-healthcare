@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   ArrowLeft, LogOut, User, ChevronDown, Globe,
-  LogIn, ArrowUpRight, ChevronLeft, ChevronRight
+  LogIn, ArrowUpRight, ChevronLeft, ChevronRight, FileCheck, Sparkles
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import './Options.css';
@@ -47,6 +47,7 @@ const Options = () => {
   const isNurse = role === 'nurse';
   const isStaff = role === 'staff';
   const isPatient = role === 'patient';
+  const isDemo = role === 'demo';
   const isGuest = !isAuthenticated;
 
   // Role Badge Styling Helper
@@ -64,6 +65,8 @@ const Options = () => {
         return { label: t('options.roles.staff', 'Staf Pendaftaran'), bg: '#f5f3ff', color: '#6d28d9', border: '#ddd6fe' };
       case 'patient':
         return { label: t('options.roles.patient', 'Pasien'), bg: '#f0fdf4', color: '#15803d', border: '#bbf7d0' };
+      case 'demo':
+        return { label: t('options.roles.demo', 'Demo Evaluator'), bg: '#ecfdf5', color: '#059669', border: '#a7f3d0' };
       default:
         return { label: t('options.roles.guest', 'Tamu'), bg: '#f8fafc', color: '#64748b', border: '#e2e8f0' };
     }
@@ -82,6 +85,19 @@ const Options = () => {
       badgeColor: '#047857',
       path: '/app/asisten-medis',
       visible: isSuperAdmin || isAdmin || isDoctor || isNurse
+    },
+    // Verifikasi Klaim BPJS - Casemix
+    {
+      id: 'claim-bpjs',
+      badge: t('options.features.bpjsClaim.badge', 'Casemix'),
+      title: t('options.features.bpjsClaim.title', 'Verifikasi Klaim BPJS'),
+      icon: <img src="/illustrations/claim-bpjs.svg" alt={t('options.features.bpjsClaim.title', 'Verifikasi Klaim BPJS')} className="option-icon-img" />,
+      iconBg: '#ecfdf5',
+      iconBorder: 'rgba(5, 150, 105, 0.2)',
+      badgeBg: '#ecfdf5',
+      badgeColor: '#047857',
+      path: '/app/bpjs-claim',
+      visible: isSuperAdmin || isAdmin || isStaff || isDoctor
     },
     // 2. Loket Admission & Antrean Pasien - Front-Desk Operations
     {
@@ -202,7 +218,18 @@ const Options = () => {
     }
   ];
 
-  const options = allOptions.filter(opt => opt.visible);
+  // Exclusive AI services for demo evaluator
+  const AI_SERVICE_IDS = [
+    'medical-records',
+    'claim-bpjs',
+    'manage-reservations',
+    'connect-reservation',
+    'dashboard-analysis'
+  ];
+
+  const options = isDemo
+    ? allOptions.filter(opt => AI_SERVICE_IDS.includes(opt.id))
+    : allOptions.filter(opt => opt.visible);
   const total = options.length;
   const safeCurrentIndex = total > 0 ? currentIndex % total : 0;
   const activeCard = total > 0 ? options[safeCurrentIndex] : null;
@@ -463,8 +490,26 @@ const Options = () => {
       </div>
 
       <div className="options-header">
+        {isDemo && (
+          <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.4rem',
+            padding: '0.35rem 0.85rem',
+            borderRadius: '9999px',
+            backgroundColor: '#ecfdf5',
+            color: '#047857',
+            fontSize: '0.8rem',
+            fontWeight: 600,
+            marginBottom: '0.75rem',
+            border: '1px solid #a7f3d0'
+          }}>
+            <Sparkles size={14} color="#059669" />
+            <span>{t('options.demoModeBadge', 'Demo Mode: 5 Layanan Otomasi AI Unggulan')}</span>
+          </div>
+        )}
         <h1>{t('options.title')}</h1>
-        <p>{t('options.subtitle')}</p>
+        <p>{isDemo ? t('options.demoSubtitle', 'Jelajahi dan uji langsung modul kecerdasan buatan klinis serta operasional faskes.') : t('options.subtitle')}</p>
       </div>
 
       <div className="options-deck-container">

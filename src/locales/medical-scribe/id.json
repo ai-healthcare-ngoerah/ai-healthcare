@@ -443,7 +443,7 @@
     "button": "Aktifkan Mikrofon"
   },
   "aiKnowledge": {
-    "title": "AI Knowledge",
+    "title": "Basis Pengetahuan AI",
     "subtitle": "Kelola pedoman klinis (PNPK/PPK), SOP medis, dan basis pengetahuan RAG untuk Medical Scribe.",
     "addBtn": "Unggah / Tambah Dokumen",
     "searchPlaceholder": "Cari pedoman klinis, diagnosis, atau SOP...",
@@ -465,7 +465,7 @@
       "edit": "Edit Dokumen",
       "delete": "Hapus Dokumen"
     },
-    "modalAddTitle": "Tambah Dokumen AI Knowledge",
+    "modalAddTitle": "Tambah Dokumen Pengetahuan AI",
     "modalEditTitle": "Edit Dokumen Pengetahuan",
     "modalViewTitle": "Detail Pedoman Klinis",
     "form": {
@@ -478,7 +478,7 @@
       "fileHint": "Pilih berkas PDF, Markdown (.md), atau Text (.txt) untuk diekstraksi ke basis pengetahuan RAG.",
       "contentLabel": "Konten / Teks Pedoman Klinis",
       "contentPlaceholder": "Ketik atau tempel teks pedoman klinis, kriteria diagnosis, atau protokol terapi di sini...",
-      "saveBtn": "Simpan ke Knowledge Base",
+      "saveBtn": "Simpan ke Basis Pengetahuan",
       "savingBtn": "Menyimpan Dokumen...",
       "cancelBtn": "Batal",
       "closeBtn": "Tutup"
@@ -486,7 +486,7 @@
     "confirmDeleteTitle": "Hapus Dokumen Pengetahuan",
     "confirmDeleteMsg": "Apakah Anda yakin ingin menghapus dokumen pengetahuan klinis ini dari basis RAG?",
     "confirmDeleteBtn": "Ya, Hapus",
-    "toastAdded": "Dokumen berhasil ditambahkan ke AI Knowledge.",
+    "toastAdded": "Dokumen berhasil ditambahkan ke Basis Pengetahuan AI.",
     "toastUpdated": "Dokumen berhasil diperbarui.",
     "toastDeleted": "Dokumen berhasil dihapus.",
     "toastError": "Terjadi kesalahan saat memproses data.",

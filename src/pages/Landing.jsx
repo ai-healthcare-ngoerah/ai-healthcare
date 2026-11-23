@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CheckCircle, TrendingDown, ArrowRight, Clock, Sparkles, ShieldCheck, Stethoscope, Cpu, MessageSquare, Microscope } from 'lucide-react';
+import { CheckCircle, TrendingDown, ArrowRight, Clock, Sparkles, ShieldCheck, Stethoscope, Cpu, MessageSquare, Microscope, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../context/AuthContext';
 import { articlesData } from '../data/articlesData';
@@ -67,6 +67,115 @@ const Landing = () => {
   const duplicatedRow1 = [...partnerRow1, ...partnerRow1, ...partnerRow1];
   const duplicatedRow2 = [...partnerRow2, ...partnerRow2, ...partnerRow2, ...partnerRow2];
 
+  const solutionServices = [
+    {
+      id: 1,
+      tag: t('landing.solution.service1.tag'),
+      title: t('landing.solution.service1.title'),
+      desc: t('landing.solution.service1.desc'),
+      icon: Stethoscope,
+      pillClass: 'emerald-pill',
+      themeClass: 'theme-emerald'
+    },
+    {
+      id: 2,
+      tag: t('landing.solution.service2.tag'),
+      title: t('landing.solution.service2.title'),
+      desc: t('landing.solution.service2.desc'),
+      icon: MessageSquare,
+      pillClass: 'green-pill',
+      themeClass: 'theme-green'
+    },
+    {
+      id: 3,
+      tag: t('landing.solution.service3.tag'),
+      title: t('landing.solution.service3.title'),
+      desc: t('landing.solution.service3.desc'),
+      icon: ShieldCheck,
+      pillClass: 'blue-pill',
+      themeClass: 'theme-blue'
+    },
+    {
+      id: 4,
+      tag: t('landing.solution.service4.tag'),
+      title: t('landing.solution.service4.title'),
+      desc: t('landing.solution.service4.desc'),
+      icon: TrendingDown,
+      pillClass: 'amber-pill',
+      themeClass: 'theme-amber'
+    },
+    {
+      id: 5,
+      tag: t('landing.solution.service5.tag'),
+      title: t('landing.solution.service5.title'),
+      desc: t('landing.solution.service5.desc'),
+      icon: Microscope,
+      pillClass: 'purple-pill',
+      themeClass: 'theme-purple research-card'
+    }
+  ];
+
+  const [slideIndex, setSlideIndex] = useState(5);
+  const [isTransitioning, setIsTransitioning] = useState(true);
+  const [touchStartX, setTouchStartX] = useState(null);
+  const [touchEndX, setTouchEndX] = useState(null);
+
+  const handleNextSlide = () => {
+    setIsTransitioning(true);
+    setSlideIndex((prev) => prev + 1);
+  };
+
+  const handlePrevSlide = () => {
+    setIsTransitioning(true);
+    setSlideIndex((prev) => prev - 1);
+  };
+
+  const handleTransitionEnd = () => {
+    if (slideIndex >= 10) {
+      setIsTransitioning(false);
+      setSlideIndex((prev) => prev - 5);
+    } else if (slideIndex < 5) {
+      setIsTransitioning(false);
+      setSlideIndex((prev) => prev + 5);
+    }
+  };
+
+  const handleDotClick = (targetIndex) => {
+    setIsTransitioning(true);
+    const currentBase = ((slideIndex % 5) + 5) % 5;
+    const diff = targetIndex - currentBase;
+    setSlideIndex((prev) => prev + diff);
+  };
+
+  const handleTouchStart = (e) => {
+    setTouchStartX(e.targetTouches[0].clientX);
+    setTouchEndX(null);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEndX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX === null || touchEndX === null) return;
+    const distance = touchStartX - touchEndX;
+    if (distance > 40) {
+      handleNextSlide();
+    } else if (distance < -40) {
+      handlePrevSlide();
+    }
+    setTouchStartX(null);
+    setTouchEndX(null);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'ArrowLeft') {
+      handlePrevSlide();
+    } else if (e.key === 'ArrowRight') {
+      handleNextSlide();
+    }
+  };
+
   const handleCobaGratis = () => {
     if (user) {
       navigate('/options');
@@ -82,7 +191,7 @@ const Landing = () => {
         <div className="landing-logo">
           <img src="/logos/brand/logo-black.webp" alt="Usada Tech - USADA AI Logo" style={{ height: '36px' }} />
           <div className="landing-logo-text">
-            <h2>{t('landing.nav.brand', 'Ternak AI Healthcare')}</h2>
+            <h2>{t('landing.nav.brand', 'USADA AI')}</h2>
             <span className="landing-logo-subtitle">{t('landing.nav.brandSubtitle', 'Sistem Otomasi Klinis oleh Usada Tech')}</span>
           </div>
         </div>
@@ -98,10 +207,10 @@ const Landing = () => {
             onClick={() => i18n.changeLanguage(i18n.language === 'en' ? 'id' : 'en')}
             className="lang-toggle-btn"
             style={{
-              background: 'transparent',
-              border: '1px solid var(--border-color)',
-              borderRadius: 'var(--radius-md)',
-              padding: '0.4rem 0.8rem',
+              background: '#f1f5f9',
+              border: 'none',
+              borderRadius: '8px',
+              padding: '0.45rem 0.85rem',
               fontWeight: 600,
               fontSize: '0.875rem',
               color: 'var(--text-main)',
@@ -150,7 +259,6 @@ const Landing = () => {
                 </div>
                 <h2>{t('landing.problem.card1.title')}</h2>
                 <p>{t('landing.problem.card1.desc')}</p>
-                <div className="card-decoration red-decoration"></div>
               </section>
 
               {/* Agitation Card (Red accents) */}
@@ -160,12 +268,11 @@ const Landing = () => {
                 </div>
                 <h2>{t('landing.problem.card2.title')}</h2>
                 <p dangerouslySetInnerHTML={{ __html: t('landing.problem.card2.desc').replace('(pending)', '<strong>(pending)</strong>') }}></p>
-                <div className="card-decoration red-decoration"></div>
               </section>
             </div>
           </div>
 
-          {/* Solution Section: 5 Core AI Healthcare Solutions */}
+          {/* Solution Section: 5 Core AI Healthcare Solutions (3-Card Infinite Carousel) */}
           <section id="solusi" className="solution-section">
             <div className="solution-header text-center">
               <span className="section-pill-badge">{t('landing.solution.badge', 'Layanan AI Healthcare')}</span>
@@ -173,55 +280,91 @@ const Landing = () => {
               <p>{t('landing.solution.subtitle')}</p>
             </div>
 
-            <div className="solution-grid five-services-grid">
-              {/* Service 1: AI Rekam Medis */}
-              <div className="solution-card-service">
-                <div className="service-icon-pill emerald-pill">
-                  <Stethoscope size={22} />
-                  <span>{t('landing.solution.service1.tag')}</span>
+            <div 
+              className="solution-carousel-container"
+              tabIndex={0}
+              onKeyDown={handleKeyDown}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
+              {/* Left Floating Arrow */}
+              <button 
+                type="button"
+                className="carousel-arrow-btn arrow-prev" 
+                onClick={handlePrevSlide}
+                aria-label="Previous Clinical Modules"
+              >
+                <ChevronLeft size={24} />
+              </button>
+
+              {/* Viewport & Sliding Track */}
+              <div className="solution-carousel-viewport">
+                <div 
+                  className="solution-carousel-track"
+                  onTransitionEnd={handleTransitionEnd}
+                  style={{
+                    transform: `translateX(calc(-${slideIndex} * (var(--card-width) + var(--card-gap))))`,
+                    transition: isTransitioning ? 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)' : 'none'
+                  }}
+                >
+                  {[...solutionServices, ...solutionServices, ...solutionServices].map((service, index) => {
+                    const IconComp = service.icon;
+                    const isLeadCard = index % 5 === ((slideIndex % 5) + 5) % 5;
+
+                    return (
+                      <div 
+                        key={`${service.id}-${index}`} 
+                        className={`solution-carousel-card ${service.themeClass} ${isLeadCard ? 'card-lead-active' : ''}`}
+                      >
+                        <div className="card-top-header">
+                          <div className={`service-icon-pill ${service.pillClass}`}>
+                            <IconComp size={19} />
+                            <span>{service.tag}</span>
+                          </div>
+                        </div>
+
+                        <h3>{service.title}</h3>
+                        <p>{service.desc}</p>
+
+                        <div className="card-bottom-bar">
+                          <span className="card-status-pill">
+                            <span className="status-dot"></span>
+                            Modul Siap Implementasi
+                          </span>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
-                <h3>{t('landing.solution.service1.title')}</h3>
-                <p>{t('landing.solution.service1.desc')}</p>
               </div>
 
-              {/* Service 2: AI Chatbot/Helpdesk & WhatsApp Reminder */}
-              <div className="solution-card-service">
-                <div className="service-icon-pill green-pill">
-                  <MessageSquare size={22} />
-                  <span>{t('landing.solution.service2.tag')}</span>
-                </div>
-                <h3>{t('landing.solution.service2.title')}</h3>
-                <p>{t('landing.solution.service2.desc')}</p>
-              </div>
+              {/* Right Floating Arrow */}
+              <button 
+                type="button"
+                className="carousel-arrow-btn arrow-next" 
+                onClick={handleNextSlide}
+                aria-label="Next Clinical Modules"
+              >
+                <ChevronRight size={24} />
+              </button>
+            </div>
 
-              {/* Service 3: AI BPJS */}
-              <div className="solution-card-service">
-                <div className="service-icon-pill blue-pill">
-                  <ShieldCheck size={22} />
-                  <span>{t('landing.solution.service3.tag')}</span>
-                </div>
-                <h3>{t('landing.solution.service3.title')}</h3>
-                <p>{t('landing.solution.service3.desc')}</p>
-              </div>
-
-              {/* Service 4: AI Finance Health */}
-              <div className="solution-card-service">
-                <div className="service-icon-pill amber-pill">
-                  <TrendingDown size={22} />
-                  <span>{t('landing.solution.service4.tag')}</span>
-                </div>
-                <h3>{t('landing.solution.service4.title')}</h3>
-                <p>{t('landing.solution.service4.desc')}</p>
-              </div>
-
-              {/* Service 5: AI for Healthcare Research (Khusus Dokter) */}
-              <div className="solution-card-service research-card">
-                <div className="service-icon-pill purple-pill">
-                  <Microscope size={22} />
-                  <span>{t('landing.solution.service5.tag')}</span>
-                </div>
-                <h3>{t('landing.solution.service5.title')}</h3>
-                <p>{t('landing.solution.service5.desc')}</p>
+            {/* Pagination Controls */}
+            <div className="carousel-controls-bar">
+              <div className="carousel-dots-wrapper">
+                {solutionServices.map((_, dotIndex) => {
+                  const currentActiveDot = ((slideIndex % 5) + 5) % 5;
+                  return (
+                    <button
+                      key={dotIndex}
+                      type="button"
+                      className={`carousel-dot-indicator ${dotIndex === currentActiveDot ? 'dot-active' : ''}`}
+                      onClick={() => handleDotClick(dotIndex)}
+                      aria-label={`Go to module ${dotIndex + 1}`}
+                    />
+                  );
+                })}
               </div>
             </div>
           </section>
@@ -245,9 +388,12 @@ const Landing = () => {
                 </div>
 
                 <div className="pricing-headline-price">
-                  <span className="price-amount">Rp 300.000</span>
-                  <span className="price-period">/ bulan</span>
-                  <span className="price-tag-sub">1 Service AI (Normal)</span>
+                  <span className="headline-original-strike">Rp 450.000</span>
+                  <div className="headline-price-row">
+                    <span className="price-amount">Rp 300.000</span>
+                    <span className="price-period">/ bulan</span>
+                  </div>
+                  <span className="price-tag-sub">1 Service AI</span>
                 </div>
 
                 <ul className="pricing-features-list">
@@ -263,12 +409,18 @@ const Landing = () => {
 
                 <div className="pricing-rates-container">
                   <div className="pricing-rate-item rate-highlight">
-                    <span className="rate-service-count">1 Service AI (Normal)</span>
-                    <span className="rate-amount">Rp 300.000 <small>/ bln</small></span>
+                    <span className="rate-service-count">1 Service AI</span>
+                    <div className="rate-price-group">
+                      <span className="rate-original-strike">Rp 450.000</span>
+                      <span className="rate-amount">Rp 300.000 <small>/ bln</small></span>
+                    </div>
                   </div>
                   <div className="pricing-rate-item">
-                    <span className="rate-service-count">3 Service AI</span>
-                    <span className="rate-amount">Rp 600.000 <small>/ bln</small></span>
+                    <span className="rate-service-count">2 Service AI</span>
+                    <div className="rate-price-group">
+                      <span className="rate-original-strike">Rp 750.000</span>
+                      <span className="rate-amount">Rp 500.000 <small>/ bln</small></span>
+                    </div>
                   </div>
                 </div>
 
@@ -287,9 +439,12 @@ const Landing = () => {
                 </div>
 
                 <div className="pricing-headline-price">
-                  <span className="price-amount emerald-amount">Rp 1.000.000</span>
-                  <span className="price-period">/ bulan</span>
-                  <span className="price-tag-sub emerald-tag-sub">3 Service AI (Best Value)</span>
+                  <span className="headline-original-strike">Rp 1.600.000</span>
+                  <div className="headline-price-row">
+                    <span className="price-amount emerald-amount">Rp 1.000.000</span>
+                    <span className="price-period">/ bulan</span>
+                  </div>
+                  <span className="price-tag-sub emerald-tag-sub">3 Service AI</span>
                 </div>
 
                 <ul className="pricing-features-list">
@@ -305,8 +460,11 @@ const Landing = () => {
 
                 <div className="pricing-rates-container">
                   <div className="pricing-rate-item rate-highlight emerald-highlight">
-                    <span className="rate-service-count">3 Service AI + 2x Big Maintenance</span>
-                    <span className="rate-amount">Rp 1.000.000 <small>/ bln</small></span>
+                    <span className="rate-service-count">3 Service AI</span>
+                    <div className="rate-price-group">
+                      <span className="rate-original-strike">Rp 1.600.000</span>
+                      <span className="rate-amount">Rp 1.000.000 <small>/ bln</small></span>
+                    </div>
                   </div>
                 </div>
 
@@ -317,15 +475,19 @@ const Landing = () => {
 
               {/* Plan 3: Paket Max */}
               <div className="pricing-card">
+                <div className="featured-ribbon-pill purple-ribbon-pill">{t('landing.pricing.plan3.ribbon', 'Best Performance ⚡')}</div>
                 <div className="pricing-card-top">
-                  <span className="pricing-tier-pill purple-tier">{t('landing.pricing.plan3.badge')}</span>
+                  <span className="pricing-tier-pill purple-tier">{t('landing.pricing.plan3.target', 'Full Enterprise')}</span>
                   <h3>{t('landing.pricing.plan3.name')}</h3>
                   <div className="pricing-model-badge purple-model">{t('landing.pricing.plan3.model')}</div>
                 </div>
 
                 <div className="pricing-headline-price">
-                  <span className="price-amount purple-amount">Rp 2.000.000</span>
-                  <span className="price-period">/ bulan</span>
+                  <span className="headline-original-strike">Rp 3.200.000</span>
+                  <div className="headline-price-row">
+                    <span className="price-amount purple-amount">Rp 2.000.000</span>
+                    <span className="price-period">/ bulan</span>
+                  </div>
                   <span className="price-tag-sub purple-tag-sub">5 Service AI + Research</span>
                 </div>
 
@@ -344,6 +506,7 @@ const Landing = () => {
                   <div className="enterprise-all-in-box">
                     <span className="all-in-title">Semua 5 Layanan AI + Modul Research</span>
                     <div className="all-in-price-wrap">
+                      <span className="rate-original-strike enterprise-strike">Rp 3.200.000</span>
                       <span className="price-big">Rp 2.000.000</span>
                       <span className="price-unit">/ bulan</span>
                     </div>
@@ -364,7 +527,7 @@ const Landing = () => {
                 </div>
                 <div className="bottom-trial-text">
                   <h4>{t('landing.pricing.freeTrialBanner.title', 'Free Trial 1 Bulan untuk 3 RS & Klinik Pertama')}</h4>
-                  <p>{t('landing.pricing.freeTrialBanner.desc', 'Coba Paket Standar langsung di server klinik Anda selama 30 hari—gratis dan tanpa komitmen kontrak.')}</p>
+                  <p>{t('landing.pricing.freeTrialBanner.desc', 'Coba Paket Standar langsung di server klinik Anda selama 30 hari, gratis dan tanpa komitmen kontrak.')}</p>
                 </div>
               </div>
               <button
@@ -527,7 +690,7 @@ const Landing = () => {
               <div className="team-card horizontal-founder-card">
                 <div className="founder-avatar-wrapper">
                   <img
-                    src="/team/gus-agung.svg?v=1.0"
+                    src="/team/gus-agung.webp"
                     alt={t('landing.team.member2.name')}
                     className="founder-avatar-circle"
                     loading="lazy"
@@ -564,16 +727,28 @@ const Landing = () => {
                 const data = art[lang] || art.id;
                 return (
                   <div key={art.slug} className="article-card active-article">
-                    <span className="article-tag">{data.tag}</span>
-                    <h3>{data.title}</h3>
-                    <p>{data.excerpt}</p>
-                    <button
-                      className="article-read-btn"
-                      onClick={() => navigate(`/artikel/${art.slug}`)}
-                    >
-                      <span>{t('landing.articles.readMore', 'Selengkapnya')}</span>
-                      <ArrowRight size={14} />
-                    </button>
+                    {art.image && (
+                      <div className="article-card-thumb-wrapper">
+                        <img
+                          src={art.image}
+                          alt={data.title}
+                          className="article-card-thumb-img"
+                          loading="lazy"
+                        />
+                      </div>
+                    )}
+                    <div className="article-card-content">
+                      <span className="article-tag">{data.tag}</span>
+                      <h3>{data.title}</h3>
+                      <p>{data.excerpt}</p>
+                      <button
+                        className="article-read-btn"
+                        onClick={() => navigate(`/artikel/${art.slug}`)}
+                      >
+                        <span>{t('landing.articles.readMore', 'Selengkapnya')}</span>
+                        <ArrowRight size={14} />
+                      </button>
+                    </div>
                   </div>
                 );
               })}

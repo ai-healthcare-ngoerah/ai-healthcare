@@ -8,6 +8,8 @@
     "passwordPlaceholder": "Enter your password",
     "submitBtn": "Sign In",
     "submitting": "Signing in...",
+    "demoBtn": "Quick Demo Login",
+    "or": "or",
     "noAccount": "Don't have an account?",
     "registerLink": "Register New Account",
     "errorDefault": "Failed to sign in. Please verify your credentials."

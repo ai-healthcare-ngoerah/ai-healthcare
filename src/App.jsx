@@ -2,18 +2,16 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/Layout';
 import DashboardAnalysis from './pages/DashboardAnalysis';
-// [ARCHIVED - BPJS CLAIMS]
-// import DocumentChecking from './pages/DocumentChecking';
-// import DocumentCheckingHistory from './pages/DocumentCheckingHistory';
+import DocumentChecking from './pages/DocumentChecking';
+import DocumentCheckingHistory from './pages/DocumentCheckingHistory';
 import MedicalScribe from './pages/MedicalScribe';
 import ScribeList from './components/scribe/ScribeList';
 import ScribeCustomization from './pages/ScribeCustomization';
 import AIKnowledge from './pages/AIKnowledge';
 import RadiologyASR from './pages/RadiologyASR';
-
-// [ARCHIVED - BPJS CLAIMS KNOWLEDGE BASE]
-// import KnowledgeBase from './pages/KnowledgeBase';
-// import AddKnowledge from './pages/AddKnowledge';
+import KnowledgeBase from './pages/KnowledgeBase';
+import AddKnowledge from './pages/AddKnowledge';
+import ClaimVerification from './pages/ClaimVerification';
 import Quota from './pages/Quota';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -66,9 +64,7 @@ function App() {
             <Route path="/register" element={<Register />} />
 
             {/* Protected Routes (Bypassed) */}
-            {/* [ARCHIVED - BPJS CLAIMS]
             <Route path="/claim-verification" element={<ClaimVerification />} />
-            */}
             {/* Standalone Reservation Forms (Without Sidebar/Layout) */}
             <Route path="/reservasi" element={<ReservationForm />} />
             <Route path="/app/reservation" element={<ReservationForm />} />
@@ -106,6 +102,12 @@ function App() {
               <Route path="asisten-medis/kustomisasi" element={<ScribeCustomization />} />
               <Route path="asisten-medis/ai-knowledge" element={<AIKnowledge />} />
               <Route path="basis-pengetahuan" element={<AIKnowledge />} />
+              <Route path="bpjs-claim" element={<DocumentChecking />} />
+              <Route path="bpjs-claim/history" element={<DocumentCheckingHistory />} />
+              <Route path="bpjs-claim/knowledge" element={<KnowledgeBase />} />
+              <Route path="bpjs-claim/knowledge/tambah" element={<AddKnowledge />} />
+              <Route path="pengecekan-dokumen" element={<Navigate to="/app/bpjs-claim" replace />} />
+              <Route path="claim-verification" element={<ClaimVerification />} />
               <Route path="asr-radiologi" element={<RadiologyASR />} />
               <Route path="ai-agent/reservasi" element={<PatientReservation />} />
               <Route path="connect-reservation" element={<ErrorBoundary><ConnectReservation /></ErrorBoundary>} />

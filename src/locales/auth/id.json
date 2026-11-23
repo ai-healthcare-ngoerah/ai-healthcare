@@ -8,6 +8,8 @@
     "passwordPlaceholder": "Masukkan kata sandi Anda",
     "submitBtn": "Masuk",
     "submitting": "Memproses Masuk...",
+    "demoBtn": "Masuk Cepat Akun Demo",
+    "or": "atau",
     "noAccount": "Belum memiliki akun?",
     "registerLink": "Daftar Akun Baru",
     "errorDefault": "Gagal masuk. Periksa kembali email dan kata sandi Anda."

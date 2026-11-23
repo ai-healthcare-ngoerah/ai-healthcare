@@ -1,6 +1,6 @@
 {
   "nav": {
-    "brand": "Ternak AI Healthcare",
+    "brand": "USADA AI",
     "brandSubtitle": "Sistem Otomasi Klinis oleh Usada Tech",
     "solutions": "Solusi AI",
     "pricing": "Paket & Harga",
@@ -11,8 +11,8 @@
   },
   "hero": {
     "badge": "⭐ Dipercaya oleh 15+ Rumah Sakit & Klinik",
-    "title": "Revolusi Operasional Klinik & Praktek Medis dengan USADA AI",
-    "subtitle": "Sistem otomasi faskes modern dari Usada Tech: AI Medical Scribe (Voice-to-SOAP) dan reservasi pasien WhatsApp terintegrasi SIMRS. Pangkas 2 jam ketik resume medis dokter, percepat antrean poli, aman di server lokal faskes Anda.",
+    "title": "Otomasi Rekam Medis & Alur Pasien Klinik Bersama USADA AI",
+    "subtitle": "Platform USADA AI dikembangkan oleh Usada Tech: mentranskripsi percakapan dokter menjadi resume SOAP instan dan mengelola reservasi WhatsApp pasien langsung ke SIMRS lokal. Pangkas 2 jam ketik resume medis dokter, percepat antrean poli, aman di server lokal faskes Anda.",
     "cta": "Coba Gratis"
   },
   "problem": {
@@ -27,32 +27,32 @@
   },
   "solution": {
     "badge": "Layanan AI Healthcare",
-    "title": "5 Layanan AI Healthcare Unggulan USADA AI",
-    "subtitle": "Solusi terintegrasi kecerdasan buatan medis yang dirancang khusus untuk memangkas beban kerja dokter, mengoptimalkan casemix BPJS, dan menyehatkan keuangan faskes:",
+    "title": "5 Modul Klinis Terpadu dalam Platform USADA AI",
+    "subtitle": "Direkayasa oleh Usada Tech untuk memangkas beban kerja dokter, mengoptimalkan casemix BPJS, dan menyehatkan keuangan faskes:",
     "service1": {
       "tag": "Dokumentasi Klinis",
       "title": "1. AI Rekam Medis",
-      "desc": "Otomatisasi pembuatan resume medis SOAP (CPPT) dari rekaman percakapan dokter-pasien secara real-time, terintegrasi koding diagnosis ICD-10 & tindakan ICD-9-CM sesuai standar akreditasi."
+      "desc": "Pembuatan resume medis SOAP (CPPT) otomatis dari percakapan dokter-pasien, lengkap dengan rekomendasi koding diagnosis ICD-10 dan tindakan ICD-9-CM."
     },
     "service2": {
-      "tag": "Omnichannel Pasien",
-      "title": "2. AI Chatbot/Helpdesk & WhatsApp Reminder",
-      "desc": "Pendaftaran mandiri pasien poli rawat jalan via WhatsApp 24/7, triase keluhan otomatis, serta notifikasi pengingat jadwal kontrol (H-3, H-1, H-0) guna menekan angka ketidakhadiran pasien."
+      "tag": "Layanan Pasien",
+      "title": "2. AI Chatbot & WhatsApp Reminder",
+      "desc": "Pendaftaran mandiri pasien poli rawat jalan via WhatsApp 24 jam, triase keluhan medis awal, serta pengingat jadwal kontrol berkala agar pasien tidak melewatkan pemeriksaan."
     },
     "service3": {
       "tag": "Kepatuhan Casemix",
       "title": "3. AI BPJS",
-      "desc": "Pra-validasi berkas klaim BPJS Kesehatan secara otomatis, pencegahan pending dan dispute claim sebelum diajukan, verifikasi syarat berkas casemix, dan deteksi potensi fraud."
+      "desc": "Verifikasi kelengkapan berkas klaim BPJS Kesehatan dan casemix sebelum diajukan, mencegah status klaim pending atau dispute agar pencairan biaya faskes lancar."
     },
     "service4": {
       "tag": "Kesehatan Finansial RS",
       "title": "4. AI Finance Health",
-      "desc": "Rekonsiliasi otomatis tarif paket INA-CBGs terhadap tarif riil faskes, pemantauan margin tindakan medis, analisis efisiensi belanja operasional, dan pembukuan biaya faskes yang akurat."
+      "desc": "Rekonsiliasi tarif paket INA-CBGs terhadap tarif riil rumah sakit atau klinik, pemantauan margin tindakan medis, serta pencatatan biaya operasional faskes yang transparan."
     },
     "service5": {
       "tag": "Riset Medis Klinis",
       "title": "5. AI for Healthcare Research (Khusus Dokter)",
-      "desc": "Asisten riset klinis dokter berbasis RAG dan PubMed, sintesis literatur medis internasional, analisis komparasi studi kasus pasien, serta perumusan draf publikasi jurnal ilmiah."
+      "desc": "Asisten riset klinis dokter untuk penelusuran literatur medis PubMed, analisis perbandingan studi kasus pasien, serta penyusunan referensi ilmiah."
     }
   },
   "pricing": {
@@ -63,7 +63,7 @@
       "badge": "Penawaran Khusus Faskes Baru",
       "tag": "Penawaran Khusus Faskes Baru",
       "title": "Free Trial 1 Bulan untuk 3 RS & Klinik Pertama",
-      "desc": "Coba Paket Standar langsung di server klinik Anda selama 30 hari—gratis dan tanpa komitmen kontrak.",
+      "desc": "Coba Paket Standar langsung di server klinik Anda selama 30 hari, gratis tanpa komitmen kontrak.",
       "cta": "Klaim Free Trial Paket Standar"
     },
     "plan1": {
@@ -74,18 +74,18 @@
       "maintenance": "Sudah include maintenance max 1x per bulan",
       "rate1Label": "1 Service AI",
       "rate1Price": "Rp 300.000 / bln",
-      "rate2Label": "3 Service AI",
-      "rate2Price": "Rp 600.000 / bln",
+      "rate2Label": "2 Service AI",
+      "rate2Price": "Rp 500.000 / bln",
       "feature1": "Akses Cloud API Gateway Cepat & Ringan",
       "feature2": "Pilihan Model AI DeepSeek / Google Gemini",
       "feature3": "Sudah include maintenance sistem max 1x per bulan",
       "pricingOptions": [
-        { "count": "1 Service AI (Normal)", "price": "Rp 300.000", "period": "/ bulan" },
-        { "count": "3 Service AI", "price": "Rp 600.000", "period": "/ bulan" }
+        { "count": "1 Service AI", "price": "Rp 300.000", "strike": "Rp 450.000", "period": "/ bulan" },
+        { "count": "2 Service AI", "price": "Rp 500.000", "strike": "Rp 750.000", "period": "/ bulan" }
       ],
       "features": [
         "Model API Key (DeepSeek & Google API Key)",
-        "Pilihan 1 Service AI (Rp 300rb) atau 3 Service AI (Rp 600rb)",
+        "Pilihan 1 Service AI (Rp 300rb) atau 2 Service AI (Rp 500rb)",
         "Setup Cepat Tanpa Perlu Server Lokal Tambahan",
         "Maintenance Sistem Maksimal 1x per Bulan",
         "Dukungan Teknis Standar Jam Kerja"
@@ -94,7 +94,7 @@
     },
     "plan2": {
       "name": "Paket Standar",
-      "badge": "Best Value ⭐",
+      "badge": "Nilai Terbaik ⭐",
       "target": "RS Tier 3 & Tier 2",
       "model": "Deploy AI Lokal + Agent (Security)",
       "maintenance": "Sudah include 2x big maintenance per bulan",
@@ -105,7 +105,7 @@
       "feature2": "Kedaulatan & privasi data rekam medis terjamin",
       "feature3": "Sudah include 2x big maintenance berkala per bulan",
       "pricingOptions": [
-        { "count": "3 Service AI", "price": "Rp 1.000.000", "period": "/ bulan" }
+        { "count": "3 Service AI", "price": "Rp 1.000.000", "strike": "Rp 1.600.000", "period": "/ bulan" }
       ],
       "features": [
         "Deploy AI Lokal On-Premise + Agent Security",
@@ -119,6 +119,7 @@
     "plan3": {
       "name": "Paket Max",
       "badge": "Full Enterprise",
+      "ribbon": "Performa Terbaik ⚡",
       "target": "RS Tier 3",
       "model": "Deploy AI Lokal + Agent + Research + 5 Service",
       "maintenance": "Sudah include 3x big maintenance per bulan",
@@ -162,8 +163,8 @@
   },
   "partners": {
     "badge": "Jaringan Fasilitas Kesehatan",
-    "title": "Dipercaya oleh Fasilitas Kesehatan & Jaringan Klinik di Bali",
-    "subtitle": "Mendukung transformasi digitalisasi layanan rawat jalan dan klinik di seluruh wilayah Bali."
+    "title": "Layanan ini telah digunakan oleh beberapa rumah sakit ternama",
+    "subtitle": "Mendukung modernisasi operasional klinis, tata kelola klaim, dan efisiensi alur pasien di fasilitas kesehatan terpercaya."
   },
   "team": {
     "badge": "Tim",
@@ -171,15 +172,15 @@
     "subtitle": "Kolaborasi dokter spesialis dan praktisi teknologi kecerdasan buatan.",
     "member1": {
       "name": "I Dewa Gede Mahesta Parawangsa",
-      "role": "Founder of Usada AI",
+      "role": "Founder & Lead Architect, Usada Tech",
       "credential": "AI Engineer di RSUP Ngoerah",
-      "desc": "Founder Usada AI dan AI Engineer di RSUP Prof. Dr. I.G.N.G. Ngoerah, memimpin arsitektur inovasi kecerdasan buatan medis, otomatisasi rekam medis CPPT SOAP, dan transformasi digital faskes."
+      "desc": "Founder Usada Tech dan AI Engineer di RSUP Prof. Dr. I.G.N.G. Ngoerah, memimpin arsitektur produk USADA AI, otomatisasi rekam medis CPPT SOAP, dan transformasi digital faskes."
     },
     "member2": {
       "name": "Ida Bagus Agung Bajerapany",
-      "role": "Co-Founder of Usada AI",
+      "role": "Co-Founder & Lead Engineer, Usada Tech",
       "credential": "Software Engineer, Data Scientist & AI Engineer",
-      "desc": "Co-Founder Usada AI dan Software Engineer di RSUP Prof. Dr. I.G.N.G. Ngoerah serta mahasiswa Teknologi Informasi Universitas Udayana (UNUD). Berfokus pada pengembangan sistem web cerdas, rekayasa data analitik, dan solusi kecerdasan buatan klinis untuk faskes modern."
+      "desc": "Co-Founder Usada Tech dan Software Engineer di RSUP Prof. Dr. I.G.N.G. Ngoerah. Berfokus pada pengembangan sistem web cerdas, rekayasa data analitik, dan integrasi produk USADA AI."
     },
     "member3": {
       "name": "dr. Cynthia Dewi, MARS",
@@ -227,14 +228,23 @@
   },
   "modal": {
     "title": "Jadwalkan Konsultasi & Uji Coba Gratis Klinik",
-    "subtitle": "Konsultasikan kebutuhan digitalisasi faskes Anda bersama tim spesialis kecerdasan buatan klinis Usada Tech.",
+    "subtitle": "Konsultasikan kebutuhan digitalisasi faskes Anda bersama tim spesialis Usada Tech untuk implementasi USADA AI.",
     "name": "Nama Lengkap & Gelar",
     "namePlaceholder": "contoh: dr. I Made Sukarta, Sp.PD",
     "phone": "Nomor WhatsApp Aktif",
     "phonePlaceholder": "contoh: 08123456789",
     "clinic": "Nama Klinik / Faskes di Bali",
     "clinicPlaceholder": "contoh: Klinik Pratama Bali Sehat, Denpasar",
-    "need": "Solusi yang Dibutuhkan",
+    "need": "Solusi AI yang Dibutuhkan",
+    "needHint": "Pilih satu atau lebih layanan AI yang ingin diuji coba",
+    "needError": "Pilih minimal satu layanan AI.",
+    "services": {
+      "scribe": "AI Medical Scribe (SOAP/CPPT)",
+      "bpjs": "Verifikasi Klaim BPJS (Casemix)",
+      "admission": "Admisi & Antrean Cerdas",
+      "connect": "Connect & WhatsApp AI",
+      "analytics": "Dashboard Analisis Data Sains"
+    },
     "optScribe": "AI Medical Scribe (Otomasi Rekam Medis SOAP)",
     "optReservation": "AI Patient Reservation (Reservasi & WhatsApp)",
     "optBoth": "Paket Lengkap Digitalisasi Klinik",
@@ -245,6 +255,6 @@
     "close": "Tutup"
   },
   "footer": {
-    "copyright": "© 2026 Usada Tech • USADA AI Healthcare. Seluruh Hak Cipta Dilindungi."
+    "copyright": "© 2026 Usada Tech. Seluruh hak cipta dilindungi. USADA AI adalah platform otomasi klinis dari Usada Tech."
   }
 }

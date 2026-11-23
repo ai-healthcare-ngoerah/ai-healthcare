@@ -62,12 +62,6 @@ const Guide = () => {
           </ul>
         </div>
 
-        {/* =========================================================================
-            [COMMENTED OUT - BPJS CLAIMS]
-            The following cards are commented out to remove BPJS Claim content
-            while preserving the code structure for future reference.
-        ========================================================================= */}
-        {/*
         <div className="card">
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
             <FileCheck size={24} color="var(--primary-color)" />
@@ -87,7 +81,6 @@ const Guide = () => {
             Kelola pedoman dan aturan BPJS yang digunakan oleh AI untuk mengevaluasi klaim.
           </p>
         </div>
-        */}
 
       </div>
     </div>

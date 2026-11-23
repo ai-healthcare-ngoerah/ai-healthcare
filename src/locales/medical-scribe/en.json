@@ -443,7 +443,7 @@
     "button": "Activate Microphone"
   },
   "aiKnowledge": {
-    "title": "AI Knowledge",
+    "title": "AI Knowledge Base",
     "subtitle": "Manage clinical guidelines (PNPK/PPK), medical SOPs, and RAG knowledge base for Medical Scribe.",
     "addBtn": "Upload / Add Document",
     "searchPlaceholder": "Search clinical guidelines, diagnoses, or SOPs...",

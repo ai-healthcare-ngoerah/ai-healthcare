@@ -92,7 +92,8 @@
   background-color: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 16px;
-  padding: 1.85rem;
+  padding: 0;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   transition: all 0.25s ease;
@@ -103,6 +104,34 @@
   transform: translateY(-4px);
   border-color: #10b981;
   box-shadow: 0 12px 28px rgba(16, 185, 129, 0.08);
+}
+
+.directory-thumb-wrapper {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #f1f5f9;
+  border-bottom: 1px solid #e2e8f0;
+  overflow: hidden;
+  position: relative;
+}
+
+.directory-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.directory-article-card:hover .directory-thumb-img {
+  transform: scale(1.04);
+}
+
+.directory-card-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .card-top-meta {

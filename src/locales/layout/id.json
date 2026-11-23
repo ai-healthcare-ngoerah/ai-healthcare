@@ -1,7 +1,7 @@
 {
   "back": "Hub Layanan Klinis",
   "nav": {
-    "_bpjs_archived": "Klaim BPJS Diarsipkan",
+    "claimBpjs": "Verifikasi Klaim BPJS",
     "scribe": "Asisten Medis",
     "scribeHistory": "Riwayat Rekam Medis",
     "scribeCustomize": "Kustomisasi Pemetaan",
@@ -14,7 +14,7 @@
     "whatsappSummary": "Ringkasan Chatbot AI",
     "chatbotSummary": "Ringkasan Chatbot AI",
     "knowledge": "Basis Pengetahuan",
-    "aiKnowledge": "AI Knowledge",
+    "aiKnowledge": "Basis Pengetahuan AI",
     "admin": "SuperAdmin Panel",
     "superadminPanel": "Superadmin Panel",
     "userAccounts": "Tata Kelola Akun & Role",
@@ -28,14 +28,19 @@
     "chatLogs": "Log Chat",
     "summary": "Ringkasan Eksekutif",
     "goToConnect": "Hubungkan Saluran",
-    "goToAdmission": "Buka Loket Admisi"
+    "goToAdmission": "Buka Loket Admisi",
+    "documentChecking": "Pengecekan Dokumen",
+    "documentHistory": "Riwayat Pengecekan",
+    "bpjsKnowledge": "Basis Pengetahuan BPJS",
+    "claimVerification": "Verifikasi Klaim SIMRS"
   },
   "sections": {
     "clinical": "Pelayanan Medis",
     "patient": "Layanan Pasien & AI",
     "admin": "Manajemen & Sistem",
     "admission": "Loket Admisi & Antrean",
-    "connect": "Integrasi Reservasi"
+    "connect": "Integrasi Reservasi",
+    "bpjsClaim": "Casemix & Klaim BPJS"
   },
   "header": {
     "toggleSidebar": "Buka/Tutup Sidebar",

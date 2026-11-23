@@ -27,7 +27,7 @@ const ArticleDetail = () => {
   const data = article ? article[lang] || article.id : null;
 
   const waText = encodeURIComponent(
-    `Halo Tim Ternak AI Healthcare & USADA AI, saya membaca artikel "${data ? data.title : ''}" dan ingin konsultasi implementasi untuk klinik kami di Bali.`
+    `Halo Tim Usada Tech, saya membaca artikel "${data ? data.title : ''}" dan ingin berkonsultasi mengenai implementasi USADA AI untuk klinik kami di Bali.`
   );
   const waUrl = `https://wa.me/6281234567890?text=${waText}`;
 
@@ -60,10 +60,10 @@ const ArticleDetail = () => {
             <span>{lang === 'en' ? 'Back to Home' : 'Kembali ke Beranda'}</span>
           </button>
           <div className="nav-brand-wrap" onClick={() => navigate('/')}>
-            <img src="/logos/brand/logo-black.webp" alt="Ternak AI Healthcare" style={{ height: '32px' }} />
+            <img src="/logos/brand/logo-black.webp" alt="USADA AI" style={{ height: '32px' }} />
             <div className="nav-brand-title">
-              <strong>Ternak AI Healthcare</strong>
-              <span>USADA AI</span>
+              <strong>USADA AI</strong>
+              <span>oleh Usada Tech</span>
             </div>
           </div>
         </div>
@@ -122,6 +122,13 @@ const ArticleDetail = () => {
             </div>
           </div>
         </header>
+
+        {/* Article Featured Thumbnail */}
+        {article.image && (
+          <div className="article-featured-banner">
+            <img src={article.image} alt={data.title} className="article-featured-img" />
+          </div>
+        )}
 
         {/* Lead Excerpt */}
         <div className="article-lead-box">

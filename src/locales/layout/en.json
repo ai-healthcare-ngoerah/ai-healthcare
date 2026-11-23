@@ -1,7 +1,7 @@
 {
   "back": "Clinical Workspace Hub",
   "nav": {
-    "_bpjs_archived": "BPJS Claim Archived",
+    "claimBpjs": "BPJS Claim Verification",
     "scribe": "Medical Scribe",
     "scribeHistory": "Medical Records History",
     "scribeCustomize": "Customize Mapping",
@@ -14,7 +14,7 @@
     "whatsappSummary": "AI Chatbot Summary",
     "chatbotSummary": "AI Chatbot Summary",
     "knowledge": "Knowledge Base",
-    "aiKnowledge": "AI Knowledge",
+    "aiKnowledge": "AI Knowledge Base",
     "admin": "SuperAdmin Panel",
     "superadminPanel": "Superadmin Panel",
     "userAccounts": "User Accounts & Roles",
@@ -28,14 +28,19 @@
     "chatLogs": "Chat Logs",
     "summary": "Executive Summary",
     "goToConnect": "Connect Channels",
-    "goToAdmission": "Open Admission Desk"
+    "goToAdmission": "Open Admission Desk",
+    "documentChecking": "Document Checking",
+    "documentHistory": "Checking History",
+    "bpjsKnowledge": "BPJS Knowledge Base",
+    "claimVerification": "SIMRS Claim Verification"
   },
   "sections": {
     "clinical": "Clinical Care",
     "patient": "Patient Engagement",
     "admin": "Governance & Admin",
     "admission": "Admission & Queue Desk",
-    "connect": "Reservation Connect"
+    "connect": "Reservation Connect",
+    "bpjsClaim": "BPJS Claim & Casemix"
   },
   "header": {
     "toggleSidebar": "Toggle Sidebar",
