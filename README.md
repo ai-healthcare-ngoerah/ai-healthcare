@@ -1,16 +1,48 @@
-# React + Vite
+# USADA AI - Frontend Web Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplikasi antarmuka web modern untuk platform kecerdasan buatan operasional rumah sakit (USADA AI). Dibangun menggunakan React 19, Vite, dan Tailwind CSS.
 
-Currently, two official plugins are available:
+## Repositori Terkait
+- Backend API (FastAPI): https://github.com/ai-healthcare-ngoerah/usada-ai-backend
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Prasyarat
+- Node.js versi 18 atau lebih baru
+- npm, pnpm, atau yarn
 
-## React Compiler
+## Panduan Instalasi dan Menjalankan
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Salin konfigurasi environment:
+   ```bash
+   cp .env.example .env
+   ```
 
-## Expanding the ESLint configuration
+2. Pasang dependensi:
+   ```bash
+   npm install
+   ```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+3. Jalankan server pengembangan lokal:
+   ```bash
+   npm run dev
+   ```
+   Aplikasi akan berjalan di `http://localhost:5173`.
+
+4. Build untuk produksi:
+   ```bash
+   npm run build
+   ```
+
+5. Pratinjau hasil build:
+   ```bash
+   npm run preview
+   ```
+
+## Konfigurasi Environment
+
+Variabel environment yang didukung:
+- `VITE_API_BASE_URL`: URL dasar endpoint REST API backend USADA AI (contoh: `http://127.0.0.1:8005` atau domain backend produksi).
+- `VITE_N8N_WEBHOOK_URL`: URL webhook n8n untuk otomasi alur kerja (opsional).
+
+## Deployment
+
+Aplikasi ini siap di-deploy langsung ke Vercel dengan konfigurasi bawaan pada file `vercel.json`. Pastikan mengatur variabel `VITE_API_BASE_URL` pada pengaturan environment di dashboard Vercel.
