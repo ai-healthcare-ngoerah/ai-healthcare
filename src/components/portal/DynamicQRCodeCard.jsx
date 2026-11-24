@@ -188,8 +188,8 @@ const DynamicQRCodeCard = ({
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
           <img
-            src="/logos/brand/logo-black.webp"
-            alt="Logo Fasilitas Kesehatan"
+            src="/logos/usada-ai-icon.webp"
+            alt="USADA AI Logo"
             style={{
               height: isFull ? '32px' : '26px',
               width: 'auto',

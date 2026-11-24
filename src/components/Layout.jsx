@@ -78,7 +78,7 @@ const Layout = () => {
       <aside className={`sidebar ${isSidebarOpen ? '' : 'sidebar-closed'}`}>
         <div className="sidebar-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <img src="/logos/brand/logo-black.webp" alt="USADA AI Logo" style={{ height: '28px' }} />
+            <img src="/logos/usada-ai-icon.webp" alt="USADA AI Logo" style={{ height: '32px', width: '32px', objectFit: 'contain' }} />
             <h2>USADA AI</h2>
           </div>
           <button

@@ -189,7 +189,7 @@ const Landing = () => {
       {/* Navbar */}
       <nav className="landing-navbar">
         <div className="landing-logo">
-          <img src="/logos/brand/logo-black.webp" alt="Usada Tech - USADA AI Logo" style={{ height: '36px' }} />
+          <img src="/logos/usada-ai-icon.webp" alt="USADA AI Logo" style={{ height: '40px', width: '40px', objectFit: 'contain' }} />
           <div className="landing-logo-text">
             <h2>{t('landing.nav.brand', 'USADA AI')}</h2>
             <span className="landing-logo-subtitle">{t('landing.nav.brandSubtitle', 'Sistem Otomasi Klinis oleh Usada Tech')}</span>

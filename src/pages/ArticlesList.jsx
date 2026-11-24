@@ -38,7 +38,7 @@ const ArticlesList = () => {
             <span>{lang === 'en' ? 'Back to Home' : 'Kembali ke Beranda'}</span>
           </button>
           <div className="nav-brand-wrap" onClick={() => navigate('/')}>
-            <img src="/logos/brand/logo-black.webp" alt="USADA AI" style={{ height: '32px' }} />
+            <img src="/logos/usada-ai-icon.webp" alt="USADA AI" style={{ height: '32px', width: '32px', objectFit: 'contain' }} />
             <div className="nav-brand-title">
               <strong>USADA AI</strong>
               <span>oleh Usada Tech</span>

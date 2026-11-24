@@ -230,8 +230,8 @@ const ReservationForm = () => {
         {/* Brand Header */}
         <div style={{ textAlign: 'center', marginBottom: '2rem', marginTop: '0.5rem' }}>
           <img
-            src="/logos/brand/logo-black.webp"
-            alt="Ternak AI Healthcare Logo"
+            src="/logos/usada-ai-icon.webp"
+            alt="USADA AI Logo"
             style={{ height: '64px', margin: '0 auto 0.75rem', display: 'block', objectFit: 'contain' }}
             onError={(e) => { e.currentTarget.style.display = 'none'; }}
           />
