@@ -952,9 +952,9 @@ const ConnectReservation = () => {
                                 setQrTimestamp(Date.now());
                               }}
                               title="Segarkan QR sekarang"
+                              aria-label="Segarkan QR sekarang"
                             >
-                              <RefreshCw size={12} />
-                              <span>{t('whatsapp.wahaControlQr.refreshBtn', 'Segarkan')}</span>
+                              <RefreshCw size={13} />
                             </button>
                           </div>
                         </>
@@ -1082,9 +1082,9 @@ const ConnectReservation = () => {
                                   setQrTimestamp(Date.now());
                                 }}
                                 title="Segarkan QR sekarang"
+                                aria-label="Segarkan QR sekarang"
                               >
-                                <RefreshCw size={12} />
-                                <span>{t('whatsapp.wahaControlQr.refreshBtn', 'Segarkan')}</span>
+                                <RefreshCw size={13} />
                               </button>
                             </div>
                           </>

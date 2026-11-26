@@ -196,11 +196,11 @@ const WhatsappReminder = () => {
             type="button"
             onClick={fetchOmnichannelData}
             className="btn btn-secondary"
-            style={{ padding: '0.5rem 0.75rem', fontSize: '0.825rem', display: 'flex', alignItems: 'center', gap: '0.35rem' }}
+            style={{ padding: '0.55rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             title="Refresh Data Status"
+            aria-label="Refresh Data Status"
           >
-            <RefreshCw size={14} className={loading || loadingLogs ? 'spin' : ''} />
-            <span>Refresh</span>
+            <RefreshCw size={15} className={loading || loadingLogs ? 'spin' : ''} />
           </button>
         </div>
       </div>

@@ -323,11 +323,10 @@ const UrgentScribeView = () => {
   const shouldShowCoPilot = hasSessionStarted || chatMessages.length > 0 || isLiveListening || isAnalyzing || telemetryText.trim().length > 0;
 
   return (
-    <div className="urgent-scribe-container animate-fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-      
-      {/* 1. Prominent Recording CTA Card (Urgent Mode) */}
+    <div className="urgent-scribe-container animate-fade-in">
+      {/* 1. Recording CTA Workspace Band (Urgent Mode) */}
       <div
-        className="card"
+        className="service-sheet-band"
         style={{
           padding: '3rem 2rem',
           textAlign: 'center',
@@ -335,10 +334,8 @@ const UrgentScribeView = () => {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          border: (isLiveListening || chatMessages.length > 0) ? '2px solid #fecaca' : '2px dashed var(--border-color)',
           backgroundColor: (isLiveListening || chatMessages.length > 0) ? '#fffbfb' : '#ffffff',
-          borderRadius: 'var(--radius-lg)',
-          transition: 'all 0.3s ease'
+          transition: 'background-color 0.25s ease'
         }}
       >
         <div
@@ -425,9 +422,9 @@ const UrgentScribeView = () => {
                 padding: '0.75rem 1.5rem',
                 fontSize: '0.95rem',
                 borderRadius: 'var(--radius-md)',
-                border: '1px solid var(--border-color)',
-                background: '#ffffff',
-                color: 'var(--text-muted)',
+                border: 'none',
+                background: '#f1f5f9',
+                color: '#475569',
                 cursor: 'pointer',
                 fontWeight: 600
               }}
@@ -442,13 +439,9 @@ const UrgentScribeView = () => {
       {/* 2. Realtime Emergency AI Co-Pilot Feed (Hidden before recording/chat exists) */}
       {shouldShowCoPilot && (
         <div
-          className="card animate-fade-in"
+          className="service-sheet-band animate-fade-in"
           style={{
-            padding: '1.5rem',
-            borderRadius: 'var(--radius-lg)',
-            backgroundColor: '#ffffff',
-            border: '1px solid #cbd5e1',
-            boxShadow: 'var(--shadow-sm)'
+            backgroundColor: '#ffffff'
           }}
         >
 
@@ -992,12 +985,12 @@ const UrgentScribeView = () => {
 
       {/* Generated Final CPPT Display */}
       {finalCppt && (
-        <div className="card animate-fade-in" style={{ padding: '1.5rem', background: '#f8fafc', border: '1px solid #cbd5e1' }}>
+        <div className="service-sheet-band animate-fade-in" style={{ background: '#f8fafc' }}>
           <h4 style={{ margin: '0 0 1rem 0', fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <CheckCircle2 size={18} color="#059669" />
             {t('scribe.urgent.toastCpptGenerated')}
           </h4>
-          <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word', fontFamily: 'monospace', fontSize: '0.85rem', background: '#ffffff', padding: '1rem', borderRadius: '6px', border: '1px solid #e2e8f0', margin: 0 }}>
+          <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word', fontFamily: 'monospace', fontSize: '0.85rem', background: '#ffffff', padding: '1rem', borderRadius: '8px', border: 'none', margin: 0 }}>
             {finalCppt}
           </pre>
         </div>

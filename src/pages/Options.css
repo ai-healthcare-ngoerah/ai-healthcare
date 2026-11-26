@@ -38,7 +38,7 @@
 
 .btn-back {
   background: white;
-  border: 1px solid var(--border-color, #e2e8f0);
+  border: none;
   color: #64748b;
   display: flex;
   align-items: center;
@@ -46,9 +46,9 @@
   font-weight: 500;
   font-size: 0.85rem;
   cursor: pointer;
-  padding: 0.45rem 0.85rem;
-  border-radius: 8px;
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  padding: 0.55rem 0.95rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
   transition: all 0.2s ease;
 }
 
@@ -59,7 +59,6 @@
 .btn-back:hover {
   background-color: #f1f5f9;
   color: #0f172a;
-  border-color: #cbd5e1;
 }
 
 .btn-back:hover svg {
@@ -116,7 +115,6 @@
   perspective: 1200px;
 }
 
-/* 1:1 Square Card Architecture */
 .deck-card {
   position: absolute;
   top: 0;
@@ -132,30 +130,27 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid rgba(226, 232, 240, 0.95);
-  box-shadow: 0 12px 30px -6px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(15, 23, 42, 0.03);
+  border: none;
+  box-shadow: 0 12px 30px -6px rgba(15, 23, 42, 0.08);
   cursor: pointer;
   user-select: none;
   transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
               opacity 0.32s ease,
-              box-shadow 0.32s ease,
-              border-color 0.2s ease;
+              box-shadow 0.32s ease;
   transform-origin: center bottom;
 }
 
-/* Layer 0: Active front card */
 .deck-layer-0 {
   transform: translateY(0) scale(1);
   opacity: 1;
   z-index: 10;
   pointer-events: auto;
-  box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.13), 0 0 0 1px rgba(15, 23, 42, 0.06);
+  box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.12);
 }
 
 .deck-layer-0:hover {
   transform: translateY(-4px) scale(1.008);
-  border-color: rgba(5, 150, 105, 0.45);
-  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(5, 150, 105, 0.2);
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.16);
 }
 
 /* Layer 1: 1st card stacked behind */
@@ -249,7 +244,6 @@
   visibility: hidden;
 }
 
-/* Category Badge (Sharp micro-tag) */
 .option-card-badge {
   font-size: 0.72rem;
   font-weight: 700;
@@ -258,7 +252,7 @@
   padding: 0.25rem 0.65rem;
   border-radius: 8px;
   line-height: 1.2;
-  border: 1px solid rgba(15, 23, 42, 0.06);
+  border: none;
 }
 
 /* Navigation Arrow Cue */
@@ -295,12 +289,12 @@
   min-width: 160px;
   min-height: 160px;
   border-radius: 32px;
-  border: 1px solid rgba(226, 232, 240, 0.9);
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
 }
 
@@ -350,7 +344,7 @@
   min-width: 48px;
   min-height: 48px;
   border-radius: 50%;
-  border: 1px solid var(--border-color, #e2e8f0);
+  border: none;
   background: #ffffff;
   color: #334155;
   display: flex;
@@ -366,7 +360,6 @@
 .deck-side-btn:hover {
   background: #f8fafc;
   color: var(--primary-color, #059669);
-  border-color: rgba(5, 150, 105, 0.4);
   transform: scale(1.08);
   box-shadow: 0 8px 20px rgba(15, 23, 42, 0.1);
 }

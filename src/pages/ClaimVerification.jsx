@@ -69,71 +69,73 @@ const ClaimVerification = () => {
   };
 
   return (
-    <div className="claim-verification-container">
+    <div className="claim-verification-container animate-fade-in">
       <h2>Healthcare Claim & Medical Audit Verification Portal</h2>
       
-      {successMessage && (
-        <div className="toast success" data-testid="success-toast">
-          {successMessage}
-        </div>
-      )}
+      <div className="service-sheet-band">
+        {successMessage && (
+          <div className="toast success" data-testid="success-toast">
+            {successMessage}
+          </div>
+        )}
 
-      <div className="status-container">
-        <span>Status: </span>
-        <span data-testid="claim-status-badge" className={`badge ${status.toLowerCase().replace(' ', '-')}`}>
-          {status}
-        </span>
+        <div className="status-container">
+          <span>Status: </span>
+          <span data-testid="claim-status-badge" className={`badge ${status.toLowerCase().replace(' ', '-')}`}>
+            {status}
+          </span>
+        </div>
+
+        <form onSubmit={handleSubmit} className="claim-form">
+          <div className="form-group">
+            <label htmlFor="patientId">Patient ID (e.g. RM-99201)</label>
+            <input
+              id="patientId"
+              type="text"
+              placeholder="Enter Patient ID"
+              value={patientId}
+              onChange={(e) => setPatientId(e.target.value)}
+              disabled={isSubmitting}
+            />
+            {errors.patientId && <span className="error-text" data-testid="error-patient-id">{errors.patientId}</span>}
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="icdCode">ICD-10 Diagnosis Code (e.g. A09)</label>
+            <input
+              id="icdCode"
+              type="text"
+              placeholder="Enter ICD-10 Code"
+              value={icdCode}
+              onChange={(e) => setIcdCode(e.target.value)}
+              disabled={isSubmitting}
+            />
+            {errors.icdCode && <span className="error-text" data-testid="error-icd-code">{errors.icdCode}</span>}
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="claimAmount">Claim Amount (IDR)</label>
+            <input
+              id="claimAmount"
+              type="number"
+              placeholder="Enter Claim Amount"
+              value={claimAmount}
+              onChange={(e) => setClaimAmount(e.target.value)}
+              disabled={isSubmitting}
+            />
+            {errors.claimAmount && <span className="error-text" data-testid="error-claim-amount">{errors.claimAmount}</span>}
+          </div>
+
+          <button 
+            type="submit" 
+            disabled={isSubmitting}
+            className="submit-btn"
+            name="Submit Claim"
+          >
+            {isSubmitting ? 'Submitting...' : 'Submit Claim'}
+          </button>
+        </form>
       </div>
-
-      <form onSubmit={handleSubmit} className="claim-form">
-        <div className="form-group">
-          <label htmlFor="patientId">Patient ID (e.g. RM-99201)</label>
-          <input
-            id="patientId"
-            type="text"
-            placeholder="Enter Patient ID"
-            value={patientId}
-            onChange={(e) => setPatientId(e.target.value)}
-            disabled={isSubmitting}
-          />
-          {errors.patientId && <span className="error-text" data-testid="error-patient-id">{errors.patientId}</span>}
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="icdCode">ICD-10 Diagnosis Code (e.g. A09)</label>
-          <input
-            id="icdCode"
-            type="text"
-            placeholder="Enter ICD-10 Code"
-            value={icdCode}
-            onChange={(e) => setIcdCode(e.target.value)}
-            disabled={isSubmitting}
-          />
-          {errors.icdCode && <span className="error-text" data-testid="error-icd-code">{errors.icdCode}</span>}
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="claimAmount">Claim Amount (IDR)</label>
-          <input
-            id="claimAmount"
-            type="number"
-            placeholder="Enter Claim Amount"
-            value={claimAmount}
-            onChange={(e) => setClaimAmount(e.target.value)}
-            disabled={isSubmitting}
-          />
-          {errors.claimAmount && <span className="error-text" data-testid="error-claim-amount">{errors.claimAmount}</span>}
-        </div>
-
-        <button 
-          type="submit" 
-          disabled={isSubmitting}
-          className="submit-btn"
-          name="Submit Claim"
-        >
-          {isSubmitting ? 'Submitting...' : 'Submit Claim'}
-        </button>
-      </form>
     </div>
   );
 };

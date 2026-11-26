@@ -287,8 +287,16 @@ export const getFullAnalytics = (timeframe = 'today', startDate, endDate) => {
   const params = new URLSearchParams({ timeframe });
   if (startDate) params.append('start_date', startDate);
   if (endDate) params.append('end_date', endDate);
-  return apiFetch(`/analytics/full?${params.toString()}`);
+  return apiFetch(`/v1/analytics/full?${params.toString()}`);
 };
+
+export const getForecastAnalytics = (timeframe = '1D', metric = 'billing') => {
+  const params = new URLSearchParams({ timeframe, metric });
+  return apiFetch(`/v1/analytics/forecast?${params.toString()}`);
+};
+
+export const analyzeDashboardWithAI = (payload) =>
+  apiFetch('/v1/analytics/ai-analyze', { method: 'POST', body: payload });
 
 // Finance health, reconciliation, and margin intelligence
 export const getFinanceOverview = () => apiFetch('/finance/overview');

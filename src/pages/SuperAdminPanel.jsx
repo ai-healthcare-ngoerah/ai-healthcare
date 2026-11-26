@@ -361,10 +361,11 @@ const SuperAdminPanel = () => {
           onClick={fetchSuperAdminData}
           disabled={loading}
           className="btn-secondary"
-          style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem 1rem' }}
+          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0.6rem' }}
+          title="Segarkan Data"
+          aria-label="Segarkan Data"
         >
           <RefreshCw size={16} className={loading ? 'animate-spin' : ''} />
-          {loading ? 'Memuat Data...' : 'Segarkan Data'}
         </button>
       </div>
 
@@ -891,15 +892,14 @@ const SuperAdminPanel = () => {
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
-                    gap: '0.35rem',
-                    padding: '0.45rem 0.75rem',
-                    fontSize: '0.825rem',
+                    justifyContent: 'center',
+                    padding: '0.55rem',
                     cursor: 'pointer'
                   }}
                   title="Segarkan log aktivitas"
+                  aria-label="Segarkan log aktivitas"
                 >
-                  <RefreshCw size={13} className={loadingLogs ? 'animate-spin' : ''} />
-                  <span>Segarkan</span>
+                  <RefreshCw size={14} className={loadingLogs ? 'animate-spin' : ''} />
                 </button>
               </div>
             </div>

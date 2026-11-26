@@ -96,14 +96,13 @@ const Layout = () => {
             className="nav-link"
             style={{
               marginBottom: '0.65rem',
-              background: '#f8fafc',
-              border: '1px solid var(--border-color)',
+              background: '#f1f5f9',
+              border: 'none',
               cursor: 'pointer',
               textAlign: 'left',
               width: '100%',
               color: 'var(--text-main)',
-              fontWeight: 600,
-              boxShadow: 'var(--shadow-sm)'
+              fontWeight: 600
             }}
             title="Buka Hub Layanan Klinis"
           >
@@ -359,26 +358,12 @@ const Layout = () => {
             <button
               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
               title={t('layout.header.toggleSidebar')}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                background: 'var(--bg-surface)',
-                border: '1px solid var(--border-color)',
-                borderRadius: 'var(--radius-sm)',
-                padding: '0.45rem',
-                cursor: 'pointer',
-                color: 'var(--text-main)',
-                boxShadow: 'var(--shadow-sm)',
-                transition: 'all 0.15s ease'
-              }}
-              onMouseOver={(e) => e.currentTarget.style.borderColor = 'var(--primary-color)'}
-              onMouseOut={(e) => e.currentTarget.style.borderColor = 'var(--border-color)'}
+              className="topbar-icon-button"
             >
               <Menu size={18} />
             </button>
             <div className="header-status-badges" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <span className="data-chip data-chip-sage">
+              <span className="data-chip data-chip-sage" style={{ border: 'none' }}>
                 <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'var(--primary-color)' }} />
                 <span>{t('layout.header.clinicConnected', 'Clinic Connected')}</span>
               </span>
@@ -389,27 +374,27 @@ const Layout = () => {
                   <span>{t('layout.sections.bpjsClaim', 'Casemix & Klaim BPJS')}</span>
                 </span>
               ) : isReservationContext ? (
-                <span className="data-chip data-chip-ochre" style={{ border: '1px solid #fde68a' }}>
+                <span className="data-chip data-chip-ochre" style={{ border: 'none' }}>
                   <Calendar size={13} />
                   <span>{t('layout.sections.admission', 'Loket Admisi')}</span>
                 </span>
               ) : isConnectContext ? (
-                <span className="data-chip data-chip-ochre" style={{ border: '1px solid #a7f3d0' }}>
+                <span className="data-chip data-chip-ochre" style={{ border: 'none' }}>
                   <Layers size={13} />
                   <span>{t('layout.sections.connect', 'Connect Reservation')}</span>
                 </span>
               ) : isDashboardContext ? (
-                <span className="data-chip data-chip-sage" style={{ border: '1px solid #bfdbfe', background: '#eff6ff', color: '#1d4ed8' }}>
+                <span className="data-chip data-chip-sage" style={{ border: 'none', background: '#eff6ff', color: '#1d4ed8' }}>
                   <BarChart3 size={13} />
                   <span>Data Sains Kesehatan</span>
                 </span>
               ) : isSystemContext ? (
-                <span className="data-chip data-chip-terracotta" style={{ border: '1px solid #fecaca' }}>
+                <span className="data-chip data-chip-terracotta" style={{ border: 'none' }}>
                   <ShieldCheck size={13} />
                   <span>{t('layout.sections.admin')}</span>
                 </span>
               ) : (
-                <span className="data-chip data-chip-sage" style={{ border: '1px solid #a7f3d0' }}>
+                <span className="data-chip data-chip-sage" style={{ border: 'none' }}>
                   <Stethoscope size={13} />
                   <span>{t('layout.sections.clinical')}</span>
                 </span>
@@ -427,19 +412,19 @@ const Layout = () => {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.35rem',
-                padding: '0.45rem 0.75rem',
+                padding: '0.45rem 0.85rem',
+                minHeight: '40px',
                 borderRadius: 'var(--radius-md)',
-                border: '1px solid var(--border-color)',
-                backgroundColor: 'var(--bg-surface)',
+                border: 'none',
+                backgroundColor: '#f1f5f9',
                 color: 'var(--text-main)',
                 fontSize: '0.8rem',
                 fontWeight: 600,
                 cursor: 'pointer',
-                boxShadow: 'var(--shadow-sm)',
-                transition: 'all 0.15s ease'
+                transition: 'background-color 0.15s ease'
               }}
-              onMouseOver={(e) => e.currentTarget.style.borderColor = 'var(--primary-color)'}
-              onMouseOut={(e) => e.currentTarget.style.borderColor = 'var(--border-color)'}
+              onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#e2e8f0'}
+              onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#f1f5f9'}
             >
               <Globe size={14} color="var(--primary-color)" />
               <span>{i18n.language === 'en' ? 'EN' : 'ID'}</span>
@@ -452,10 +437,9 @@ const Layout = () => {
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 style={{
                   display: 'flex', alignItems: 'center', gap: '0.65rem',
-                  background: 'var(--bg-surface)', border: '1px solid var(--border-color)',
-                  padding: '0.4rem 0.85rem', borderRadius: 'var(--radius-md)',
-                  cursor: 'pointer', color: 'var(--text-main)',
-                  boxShadow: 'var(--shadow-sm)'
+                  background: '#f8fafc', border: 'none',
+                  padding: '0.4rem 0.85rem', minHeight: '40px', borderRadius: 'var(--radius-md)',
+                  cursor: 'pointer', color: 'var(--text-main)'
                 }}
               >
                 <div style={{ background: 'var(--primary-color)', color: '#ffffff', padding: '0.3rem', borderRadius: '4px', display: 'flex' }}>
@@ -471,9 +455,9 @@ const Layout = () => {
               {isDropdownOpen && (
                 <div style={{
                   position: 'absolute', top: '120%', right: 0,
-                  background: 'var(--bg-surface)', border: '1px solid var(--border-color)',
+                  background: 'var(--bg-surface)', border: 'none',
                   borderRadius: 'var(--radius-md)', padding: '0.5rem',
-                  minWidth: '240px', boxShadow: 'var(--shadow-md)',
+                  minWidth: '240px', boxShadow: '0 10px 28px rgba(15, 23, 42, 0.1)',
                   zIndex: 100
                 }}>
                   <div style={{ padding: '0.5rem', borderBottom: '1px solid var(--border-color)', marginBottom: '0.5rem' }}>

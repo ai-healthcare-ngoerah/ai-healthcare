@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   BarChart3, Users, Stethoscope, CreditCard, Activity,
-  Calendar, RefreshCw, ArrowUpRight, TrendingUp, ShieldCheck,
-  Flame, Clock, ChevronRight, Layers, FileText, CheckCircle2,
-  Building2, AlertTriangle, ArrowRight, Filter
+  Calendar, RefreshCw, TrendingUp, ShieldCheck,
+  Flame, CheckCircle2, Building2
 } from 'lucide-react';
 import {
   getDashboardStats,
@@ -13,17 +11,24 @@ import {
   getTodayQueue,
   getDoctorSchedules,
   getLocalTodayISO,
-  getFullAnalytics
+  getFullAnalytics,
+  getForecastAnalytics
 } from '../services/api';
 import { getScribeNotes } from '../services/scribeService';
+import StockForecastLineChart from '../components/analytics/StockForecastLineChart';
+import DashboardAIWidget from '../components/analytics/DashboardAIWidget';
 import './DashboardAnalysis.css';
 
 const DashboardAnalysis = () => {
-  const { t } = useTranslation();
-  const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
 
-  // Selected timeframe: 'today' | '7d' | '30d' | '1y' | 'custom'
   const [timeframe, setTimeframe] = useState('7d');
+  const [billingTimeframe, setBillingTimeframe] = useState('1D');
+  const [patientsTimeframe, setPatientsTimeframe] = useState('1D');
+  const [billingForecast, setBillingForecast] = useState(null);
+  const [patientsForecast, setPatientsForecast] = useState(null);
+  const [billingLoading, setBillingLoading] = useState(false);
+  const [patientsLoading, setPatientsLoading] = useState(false);
   const [customStartDate, setCustomStartDate] = useState(() => {
     const d = new Date();
     d.setDate(d.getDate() - 14);
@@ -31,19 +36,13 @@ const DashboardAnalysis = () => {
   });
   const [customEndDate, setCustomEndDate] = useState(() => getLocalTodayISO());
 
-  // Loading and error states
   const [loading, setLoading] = useState(true);
-  const [lastRefreshed, setLastRefreshed] = useState(new Date());
-
-  // Raw Database Data & Server Analytics Data Mart
   const [serverAnalytics, setServerAnalytics] = useState(null);
-  const [dbStats, setDbStats] = useState(null);
   const [appointments, setAppointments] = useState([]);
   const [todayQueue, setTodayQueue] = useState([]);
   const [scribeNotes, setScribeNotes] = useState([]);
   const [doctorSchedules, setDoctorSchedules] = useState([]);
 
-  // Fetch real-time data from backend APIs
   const fetchAllData = async () => {
     setLoading(true);
     try {
@@ -60,9 +59,6 @@ const DashboardAnalysis = () => {
         )
       ]);
 
-      if (statsRes.status === 'fulfilled' && statsRes.value) {
-        setDbStats(statsRes.value);
-      }
       if (apptsRes.status === 'fulfilled' && Array.isArray(apptsRes.value)) {
         setAppointments(apptsRes.value);
       }
@@ -79,10 +75,8 @@ const DashboardAnalysis = () => {
       if (analyticsRes.status === 'fulfilled' && analyticsRes.value) {
         setServerAnalytics(analyticsRes.value);
       }
-
-      setLastRefreshed(new Date());
-    } catch (err) {
-      console.warn('Gagal memuat beberapa data analitik, kalkulasi menggunakan data tersedia.');
+    } catch {
+      // Fallback metrics handled in useMemo
     } finally {
       setLoading(false);
     }
@@ -91,6 +85,71 @@ const DashboardAnalysis = () => {
   useEffect(() => {
     fetchAllData();
   }, [timeframe, customStartDate, customEndDate]);
+
+  const buildFallbackForecast = (tf, met) => {
+    const isBilling = met === 'billing';
+    const base = isBilling ? 13.8 : 24.0;
+    const timesHist = ['09.30', '10.00', '10.30', '11.00', '11.30', '12.00', '12.30', '13.00', '13.30', '14.00', '14.30', '15.00', '15.30', '16.00'];
+    const timesFcst = ['16.00', '16.30', '17.00', '17.30', '18.00', '18.30', '19.00', '19.30', '20.00'];
+    const histPts = timesHist.map((tm, i) => ({
+      time: tm,
+      value: Number((base + Math.sin(i * 0.65) * 1.4 - i * 0.06).toFixed(2)),
+      is_forecast: false
+    }));
+    const lastHist = histPts[histPts.length - 1].value;
+    const fcstPts = timesFcst.map((tm, i) => ({
+      time: tm,
+      value: i === 0 ? lastHist : Number((lastHist + Math.sin(i * 0.55) * 0.9 + i * 0.12).toFixed(2)),
+      is_forecast: true
+    }));
+    const prevBase = Number((base + 0.85).toFixed(2));
+    const afterVal = fcstPts[fcstPts.length - 1].value;
+    return {
+      metric: met,
+      timeframe: tf,
+      current_value: lastHist,
+      previous_baseline: prevBase,
+      change_value: Number((lastHist - prevBase).toFixed(2)),
+      change_percent: Number((((lastHist - prevBase) / prevBase) * 100).toFixed(2)),
+      after_hours_forecast: afterVal,
+      after_hours_change: Number((afterVal - lastHist).toFixed(2)),
+      after_hours_percent: Number((((afterVal - lastHist) / lastHist) * 100).toFixed(2)),
+      historical_points: histPts,
+      forecast_points: fcstPts
+    };
+  };
+
+  const fetchBillingForecast = async () => {
+    setBillingLoading(true);
+    try {
+      const res = await getForecastAnalytics(billingTimeframe, 'billing');
+      setBillingForecast(res && Array.isArray(res.historical_points) ? res : buildFallbackForecast(billingTimeframe, 'billing'));
+    } catch {
+      setBillingForecast(buildFallbackForecast(billingTimeframe, 'billing'));
+    } finally {
+      setBillingLoading(false);
+    }
+  };
+
+  const fetchPatientsForecast = async () => {
+    setPatientsLoading(true);
+    try {
+      const res = await getForecastAnalytics(patientsTimeframe, 'patients');
+      setPatientsForecast(res && Array.isArray(res.historical_points) ? res : buildFallbackForecast(patientsTimeframe, 'patients'));
+    } catch {
+      setPatientsForecast(buildFallbackForecast(patientsTimeframe, 'patients'));
+    } finally {
+      setPatientsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchBillingForecast();
+  }, [billingTimeframe]);
+
+  useEffect(() => {
+    fetchPatientsForecast();
+  }, [patientsTimeframe]);
 
   // Timeframe multiplier and label resolution for healthcare data science modeling
   const timeframeMultiplier = useMemo(() => {
@@ -234,6 +293,7 @@ const DashboardAnalysis = () => {
     // 4. Clinical Departments Intelligence
     const departments = [
       {
+        code: 'POLI_DALAM',
         name: 'Poliklinik Penyakit Dalam',
         doctorCount: 4,
         patientShare: 0.32,
@@ -243,6 +303,7 @@ const DashboardAnalysis = () => {
         bgColor: '#ecfdf5'
       },
       {
+        code: 'POLI_ANAK',
         name: 'Poliklinik Anak',
         doctorCount: 3,
         patientShare: 0.22,
@@ -252,6 +313,7 @@ const DashboardAnalysis = () => {
         bgColor: '#eff6ff'
       },
       {
+        code: 'POLI_GIGI',
         name: 'Poliklinik Gigi & Mulut',
         doctorCount: 2,
         patientShare: 0.16,
@@ -261,6 +323,7 @@ const DashboardAnalysis = () => {
         bgColor: '#f5f3ff'
       },
       {
+        code: 'UGD',
         name: 'Instalasi Gawat Darurat UGD',
         doctorCount: 3,
         patientShare: 0.14,
@@ -270,6 +333,7 @@ const DashboardAnalysis = () => {
         bgColor: '#fef2f2'
       },
       {
+        code: 'RAWAT_INAP',
         name: 'Bangsal Rawat Inap',
         doctorCount: 5,
         patientShare: 0.16,
@@ -331,399 +395,379 @@ const DashboardAnalysis = () => {
     };
   }, [serverAnalytics, timeframeMultiplier, todayQueue.length, appointments.length]);
 
+  const localeCode = i18n.language === 'id' ? 'id-ID' : 'en-US';
   const formatIDR = (num) => {
+    const unitB = i18n.language === 'id' ? 'M' : 'B';
+    const unitM = i18n.language === 'id' ? 'Jt' : 'M';
     if (num >= 1000000000) {
-      return `Rp ${(num / 1000000000).toFixed(2)} M`;
+      return `Rp ${(num / 1000000000).toFixed(2)} ${unitB}`;
     }
     if (num >= 1000000) {
-      return `Rp ${(num / 1000000).toFixed(1)} Jt`;
+      return `Rp ${(num / 1000000).toFixed(1)} ${unitM}`;
     }
-    return `Rp ${num.toLocaleString('id-ID')}`;
-  };
-
-  const getTimeframeLabel = () => {
-    if (timeframe === 'today') return 'Hari Ini';
-    if (timeframe === '7d') return '7 Hari Terakhir';
-    if (timeframe === '30d') return '30 Hari Terakhir';
-    if (timeframe === '1y') return '1 Tahun Terakhir';
-    return `Kustom: ${customStartDate} s.d. ${customEndDate}`;
+    return `Rp ${num.toLocaleString(localeCode)}`;
   };
 
   return (
     <div className="da-wrapper animate-fade-in">
-      {/* Header Section */}
-      <div className="da-header">
-        <div className="da-header-left">
-          <div className="da-header-icon-box">
-            <BarChart3 size={28} />
-          </div>
-          <div>
-            <h1 className="da-header-title">
-              Dashboard Analisis Data Sains Kesehatan
-            </h1>
-            <p className="da-header-subtitle">
-              Intelijen kohort pasien, surveilans penyakit ICD-10, dan analitik tagihan bauran penjamin.
-            </p>
-          </div>
-        </div>
+      <div className="da-sheet">
+        <div className="da-sheet-top">
+          <div className="da-header">
+            <div className="da-header-left">
+              <div className="da-header-icon-box">
+                <BarChart3 size={22} />
+              </div>
+              <h1 className="da-header-title">
+                {t('analytics.title')}
+              </h1>
+            </div>
 
-        <div className="da-header-actions">
-          <span className="da-sync-badge">
-            <span className="da-sync-dot" />
-            <span>Sinkronisasi Data Medis Aktif</span>
-          </span>
-
-          <button
-            type="button"
-            onClick={fetchAllData}
-            className="da-refresh-btn"
-            title="Segarkan data analitik"
-          >
-            <RefreshCw size={14} className={loading ? 'spin' : ''} />
-            <span>Segarkan</span>
-          </button>
-        </div>
-      </div>
-
-      {/* SAKA Pill Tabs Filter Bar with Custom Date Range Feature */}
-      <div className="da-filter-bar">
-        <div className="da-pill-tabs">
-          <button
-            type="button"
-            onClick={() => setTimeframe('today')}
-            className={`da-tab-btn ${timeframe === 'today' ? 'active' : ''}`}
-          >
-            <span>Hari Ini</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => setTimeframe('7d')}
-            className={`da-tab-btn ${timeframe === '7d' ? 'active' : ''}`}
-          >
-            <span>7 Hari Terakhir</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => setTimeframe('30d')}
-            className={`da-tab-btn ${timeframe === '30d' ? 'active' : ''}`}
-          >
-            <span>30 Hari Terakhir</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => setTimeframe('1y')}
-            className={`da-tab-btn ${timeframe === '1y' ? 'active' : ''}`}
-          >
-            <span>1 Tahun Terakhir</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => setTimeframe('custom')}
-            className={`da-tab-btn ${timeframe === 'custom' ? 'active' : ''}`}
-          >
-            <Calendar size={14} />
-            <span>Kustom Tanggal</span>
-          </button>
-        </div>
-
-        {/* Custom Date Range Controls */}
-        {timeframe === 'custom' && (
-          <div className="da-custom-date-box animate-fade-in">
-            <label>Mulai:</label>
-            <input
-              type="date"
-              value={customStartDate}
-              onChange={(e) => setCustomStartDate(e.target.value)}
-            />
-            <span style={{ color: '#94a3b8' }}>—</span>
-            <label>Sampai:</label>
-            <input
-              type="date"
-              value={customEndDate}
-              onChange={(e) => setCustomEndDate(e.target.value)}
-            />
-          </div>
-        )}
-      </div>
-
-      {/* Tier 1: 4 Healthcare Data Science KPIs */}
-      <div className="da-kpi-grid">
-        {/* KPI 1: Patient Volume */}
-        <div className="da-kpi-card">
-          <div className="da-kpi-top">
-            <span className="da-kpi-label">Volume Pasien Teranalisis</span>
-            <div className="da-kpi-icon-pill" style={{ background: '#ecfdf5', color: '#059669' }}>
-              <Users size={18} />
+            <div className="da-header-actions">
+              <button
+                type="button"
+                onClick={() => {
+                  fetchAllData();
+                  fetchBillingForecast();
+                  fetchPatientsForecast();
+                }}
+                className="da-refresh-btn"
+                title={t('analytics.refreshAria')}
+                aria-label={t('analytics.refreshAria')}
+              >
+                <RefreshCw size={16} className={loading || billingLoading || patientsLoading ? 'spin' : ''} />
+              </button>
             </div>
           </div>
-          <div className="da-kpi-value">{metrics.totalPatients.toLocaleString('id-ID')}</div>
-          <div className="da-kpi-foot">
-            <span>Baru: {metrics.newPatients.toLocaleString('id-ID')} orang</span>
-            <span className="da-kpi-badge-inc">
-              <TrendingUp size={12} /> Kontrol: {metrics.returningPatients.toLocaleString('id-ID')}
-            </span>
+
+          <div className="da-filter-bar">
+            <div className="da-pill-tabs">
+              <button
+                type="button"
+                onClick={() => setTimeframe('today')}
+                className={`da-tab-btn ${timeframe === 'today' ? 'active' : ''}`}
+              >
+                <span>{t('analytics.timeframes.today')}</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setTimeframe('7d')}
+                className={`da-tab-btn ${timeframe === '7d' ? 'active' : ''}`}
+              >
+                <span>{t('analytics.timeframes.d7')}</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setTimeframe('30d')}
+                className={`da-tab-btn ${timeframe === '30d' ? 'active' : ''}`}
+              >
+                <span>{t('analytics.timeframes.d30')}</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setTimeframe('1y')}
+                className={`da-tab-btn ${timeframe === '1y' ? 'active' : ''}`}
+              >
+                <span>{t('analytics.timeframes.y1')}</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setTimeframe('custom')}
+                className={`da-tab-btn ${timeframe === 'custom' ? 'active' : ''}`}
+              >
+                <Calendar size={14} />
+                <span>{t('analytics.timeframes.custom')}</span>
+              </button>
+            </div>
+
+            {timeframe === 'custom' && (
+              <div className="da-custom-date-box animate-fade-in">
+                <label htmlFor="da-start-date">{t('analytics.timeframes.start')}</label>
+                <input
+                  id="da-start-date"
+                  type="date"
+                  value={customStartDate}
+                  onChange={(e) => setCustomStartDate(e.target.value)}
+                />
+                <span style={{ color: '#475569' }}>-</span>
+                <label htmlFor="da-end-date">{t('analytics.timeframes.end')}</label>
+                <input
+                  id="da-end-date"
+                  type="date"
+                  value={customEndDate}
+                  onChange={(e) => setCustomEndDate(e.target.value)}
+                />
+              </div>
+            )}
           </div>
         </div>
 
-        {/* KPI 2: Clinical Diagnostic Accuracy */}
-        <div className="da-kpi-card">
-          <div className="da-kpi-top">
-            <span className="da-kpi-label">Kesesuaian Diagnosis ICD-10</span>
-            <div className="da-kpi-icon-pill" style={{ background: '#eff6ff', color: '#2563eb' }}>
-              <ShieldCheck size={18} />
+        {/* Tier 1: Integrated KPI Metric Strip */}
+        <div className="da-kpi-grid">
+          <div className="da-kpi-item">
+            <div className="da-kpi-top">
+              <span className="da-kpi-label">{t('analytics.kpi.patientVolume')}</span>
+              <div className="da-kpi-icon-pill" style={{ background: '#ecfdf5', color: '#047857' }}>
+                <Users size={17} />
+              </div>
+            </div>
+            <div className="da-kpi-value">{metrics.totalPatients.toLocaleString(localeCode)}</div>
+            <div className="da-kpi-foot">
+              <span>{t('analytics.kpi.newPatients', { count: metrics.newPatients.toLocaleString(localeCode) })}</span>
+              <span className="da-kpi-badge-inc">
+                <TrendingUp size={12} /> {t('analytics.kpi.returningPatients', { count: metrics.returningPatients.toLocaleString(localeCode) })}
+              </span>
             </div>
           </div>
-          <div className="da-kpi-value">{metrics.aiDiagnosticAccuracy}%</div>
-          <div className="da-kpi-foot">
-            <span>Verifikasi Dokter Spesialis</span>
-            <span style={{ color: '#059669', fontWeight: 700 }}>Optimal</span>
+
+          <div className="da-kpi-item">
+            <div className="da-kpi-top">
+              <span className="da-kpi-label">{t('analytics.kpi.diagnosisAccuracy')}</span>
+              <div className="da-kpi-icon-pill" style={{ background: '#eff6ff', color: '#1d4ed8' }}>
+                <ShieldCheck size={17} />
+              </div>
+            </div>
+            <div className="da-kpi-value">{metrics.aiDiagnosticAccuracy}%</div>
+            <div className="da-kpi-foot">
+              <span>{t('analytics.kpi.specialistVerified')}</span>
+              <span style={{ color: '#047857', fontWeight: 700 }}>{t('analytics.kpi.optimal')}</span>
+            </div>
+          </div>
+
+          <div className="da-kpi-item">
+            <div className="da-kpi-top">
+              <span className="da-kpi-label">{t('analytics.kpi.estimatedBilling')}</span>
+              <div className="da-kpi-icon-pill" style={{ background: '#fffbeb', color: '#b45309' }}>
+                <CreditCard size={17} />
+              </div>
+            </div>
+            <div className="da-kpi-value">{formatIDR(metrics.totalBillingIDR)}</div>
+            <div className="da-kpi-foot">
+              <span>{t('analytics.kpi.insuranceMix')}</span>
+              <span style={{ color: '#047857', fontWeight: 600 }}>{t('analytics.kpi.bpjsCovered', { pct: metrics.bpjsShare })}</span>
+            </div>
+          </div>
+
+          <div className="da-kpi-item">
+            <div className="da-kpi-top">
+              <span className="da-kpi-label">{t('analytics.kpi.chronicRate')}</span>
+              <div className="da-kpi-icon-pill" style={{ background: '#fef2f2', color: '#b91c1c' }}>
+                <Flame size={17} />
+              </div>
+            </div>
+            <div className="da-kpi-value">{metrics.followUpRate}%</div>
+            <div className="da-kpi-foot">
+              <span>{t('analytics.kpi.followUpPlan')}</span>
+              <span style={{ color: '#b91c1c', fontWeight: 700 }}>{t('analytics.kpi.erTriage', { count: metrics.urgentAlertsCount })}</span>
+            </div>
           </div>
         </div>
 
-        {/* KPI 3: Estimated Billing Value */}
-        <div className="da-kpi-card">
-          <div className="da-kpi-top">
-            <span className="da-kpi-label">Estimasi Nilai Tagihan Medis</span>
-            <div className="da-kpi-icon-pill" style={{ background: '#fffbeb', color: '#b45309' }}>
-              <CreditCard size={18} />
-            </div>
-          </div>
-          <div className="da-kpi-value">{formatIDR(metrics.totalBillingIDR)}</div>
-          <div className="da-kpi-foot">
-            <span>Bauran BPJS & Swasta</span>
-            <span style={{ color: '#047857', fontWeight: 600 }}>68% Terjamin BPJS</span>
-          </div>
+        {/* Tier 2: Dual Forecast Line Charts Directly Below KPI Strip */}
+        <div className="da-forecast-section">
+          <StockForecastLineChart
+            title={t('analytics.charts.revenueTitle')}
+            forecastData={billingForecast}
+            selectedTimeframe={billingTimeframe}
+            onTimeframeChange={setBillingTimeframe}
+            loading={billingLoading}
+            metricKey="billing"
+          />
+          <StockForecastLineChart
+            title={t('analytics.charts.patientsTitle')}
+            forecastData={patientsForecast}
+            selectedTimeframe={patientsTimeframe}
+            onTimeframeChange={setPatientsTimeframe}
+            loading={patientsLoading}
+            metricKey="patients"
+          />
         </div>
 
-        {/* KPI 4: Chronic Follow-up & Triage Alert */}
-        <div className="da-kpi-card">
-          <div className="da-kpi-top">
-            <span className="da-kpi-label">Laju Kontrol Penyakit Kronis</span>
-            <div className="da-kpi-icon-pill" style={{ background: '#fef2f2', color: '#dc2626' }}>
-              <Flame size={18} />
+        {/* Tier 3: Top Diagnoses & Billing Payer Mix */}
+        <div className="da-dual-grid">
+          <div className="da-panel">
+            <div className="da-card-head">
+              <div className="da-card-title-group">
+                <Activity size={18} color="#047857" />
+                <h2 className="da-card-title">{t('analytics.diseases.title')}</h2>
+              </div>
             </div>
-          </div>
-          <div className="da-kpi-value">{metrics.followUpRate}%</div>
-          <div className="da-kpi-foot">
-            <span>Rencana Kontrol Lanjutan</span>
-            <span style={{ color: '#dc2626', fontWeight: 700 }}>{metrics.urgentAlertsCount} Triase UGD</span>
-          </div>
-        </div>
-      </div>
 
-      {/* Tier 2: Dual Quadrant Deep-Dive - Disease Morbidity (60%) & Billing / Payer Mix (40%) */}
-      <div className="da-dual-grid">
-        {/* Left: Disease & ICD-10 Morbidity Frequency */}
-        <div className="da-card">
-          <div className="da-card-head">
-            <div className="da-card-title-group">
-              <Activity size={18} color="#059669" />
-              <h2 className="da-card-title">Surveilans Epidemiologi Penyakit Teratas</h2>
-            </div>
-            <span className="da-card-tag" style={{ background: '#ecfdf5', color: '#047857' }}>
-              ICD-10 Terverifikasi
-            </span>
-          </div>
-
-          <div className="da-disease-list">
-            {metrics.diseases.map((d) => (
-              <div key={d.code} className="da-disease-row">
-                <div className="da-disease-meta">
-                  <div className="da-disease-name">
-                    <span className="da-icd-pill">{d.code}</span>
-                    <span>{d.name}</span>
+            <div className="da-disease-list">
+              {metrics.diseases.map((d) => (
+                <div key={d.code} className="da-disease-row">
+                  <div className="da-disease-meta">
+                    <div className="da-disease-name">
+                      <span className="da-icd-pill">{d.code}</span>
+                      <span>{t(`analytics.diseases.names.${d.code}`, d.name)}</span>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+                      <span style={{ fontSize: '0.75rem', color: '#475569' }}>{t(`analytics.diseases.categories.${d.code}`, d.category)}</span>
+                      <span className="da-disease-count">{t('analytics.diseases.cases', { count: d.count })}</span>
+                    </div>
                   </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-                    <span style={{ fontSize: '0.75rem', color: '#64748b' }}>{d.category}</span>
-                    <span className="da-disease-count">{d.count} kasus</span>
+
+                  <div className="da-bar-track">
+                    <div
+                      className="da-bar-fill"
+                      style={{
+                        width: `${Math.min(100, d.percentage * 2.8)}%`,
+                        backgroundColor: d.color
+                      }}
+                    />
                   </div>
                 </div>
+              ))}
+            </div>
+          </div>
 
-                <div className="da-bar-track">
-                  <div
-                    className="da-bar-fill"
-                    style={{
-                      width: `${Math.min(100, d.percentage * 2.8)}%`,
-                      backgroundColor: d.color
-                    }}
-                  />
+          <div className="da-panel">
+            <div className="da-card-head">
+              <div className="da-card-title-group">
+                <CreditCard size={18} color="#1d4ed8" />
+                <h2 className="da-card-title">{t('analytics.payer.title')}</h2>
+              </div>
+            </div>
+
+            <div className="da-payer-stack">
+              <div className="da-payer-stacked-bar">
+                <div
+                  className="da-payer-segment"
+                  style={{ width: `${metrics.bpjsShare}%`, backgroundColor: '#059669' }}
+                  title={`${t('analytics.payer.bpjs')}: ${metrics.bpjsShare}%`}
+                />
+                <div
+                  className="da-payer-segment"
+                  style={{ width: `${metrics.mandiriShare}%`, backgroundColor: '#0284c7' }}
+                  title={`${t('analytics.payer.mandiri')}: ${metrics.mandiriShare}%`}
+                />
+                <div
+                  className="da-payer-segment"
+                  style={{ width: `${metrics.swastaShare}%`, backgroundColor: '#7c3aed' }}
+                  title={`${t('analytics.payer.swasta')}: ${metrics.swastaShare}%`}
+                />
+              </div>
+
+              <div className="da-payer-legend-grid">
+                <div className="da-payer-legend-item">
+                  <div className="da-payer-legend-title">
+                    <span className="da-legend-indicator" style={{ background: '#059669' }} />
+                    <span>{t('analytics.payer.bpjs')}</span>
+                  </div>
+                  <div className="da-payer-legend-val">{formatIDR(metrics.bpjsBillingIDR)}</div>
+                  <div className="da-payer-legend-sub">{t('analytics.payer.share', { pct: metrics.bpjsShare })}</div>
+                </div>
+
+                <div className="da-payer-legend-item">
+                  <div className="da-payer-legend-title">
+                    <span className="da-legend-indicator" style={{ background: '#0284c7' }} />
+                    <span>{t('analytics.payer.mandiri')}</span>
+                  </div>
+                  <div className="da-payer-legend-val">{formatIDR(metrics.mandiriBillingIDR)}</div>
+                  <div className="da-payer-legend-sub">{t('analytics.payer.share', { pct: metrics.mandiriShare })}</div>
+                </div>
+
+                <div className="da-payer-legend-item">
+                  <div className="da-payer-legend-title">
+                    <span className="da-legend-indicator" style={{ background: '#7c3aed' }} />
+                    <span>{t('analytics.payer.swasta')}</span>
+                  </div>
+                  <div className="da-payer-legend-val">{formatIDR(metrics.swastaBillingIDR)}</div>
+                  <div className="da-payer-legend-sub">{t('analytics.payer.share', { pct: metrics.swastaShare })}</div>
                 </div>
               </div>
-            ))}
+            </div>
+
+            <div className="da-cost-list">
+              <div className="da-cost-row">
+                <div className="da-cost-name">
+                  <CheckCircle2 size={14} color="#047857" />
+                  <span>{t('analytics.payer.avgOutpatient')}</span>
+                </div>
+                <span className="da-cost-num">Rp 285.000</span>
+              </div>
+
+              <div className="da-cost-row">
+                <div className="da-cost-name">
+                  <CheckCircle2 size={14} color="#b45309" />
+                  <span>{t('analytics.payer.avgInpatient')}</span>
+                </div>
+                <span className="da-cost-num">Rp 3.450.000</span>
+              </div>
+
+              <div className="da-cost-row">
+                <div className="da-cost-name">
+                  <CheckCircle2 size={14} color="#b91c1c" />
+                  <span>{t('analytics.payer.avgEr')}</span>
+                </div>
+                <span className="da-cost-num">Rp 780.000</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Right: Billing & Payer Mix Financial Analytics */}
-        <div className="da-card">
-          <div className="da-card-head">
-            <div className="da-card-title-group">
-              <CreditCard size={18} color="#2563eb" />
-              <h2 className="da-card-title">Bauran Penjamin & Finansial Tagihan</h2>
-            </div>
-            <span className="da-card-tag" style={{ background: '#eff6ff', color: '#1d4ed8' }}>
-              Keuangan Medis
-            </span>
-          </div>
-
-          {/* Stacked Proportion Bar */}
-          <div className="da-payer-stack">
-            <div className="da-payer-stacked-bar">
-              <div
-                className="da-payer-segment"
-                style={{ width: `${metrics.bpjsShare}%`, backgroundColor: '#059669' }}
-                title={`BPJS Kesehatan: ${metrics.bpjsShare}%`}
-              />
-              <div
-                className="da-payer-segment"
-                style={{ width: `${metrics.mandiriShare}%`, backgroundColor: '#0284c7' }}
-                title={`Pasien Mandiri: ${metrics.mandiriShare}%`}
-              />
-              <div
-                className="da-payer-segment"
-                style={{ width: `${metrics.swastaShare}%`, backgroundColor: '#7c3aed' }}
-                title={`Asuransi Swasta: ${metrics.swastaShare}%`}
-              />
-            </div>
-
-            <div className="da-payer-legend-grid">
-              <div className="da-payer-legend-card">
-                <div className="da-payer-legend-title">
-                  <span className="da-legend-indicator" style={{ background: '#059669' }} />
-                  <span>BPJS Kesehatan</span>
-                </div>
-                <div className="da-payer-legend-val">{formatIDR(metrics.bpjsBillingIDR)}</div>
-                <div className="da-payer-legend-sub">Porsi: {metrics.bpjsShare}%</div>
-              </div>
-
-              <div className="da-payer-legend-card">
-                <div className="da-payer-legend-title">
-                  <span className="da-legend-indicator" style={{ background: '#0284c7' }} />
-                  <span>Mandiri Umum</span>
-                </div>
-                <div className="da-payer-legend-val">{formatIDR(metrics.mandiriBillingIDR)}</div>
-                <div className="da-payer-legend-sub">Porsi: {metrics.mandiriShare}%</div>
-              </div>
-
-              <div className="da-payer-legend-card">
-                <div className="da-payer-legend-title">
-                  <span className="da-legend-indicator" style={{ background: '#7c3aed' }} />
-                  <span>Asuransi Swasta</span>
-                </div>
-                <div className="da-payer-legend-val">{formatIDR(metrics.swastaBillingIDR)}</div>
-                <div className="da-payer-legend-sub">Porsi: {metrics.swastaShare}%</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Breakdown Unit Cost by Episode */}
-          <div className="da-cost-list">
-            <div className="da-cost-row">
-              <div className="da-cost-name">
-                <CheckCircle2 size={14} color="#059669" />
-                <span>Rata-rata Biaya Rawat Jalan per Pasien</span>
-              </div>
-              <span className="da-cost-num">Rp 285.000</span>
-            </div>
-
-            <div className="da-cost-row">
-              <div className="da-cost-name">
-                <CheckCircle2 size={14} color="#b45309" />
-                <span>Rata-rata Biaya Rawat Inap per Episode</span>
-              </div>
-              <span className="da-cost-num">Rp 3.450.000</span>
-            </div>
-
-            <div className="da-cost-row">
-              <div className="da-cost-name">
-                <CheckCircle2 size={14} color="#dc2626" />
-                <span>Rata-rata Tindakan Instalasi Gawat Darurat</span>
-              </div>
-              <span className="da-cost-num">Rp 780.000</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Tier 3: Dual Quadrant - Patient Flow Visual Trajectory & Department Intelligence Matrix */}
-      <div className="da-equal-grid">
-        {/* Left: Patient Trajectory Graph & Demographics */}
-        <div className="da-card">
+        {/* Tier 4: Patient Age Distribution */}
+        <div className="da-band">
           <div className="da-card-head">
             <div className="da-card-title-group">
               <TrendingUp size={18} color="#0284c7" />
-              <h2 className="da-card-title">Grafik Pergerakan Kunjungan Pasien</h2>
-            </div>
-            <span className="da-card-tag" style={{ background: '#f0f9ff', color: '#0284c7' }}>
-              {getTimeframeLabel()}
-            </span>
-          </div>
-
-          <div className="da-trend-chart-box">
-            <div className="da-bar-columns">
-              {metrics.trendPoints.map((pt, idx) => {
-                const heightPct = Math.max(15, Math.round((pt.value / metrics.maxTrendVal) * 100));
-                return (
-                  <div key={idx} className="da-col-item">
-                    <span className="da-col-val">{pt.value}</span>
-                    <div
-                      className="da-col-bar"
-                      style={{
-                        height: `${heightPct}%`,
-                        background: idx === metrics.trendPoints.length - 1
-                          ? 'linear-gradient(180deg, #059669 0%, #10b981 100%)'
-                          : 'linear-gradient(180deg, #3b82f6 0%, #60a5fa 100%)'
-                      }}
-                    />
-                    <span className="da-col-label">{pt.label}</span>
-                  </div>
-                );
-              })}
+              <h2 className="da-card-title">{t('analytics.demographics.title')}</h2>
             </div>
           </div>
 
-          {/* Age Cohorts & Wait Times */}
+          <div className="da-demo-bar">
+            <div style={{ width: '22%', backgroundColor: '#0284c7' }} title={`${t('analytics.demographics.under18')}: 22%`} />
+            <div style={{ width: '54%', backgroundColor: '#059669' }} title={`${t('analytics.demographics.adult')}: 54%`} />
+            <div style={{ width: '24%', backgroundColor: '#0f172a' }} title={`${t('analytics.demographics.senior')}: 24%`} />
+          </div>
+
           <div className="da-demo-grid">
-            <div className="da-demo-card">
-              <span className="da-demo-label">Anak di Bawah 18 Tahun</span>
+            <div className="da-demo-item">
+              <span className="da-demo-label">
+                <span className="da-legend-indicator" style={{ background: '#0284c7' }} />
+                {t('analytics.demographics.under18')}
+              </span>
               <div className="da-demo-val">22%</div>
-              <span className="da-demo-sub">Pediatri & Imunisasi</span>
+              <span className="da-demo-sub">{t('analytics.demographics.under18Sub')}</span>
             </div>
 
-            <div className="da-demo-card">
-              <span className="da-demo-label">Dewasa 18 s.d. 59 Tahun</span>
+            <div className="da-demo-item">
+              <span className="da-demo-label">
+                <span className="da-legend-indicator" style={{ background: '#059669' }} />
+                {t('analytics.demographics.adult')}
+              </span>
               <div className="da-demo-val">54%</div>
-              <span className="da-demo-sub">Produktif Klinis</span>
+              <span className="da-demo-sub">{t('analytics.demographics.adultSub')}</span>
             </div>
 
-            <div className="da-demo-card">
-              <span className="da-demo-label">Lansia 60 Tahun ke Atas</span>
+            <div className="da-demo-item">
+              <span className="da-demo-label">
+                <span className="da-legend-indicator" style={{ background: '#0f172a' }} />
+                {t('analytics.demographics.senior')}
+              </span>
               <div className="da-demo-val">24%</div>
-              <span className="da-demo-sub">Pemantauan Degeneratif</span>
+              <span className="da-demo-sub">{t('analytics.demographics.seniorSub')}</span>
             </div>
           </div>
         </div>
 
-        {/* Right: Department Intelligence Matrix Table */}
-        <div className="da-card">
+        {/* Tier 5: Department Performance Matrix */}
+        <div className="da-band">
           <div className="da-card-head">
             <div className="da-card-title-group">
-              <Building2 size={18} color="#7c3aed" />
-              <h2 className="da-card-title">Matriks Intelijen Departemen Pelayanan</h2>
+              <Building2 size={18} color="#6d28d9" />
+              <h2 className="da-card-title">{t('analytics.departments.title')}</h2>
             </div>
-            <span className="da-card-tag" style={{ background: '#f5f3ff', color: '#6d28d9' }}>
-              Data Sains SIMRS
-            </span>
           </div>
 
           <div className="da-table-container">
             <table className="da-intel-table">
               <thead>
                 <tr>
-                  <th>Departemen</th>
-                  <th>Volume</th>
-                  <th>Diagnosis Utama</th>
-                  <th>Estimasi Tagihan</th>
-                  <th>Utilisasi Kuota</th>
+                  <th>{t('analytics.departments.colDept')}</th>
+                  <th>{t('analytics.departments.colVolume')}</th>
+                  <th>{t('analytics.departments.colDiagnosis')}</th>
+                  <th>{t('analytics.departments.colBilling')}</th>
+                  <th>{t('analytics.departments.colQuota')}</th>
                 </tr>
               </thead>
               <tbody>
@@ -734,14 +778,14 @@ const DashboardAnalysis = () => {
                         <span className="da-dept-icon" style={{ background: dept.bgColor, color: dept.color }}>
                           <Stethoscope size={14} />
                         </span>
-                        <span>{dept.name}</span>
+                        <span>{dept.code ? t(`analytics.departments.names.${dept.code}`, dept.name) : dept.name}</span>
                       </div>
                     </td>
                     <td style={{ fontWeight: 700, fontVariantNumeric: 'tabular-nums' }}>
-                      {dept.patientVolume.toLocaleString('id-ID')}
+                      {dept.patientVolume.toLocaleString(localeCode)}
                     </td>
                     <td style={{ color: '#475569', fontSize: '0.78rem' }}>
-                      {dept.primaryDiagnosis}
+                      {dept.code ? t(`analytics.departments.diagnoses.${dept.code}`, dept.primaryDiagnosis) : dept.primaryDiagnosis}
                     </td>
                     <td style={{ fontWeight: 700, color: '#047857', fontVariantNumeric: 'tabular-nums' }}>
                       {formatIDR(dept.revenueIDR)}
@@ -762,35 +806,12 @@ const DashboardAnalysis = () => {
         </div>
       </div>
 
-      {/* Tier 4: Quick Action Bar */}
-      <div className="da-action-strip">
-        <div className="da-action-left">
-          <Layers size={18} color="#059669" />
-          <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#334155' }}>
-            Aksi Cepat Layanan Terhubung:
-          </span>
-        </div>
-
-        <div className="da-action-btn-group">
-          <Link to="/app/asisten-medis" className="da-shortcut-btn">
-            <FileText size={14} />
-            <span>Scribe Medis & SOAP</span>
-            <ArrowRight size={13} />
-          </Link>
-
-          <Link to="/app/ai-agent/reservasi" className="da-shortcut-btn">
-            <Clock size={14} />
-            <span>Loket Admisi & Antrean</span>
-            <ArrowRight size={13} />
-          </Link>
-
-          <Link to="/app/connect-reservation" className="da-shortcut-btn">
-            <Activity size={14} />
-            <span>Gateway Saluran Reservasi</span>
-            <ArrowRight size={13} />
-          </Link>
-        </div>
-      </div>
+      <DashboardAIWidget
+        metrics={metrics}
+        billingForecast={billingForecast}
+        patientsForecast={patientsForecast}
+        timeframe={timeframe}
+      />
     </div>
   );
 };
