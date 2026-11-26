@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useAuth } from '../context/AuthContext';
 import { articlesData } from '../data/articlesData';
 import ClinicDemoModal from '../components/landing/ClinicDemoModal';
+import LandingFloatingAssistant from '../components/landing/LandingFloatingAssistant';
 import './Landing.css';
 
 const Landing = () => {
@@ -244,6 +245,15 @@ const Landing = () => {
               <button className="btn-primary btn-large" onClick={handleCobaGratis}>
                 {t('landing.hero.cta')}
               </button>
+              <a
+                href="https://wa.me/6285183071646"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary btn-large cta-btn-inverted"
+                aria-label={t('landing.hero.consultation', 'Konsultasi Gratis')}
+              >
+                {t('landing.hero.consultation', 'Konsultasi Gratis')}
+              </a>
             </div>
           </div>
         </section>
@@ -805,6 +815,8 @@ const Landing = () => {
         isOpen={isDemoModalOpen}
         onClose={() => setIsDemoModalOpen(false)}
       />
+
+      <LandingFloatingAssistant onOpenDemo={() => setIsDemoModalOpen(true)} />
     </div>
   );
 };

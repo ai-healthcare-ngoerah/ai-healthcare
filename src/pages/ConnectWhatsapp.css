@@ -9,7 +9,7 @@
 /* Header Banner */
 .connect-wa-header {
   background: #ffffff;
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: var(--radius-lg);
   padding: 1.25rem 1.6rem;
   margin-bottom: 1.5rem;
@@ -36,7 +36,7 @@
   align-items: center;
   justify-content: center;
   color: #10b981;
-  border: 1px solid #a7f3d0;
+  border: none;
 }
 
 .connect-wa-header-left h1 {
@@ -76,7 +76,7 @@
 
 .bento-card {
   background: #ffffff;
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: var(--radius-lg);
   padding: 1.4rem;
   box-shadow: var(--shadow-sm);
@@ -113,19 +113,19 @@
 .wa-status-pill.connected {
   background: #dcfce7;
   color: #15803d;
-  border: 1px solid #bbf7d0;
+  border: none;
 }
 
 .wa-status-pill.connecting {
   background: #fef3c7;
   color: #b45309;
-  border: 1px solid #fde68a;
+  border: none;
 }
 
 .wa-status-pill.disconnected {
   background: #fee2e2;
   color: #b91c1c;
-  border: 1px solid #fecaca;
+  border: none;
 }
 
 .wa-pulse-dot {
@@ -140,7 +140,7 @@
 .wa-tabs-nav {
   display: flex;
   gap: 0.5rem;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: none;
   padding-bottom: 0.75rem;
   margin-bottom: 1.25rem;
   overflow-x: auto;
@@ -148,7 +148,7 @@
 
 .wa-tab-btn {
   background: none;
-  border: 1px solid transparent;
+  border: none;
   padding: 0.5rem 0.95rem;
   border-radius: var(--radius-md);
   font-size: 0.85rem;
@@ -170,7 +170,7 @@
 .wa-tab-btn.active {
   background: #ecfdf5;
   color: #047857;
-  border-color: #a7f3d0;
+  
 }
 
 /* Pairing Code Display */
@@ -201,7 +201,7 @@
   padding: 1rem;
   background: #f8fafc;
   border-radius: var(--radius-md);
-  border: 1px solid var(--border-color);
+  border: none;
   margin: 0.75rem 0;
 }
 
@@ -210,7 +210,7 @@
   padding: 0.85rem;
   border-radius: 12px;
   box-shadow: var(--shadow-sm);
-  border: 1px solid #e2e8f0;
+  border: none;
   position: relative;
 }
 
@@ -284,7 +284,7 @@
   color: #ffffff;
   font-weight: 700;
   font-size: 0.9rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: none;
 }
 
 .wa-header-info {
@@ -361,12 +361,12 @@
   overflow-x: auto;
   padding: 0.45rem 0.75rem;
   background: rgba(239, 234, 226, 0.9);
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-top: none;
 }
 
 .wa-chip-btn {
   background: #ffffff;
-  border: 1px solid #cbd5e1;
+  border: none;
   border-radius: 9999px;
   padding: 0.35rem 0.65rem;
   font-size: 0.725rem;
@@ -379,7 +379,7 @@
 
 .wa-chip-btn:hover {
   background: #ecfdf5;
-  border-color: #10b981;
+  
 }
 
 /* Chat Input Bar inside Phone */
@@ -417,7 +417,7 @@
 /* Printable Standee Acrylic Card */
 .acrylic-standee-preview {
   background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
-  border: 2px solid #a7f3d0;
+  border: none;
   border-radius: 16px;
   padding: 1.5rem;
   text-align: center;
@@ -451,7 +451,7 @@
     top: 0;
     width: 100%;
     margin: 0;
-    border: 2px solid #000;
+    border: none;
     box-shadow: none;
   }
 }

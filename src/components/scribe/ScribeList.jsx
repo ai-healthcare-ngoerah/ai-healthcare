@@ -387,9 +387,9 @@ const ScribeList = () => {
               fontWeight: 600,
             }}
             title={t('scribe.list.refreshBtn')}
+            aria-label={t('scribe.list.refreshBtn')}
           >
             <RefreshCw size={16} />
-            <span>{t('scribe.list.refreshBtn')}</span>
           </button>
 
           {notes.length > 0 && (

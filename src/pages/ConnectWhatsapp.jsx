@@ -497,10 +497,11 @@ const ConnectWhatsapp = () => {
                       type="button"
                       onClick={() => setQrTimestamp(Date.now())}
                       className="btn btn-secondary"
-                      style={{ padding: '0.35rem 0.65rem', fontSize: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.35rem' }}
+                      style={{ padding: '0.45rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                      title="Segarkan QR"
+                      aria-label="Segarkan QR"
                     >
-                      <RefreshCw size={13} />
-                      <span>Segarkan QR</span>
+                      <RefreshCw size={14} />
                     </button>
                   </div>
                 </div>

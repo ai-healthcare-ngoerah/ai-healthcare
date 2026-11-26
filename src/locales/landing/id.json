@@ -13,7 +13,8 @@
     "badge": "⭐ Dipercaya oleh 15+ Rumah Sakit & Klinik",
     "title": "Otomasi Rekam Medis & Alur Pasien Klinik Bersama USADA AI",
     "subtitle": "Platform USADA AI dikembangkan oleh Usada Tech: mentranskripsi percakapan dokter menjadi resume SOAP instan dan mengelola reservasi WhatsApp pasien langsung ke SIMRS lokal. Pangkas 2 jam ketik resume medis dokter, percepat antrean poli, aman di server lokal faskes Anda.",
-    "cta": "Coba Gratis"
+    "cta": "Coba Gratis",
+    "consultation": "Konsultasi Gratis"
   },
   "problem": {
     "card1": {
@@ -256,5 +257,17 @@
   },
   "footer": {
     "copyright": "© 2026 Usada Tech. Seluruh hak cipta dilindungi. USADA AI adalah platform otomasi klinis dari Usada Tech."
+  },
+  "floatingAssistant": {
+    "fabAria": "Buka Asisten USADA AI",
+    "closeAria": "Tutup Asisten USADA AI",
+    "title": "Asisten USADA AI",
+    "greeting": "Tanyakan seputar modul AI klinis, verifikasi klaim BPJS, otomasi WhatsApp, atau uji coba gratis 1 bulan.",
+    "quickPrompt1": "Apa saja modul AI yang tersedia?",
+    "quickPrompt2": "Bagaimana cara ikut uji coba gratis 1 bulan?",
+    "inputPlaceholder": "Tanyakan tentang USADA AI...",
+    "sendAria": "Kirim pertanyaan",
+    "demoCta": "Jadwalkan Demo Gratis",
+    "loading": "Menyiapkan jawaban..."
   }
 }

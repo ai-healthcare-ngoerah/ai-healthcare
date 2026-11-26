@@ -15,7 +15,7 @@
   align-items: center;
   padding: 1rem 5%;
   background-color: #ffffff;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: none;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -90,7 +90,7 @@
 
 .directory-article-card {
   background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  border: none;
   border-radius: 16px;
   padding: 0;
   overflow: hidden;
@@ -102,7 +102,7 @@
 
 .directory-article-card:hover {
   transform: translateY(-4px);
-  border-color: #10b981;
+  
   box-shadow: 0 12px 28px rgba(16, 185, 129, 0.08);
 }
 
@@ -110,7 +110,7 @@
   width: 100%;
   aspect-ratio: 16 / 9;
   background: #f1f5f9;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: none;
   overflow: hidden;
   position: relative;
 }
@@ -180,7 +180,7 @@
   justify-content: space-between;
   align-items: center;
   padding-top: 1rem;
-  border-top: 1px solid #f1f5f9;
+  border-top: none;
   margin-top: auto;
 }
 
@@ -225,7 +225,7 @@
 
 .btn-outline {
   background: #ffffff;
-  border: 1px solid #cbd5e1;
+  border: none;
   padding: 0.6rem 1.25rem;
   border-radius: 8px;
   font-weight: 600;
@@ -236,7 +236,7 @@
 }
 
 .btn-outline:hover {
-  border-color: #10b981;
+  
   color: #047857;
 }
 
@@ -283,7 +283,7 @@
   padding: 2rem;
   background-color: #ffffff;
   color: #64748b;
-  border-top: 1px solid #e2e8f0;
+  border-top: none;
   font-size: 0.875rem;
 }
 

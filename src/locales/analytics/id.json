@@ -1,0 +1,123 @@
+{
+  "title": "Dashboard Analisis",
+  "refreshAria": "Segarkan data analitik",
+  "timeframes": {
+    "today": "Hari Ini",
+    "d7": "7 Hari Terakhir",
+    "d30": "30 Hari Terakhir",
+    "y1": "1 Tahun Terakhir",
+    "custom": "Kustom Tanggal",
+    "start": "Mulai:",
+    "end": "Sampai:",
+    "customRange": "Kustom: {{start}} s.d. {{end}}"
+  },
+  "kpi": {
+    "patientVolume": "Volume Pasien",
+    "newPatients": "Baru: {{count}} orang",
+    "returningPatients": "Kontrol: {{count}}",
+    "diagnosisAccuracy": "Kesesuaian Diagnosis",
+    "specialistVerified": "Verifikasi Dokter Spesialis",
+    "optimal": "Optimal",
+    "estimatedBilling": "Estimasi Nilai Tagihan",
+    "insuranceMix": "Bauran Penjamin",
+    "bpjsCovered": "{{pct}}% Terjamin BPJS",
+    "chronicRate": "Laju Kontrol Pasien",
+    "followUpPlan": "Rencana Kontrol Lanjutan",
+    "erTriage": "{{count}} Triase UGD"
+  },
+  "charts": {
+    "revenueTitle": "Proyeksi Pendapatan",
+    "patientsTitle": "Proyeksi Kunjungan Pasien",
+    "billingUnit": "Jt IDR",
+    "patientsUnit": "Pasien",
+    "thisPeriod": "periode ini",
+    "aiForecastPrefix": "Prediksi AI:",
+    "baseline": "Basis acuan",
+    "actualLegend": "Realisasi Aktual",
+    "forecastLegend": "Prediksi AI",
+    "tooltipTag": "Prediksi AI",
+    "loading": "Memuat prediksi AI...",
+    "updatedDaily": "Diperbarui: 24 Nov, 16.00 WIB",
+    "updatedRange": "Ringkasan Periode ({{tf}})",
+    "tf1D": "1H",
+    "tf5D": "5H",
+    "tf1M": "1B",
+    "tf6M": "6B",
+    "tfYTD": "YTD",
+    "tf1Y": "1T"
+  },
+  "diseases": {
+    "title": "Penyakit Teratas",
+    "cases": "{{count}} kasus",
+    "names": {
+      "I10": "Hipertensi Esensial Primer",
+      "E11.9": "Diabetes Melitus Tipe 2",
+      "J06.9": "Infeksi Saluran Pernapasan Akut",
+      "K29.7": "Gastritis Kronis",
+      "K30": "Dispepsia Fungsional",
+      "J02.9": "Faringitis Akut"
+    },
+    "categories": {
+      "I10": "Kardiovaskular",
+      "E11.9": "Endokrin & Metabolik",
+      "J06.9": "Respirasi Akut",
+      "K29.7": "Gastrointestinal",
+      "K30": "Gastrointestinal",
+      "J02.9": "Respirasi Akut"
+    }
+  },
+  "payer": {
+    "title": "Bauran Penjamin & Tagihan",
+    "bpjs": "BPJS Kesehatan",
+    "mandiri": "Mandiri Umum",
+    "swasta": "Asuransi Swasta",
+    "share": "Porsi: {{pct}}%",
+    "avgOutpatient": "Rata-rata Biaya Rawat Jalan per Pasien",
+    "avgInpatient": "Rata-rata Biaya Rawat Inap per Episode",
+    "avgEr": "Rata-rata Tindakan Instalasi Gawat Darurat"
+  },
+  "demographics": {
+    "title": "Distribusi Usia Pasien",
+    "under18": "Anak di Bawah 18 Tahun",
+    "under18Sub": "Pediatri & Imunisasi",
+    "adult": "Dewasa 18 s.d. 59 Tahun",
+    "adultSub": "Usia Produktif",
+    "senior": "Lansia 60 Tahun ke Atas",
+    "seniorSub": "Pemantauan Lanjut"
+  },
+  "departments": {
+    "title": "Performa Departemen Pelayanan",
+    "colDept": "Departemen",
+    "colVolume": "Volume",
+    "colDiagnosis": "Diagnosis Utama",
+    "colBilling": "Estimasi Tagihan",
+    "colQuota": "Utilisasi Kuota",
+    "names": {
+      "POLI_DALAM": "Poliklinik Penyakit Dalam",
+      "POLI_ANAK": "Poliklinik Anak",
+      "POLI_GIGI": "Poliklinik Gigi & Mulut",
+      "UGD": "Instalasi Gawat Darurat UGD",
+      "RAWAT_INAP": "Bangsal Rawat Inap"
+    },
+    "diagnoses": {
+      "POLI_DALAM": "Hipertensi & Diabetes",
+      "POLI_ANAK": "ISPA & Faringitis",
+      "POLI_GIGI": "Karies & Periodontitis",
+      "UGD": "Trauma & Triage Syok",
+      "RAWAT_INAP": "Dengue & Observasi Febris"
+    }
+  },
+  "aiAnalyst": {
+    "fabLabel": "Analisis AI",
+    "fabAria": "Analisis dasbor dengan AI",
+    "drawerTitle": "Ringkasan Analisis AI",
+    "closeAria": "Tutup panel analisis AI",
+    "refreshAria": "Analisis ulang dasbor",
+    "loading": "Menganalisis metrik dasbor...",
+    "quickPrompt1": "Risiko kepadatan antrean poli",
+    "quickPrompt2": "Proyeksi pendapatan dan kunjungan",
+    "inputPlaceholder": "Tanyakan tentang data dasbor...",
+    "sendAria": "Kirim pertanyaan",
+    "highlightsLabel": "Temuan Utama"
+  }
+}

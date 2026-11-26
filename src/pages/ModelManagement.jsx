@@ -244,9 +244,10 @@ const ModelManagement = () => {
           className="btn btn-secondary mm-refresh-btn"
           onClick={() => fetchData(true)}
           disabled={loading || refreshing}
+          title={t('modelManagement.header.refreshBtn', 'Segarkan Data')}
+          aria-label={t('modelManagement.header.refreshBtn', 'Segarkan Data')}
         >
           <RefreshCw size={15} className={refreshing ? 'animate-spin' : ''} />
-          <span>{refreshing ? t('modelManagement.header.refreshing', 'Menyegarkan...') : t('modelManagement.header.refreshBtn', 'Segarkan Data')}</span>
         </button>
       </div>
 

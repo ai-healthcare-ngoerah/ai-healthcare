@@ -70,7 +70,7 @@ const Login = () => {
 
       <div className="card animate-fade-in" style={{ width: '100%', maxWidth: '400px', padding: '2.5rem 2rem' }}>
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-          <img src="/logos/usada-ai-icon.webp" alt="USADA AI Logo" style={{ height: '56px', width: '56px', margin: '0 auto 1rem', display: 'block', objectFit: 'contain' }} />
+          <img src="/logos/usada-ai-logo.webp" alt="USADA AI Logo" style={{ height: '76px', width: 'auto', margin: '0 auto 1rem', display: 'block', objectFit: 'contain' }} />
           <h1 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '0.5rem' }}>
             {t('auth.login.title')}
           </h1>

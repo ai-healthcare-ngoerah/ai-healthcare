@@ -348,7 +348,7 @@ const Options = () => {
             className="option-icon"
             style={{
               backgroundColor: option.iconBg || '#ecfdf5',
-              borderColor: option.iconBorder || 'rgba(5, 150, 105, 0.15)'
+              border: 'none'
             }}
           >
             {option.icon}
@@ -377,10 +377,10 @@ const Options = () => {
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 style={{
                   display: 'flex', alignItems: 'center', gap: '0.5rem',
-                  background: 'white', border: '1px solid var(--border-color)',
+                  background: 'white', border: 'none',
                   padding: '0.45rem 0.95rem', borderRadius: 'var(--radius-full)',
                   cursor: 'pointer', fontWeight: 500, color: 'var(--text-main)',
-                  boxShadow: '0 1px 2px rgba(0,0,0,0.05)'
+                  boxShadow: '0 2px 6px rgba(15, 23, 42, 0.05)'
                 }}
               >
                 <div style={{ background: 'var(--primary-color)', color: 'white', padding: '0.25rem', borderRadius: '50%', display: 'flex' }}>
@@ -395,16 +395,15 @@ const Options = () => {
               {isDropdownOpen && (
                 <div style={{
                   position: 'absolute', top: '120%', right: 0,
-                  background: 'white', border: '1px solid var(--border-color)',
+                  background: 'white', border: 'none',
                   borderRadius: 'var(--radius-md)', padding: '0.5rem',
-                  minWidth: '220px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+                  minWidth: '220px', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1)',
                   zIndex: 100
                 }}>
-                  <div style={{ padding: '0.65rem 0.75rem', borderBottom: '1px solid var(--border-color)', marginBottom: '0.5rem' }}>
+                  <div style={{ padding: '0.65rem 0.75rem', marginBottom: '0.35rem' }}>
                     <p style={{ fontWeight: 600, margin: '0 0 0.35rem 0', fontSize: '0.875rem', color: '#0f172a' }}>
                       {user?.name || 'System Administrator'}
                     </p>
-                    {/* Role badge placed strictly below user name inside the dropdown */}
                     {role && (
                       <div style={{ marginBottom: '0.35rem' }}>
                         <span className="options-role-badge" style={{
@@ -414,7 +413,7 @@ const Options = () => {
                           borderRadius: '9999px',
                           backgroundColor: getRoleBadge(role).bg,
                           color: getRoleBadge(role).color,
-                          border: `1px solid ${getRoleBadge(role).border}`,
+                          border: 'none',
                           letterSpacing: '0.02em',
                           display: 'inline-block'
                         }}>
@@ -463,10 +462,10 @@ const Options = () => {
                 onClick={() => i18n.changeLanguage(i18n.language === 'en' ? 'id' : 'en')}
                 style={{
                   display: 'inline-flex', alignItems: 'center', gap: '0.35rem',
-                  background: 'white', border: '1px solid var(--border-color)',
+                  background: 'white', border: 'none',
                   color: 'var(--text-main)', cursor: 'pointer', fontWeight: 500,
                   padding: '0.45rem 0.75rem', borderRadius: 'var(--radius-full)',
-                  fontSize: '0.8rem', boxShadow: '0 1px 2px rgba(0,0,0,0.05)'
+                  fontSize: '0.8rem', boxShadow: '0 2px 6px rgba(15, 23, 42, 0.05)'
                 }}
               >
                 <Globe size={14} /> {i18n.language === 'en' ? 'EN' : 'ID'}
@@ -502,7 +501,7 @@ const Options = () => {
             fontSize: '0.8rem',
             fontWeight: 600,
             marginBottom: '0.75rem',
-            border: '1px solid #a7f3d0'
+            border: 'none'
           }}>
             <Sparkles size={14} color="#059669" />
             <span>{t('options.demoModeBadge', 'Demo Mode: 5 Layanan Otomasi AI Unggulan')}</span>

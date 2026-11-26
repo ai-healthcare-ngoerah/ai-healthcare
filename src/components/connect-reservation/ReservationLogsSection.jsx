@@ -51,9 +51,10 @@ const ReservationLogsSection = ({
           className="cr-btn-outline"
           onClick={() => fetchMessageLogs(logChannelFilter, logVerdictFilter)}
           disabled={loadingLogs}
+          title="Segarkan Log"
+          aria-label="Segarkan Log"
         >
           <RefreshCw size={15} className={loadingLogs ? 'cr-spin' : ''} />
-          <span>{loadingLogs ? 'Memuat...' : 'Segarkan Log'}</span>
         </button>
       </div>
 

@@ -13,7 +13,8 @@
     "badge": "⭐ Trusted by 15+ Hospitals & Clinics",
     "title": "Automate Clinical Records & Patient Flow with USADA AI",
     "subtitle": "The USADA AI platform is engineered by Usada Tech: transcribing doctor consultations into instant SOAP notes and managing WhatsApp patient reservations directly into local SIMRS. Save 2 hours of doctor documentation daily, streamline clinic queues, and secure patient data locally on-premise.",
-    "cta": "Try for Free"
+    "cta": "Try for Free",
+    "consultation": "Free Consultation"
   },
   "problem": {
     "card1": {
@@ -256,5 +257,17 @@
   },
   "footer": {
     "copyright": "© 2026 Usada Tech. All rights reserved. USADA AI is a clinical automation platform engineered by Usada Tech."
+  },
+  "floatingAssistant": {
+    "fabAria": "Open USADA AI Assistant",
+    "closeAria": "Close USADA AI Assistant",
+    "title": "USADA AI Assistant",
+    "greeting": "Ask about clinical AI modules, BPJS verification, WhatsApp automation, or our 1-month free trial.",
+    "quickPrompt1": "What AI modules are included?",
+    "quickPrompt2": "How does the 1-month free trial work?",
+    "inputPlaceholder": "Ask about USADA AI...",
+    "sendAria": "Send message",
+    "demoCta": "Book Free Clinic Demo",
+    "loading": "Checking answer..."
   }
 }

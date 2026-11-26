@@ -320,28 +320,16 @@ const PatientReservation = () => {
     return name.includes(q) || mrn.includes(q) || phone.includes(q) || doctor.includes(q) || notes.includes(q);
   });
   return (
-    <div style={{ maxWidth: '1400px', margin: '0 auto', paddingBottom: '3.5rem', fontFamily: "'DM Sans', 'Plus Jakarta Sans', system-ui, sans-serif" }}>
-      {/* Top Header Card (Consistent with MedicalScribe layout) */}
-      <div style={{
-        marginBottom: '1.5rem',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-        gap: '1rem',
-        backgroundColor: '#ffffff',
-        padding: '1.25rem 1.5rem',
-        borderRadius: 'var(--radius-lg)',
-        border: '1px solid var(--border-color)',
-        boxShadow: 'var(--shadow-sm)'
-      }}>
+    <div className="service-sheet animate-fade-in" style={{ maxWidth: '1400px', margin: '0 auto 2.5rem', fontFamily: "'DM Sans', 'Plus Jakarta Sans', system-ui, sans-serif" }}>
+      {/* Unified Top Header Band */}
+      <div className="service-sheet-head">
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '0.25rem' }}>
             <div style={{
-              width: '36px',
-              height: '36px',
-              borderRadius: '8px',
-              backgroundColor: '#f0fdf4',
+              width: '38px',
+              height: '38px',
+              borderRadius: '10px',
+              backgroundColor: '#ecfdf5',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -366,7 +354,36 @@ const PatientReservation = () => {
           </p>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+          <div className="service-segmented-tabs">
+            <button
+              type="button"
+              onClick={() => handleTabChange('queue')}
+              className={`service-segmented-tab ${activeTab === 'queue' ? 'active' : ''}`}
+            >
+              <Clock size={15} />
+              <span>{t('whatsapp.tabs.queue', 'Antrean Hari Ini')}</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => handleTabChange('reservations')}
+              className={`service-segmented-tab ${activeTab === 'reservations' ? 'active' : ''}`}
+            >
+              <Calendar size={15} />
+              <span>{t('whatsapp.tabs.reservations', 'Permohonan Reservasi')}</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => handleTabChange('patients')}
+              className={`service-segmented-tab ${activeTab === 'patients' ? 'active' : ''}`}
+            >
+              <Users size={15} />
+              <span>{t('whatsapp.tabs.patients', 'Direktori Pasien')}</span>
+            </button>
+          </div>
+
           <button 
             type="button"
             onClick={() => {
@@ -374,104 +391,29 @@ const PatientReservation = () => {
               if (activeTab === 'reservations') fetchReservations();
               if (activeTab === 'patients') fetchPatients(patientQuery);
             }} 
-            className="btn btn-secondary" 
-            style={{ padding: '0.45rem 0.85rem', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}
+            style={{
+              width: '40px',
+              height: '40px',
+              borderRadius: '10px',
+              border: 'none',
+              background: '#f1f5f9',
+              color: '#334155',
+              cursor: 'pointer',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+            title={t('whatsapp.refreshBtn', 'Refresh')}
+            aria-label={t('whatsapp.refreshBtn', 'Refresh')}
           >
-            <RefreshCw size={14} className={loadingQueue || loadingReservations || loadingPatients ? 'spin' : ''} />
-            <span>{t('whatsapp.refreshBtn', 'Refresh')}</span>
+            <RefreshCw size={16} className={loadingQueue || loadingReservations || loadingPatients ? 'spin' : ''} />
           </button>
         </div>
       </div>
 
-      {/* SAKA-Style High-Precision Pill Tabs Navigation */}
-      <div style={{
-        display: 'flex',
-        marginBottom: '1.5rem',
-        background: '#f1f5f9',
-        padding: '4px',
-        borderRadius: '12px',
-        border: '1px solid var(--border-color)',
-        gap: '6px'
-      }}>
-        <button
-          type="button"
-          onClick={() => handleTabChange('queue')}
-          style={{
-            flex: 1,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '0.5rem',
-            padding: '0.65rem 1rem',
-            borderRadius: '8px',
-            border: 'none',
-            fontSize: '0.875rem',
-            fontWeight: 600,
-            cursor: 'pointer',
-            background: activeTab === 'queue' ? '#ffffff' : 'transparent',
-            color: activeTab === 'queue' ? 'var(--primary-dark, #047857)' : 'var(--text-muted)',
-            boxShadow: activeTab === 'queue' ? '0 1px 3px rgba(15, 23, 42, 0.08)' : 'none',
-            transition: 'all 0.15s ease'
-          }}
-        >
-          <Clock size={16} />
-          <span>{t('whatsapp.tabs.queue', 'Antrean Hari Ini')}</span>
-        </button>
-
-        <button
-          type="button"
-          onClick={() => handleTabChange('reservations')}
-          style={{
-            flex: 1,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '0.5rem',
-            padding: '0.65rem 1rem',
-            borderRadius: '8px',
-            border: 'none',
-            fontSize: '0.875rem',
-            fontWeight: 600,
-            cursor: 'pointer',
-            background: activeTab === 'reservations' ? '#ffffff' : 'transparent',
-            color: activeTab === 'reservations' ? 'var(--primary-dark, #047857)' : 'var(--text-muted)',
-            boxShadow: activeTab === 'reservations' ? '0 1px 3px rgba(15, 23, 42, 0.08)' : 'none',
-            transition: 'all 0.15s ease'
-          }}
-        >
-          <Calendar size={16} />
-          <span>{t('whatsapp.tabs.reservations', 'Permohonan Reservasi')}</span>
-        </button>
-
-        <button
-          type="button"
-          onClick={() => handleTabChange('patients')}
-          style={{
-            flex: 1,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '0.5rem',
-            padding: '0.65rem 1rem',
-            borderRadius: '8px',
-            border: 'none',
-            fontSize: '0.875rem',
-            fontWeight: 600,
-            cursor: 'pointer',
-            background: activeTab === 'patients' ? '#ffffff' : 'transparent',
-            color: activeTab === 'patients' ? 'var(--primary-dark, #047857)' : 'var(--text-muted)',
-            boxShadow: activeTab === 'patients' ? '0 1px 3px rgba(15, 23, 42, 0.08)' : 'none',
-            transition: 'all 0.15s ease'
-          }}
-        >
-          <Users size={16} />
-          <span>{t('whatsapp.tabs.patients', 'Direktori Pasien')}</span>
-        </button>
-      </div>
-
       {/* TAB 1: ANTREAN HARI INI */}
       {activeTab === 'queue' && (
-        <div className="card" style={{ padding: '1.25rem', borderRadius: '12px', background: '#fff', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow-sm)' }}>
+        <div className="service-sheet-band">
           {/* Queue Toolbar: Search & Date Selector */}
           <div style={{
             display: 'flex',
@@ -480,8 +422,8 @@ const PatientReservation = () => {
             flexWrap: 'wrap',
             gap: '0.75rem',
             marginBottom: '1rem',
-            paddingBottom: '0.75rem',
-            borderBottom: '1px solid var(--border-color)'
+            paddingBottom: '0.85rem',
+            borderBottom: '1px solid #f1f5f9'
           }}>
             {/* Left: Quick Search */}
             <div style={{ position: 'relative', minWidth: '220px', flex: '1 1 240px', maxWidth: '340px' }}>
@@ -689,7 +631,7 @@ const PatientReservation = () => {
 
       {/* TAB 2: DAFTAR RESERVASI PASIEN */}
       {activeTab === 'reservations' && (
-        <div className="card" style={{ padding: '1.25rem', borderRadius: '12px', background: '#fff', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow-sm)' }}>
+        <div className="service-sheet-band">
           {/* Unified Non-Redundant Toolbar */}
           <div style={{
             display: 'flex',
@@ -698,8 +640,8 @@ const PatientReservation = () => {
             flexWrap: 'wrap',
             gap: '0.75rem',
             marginBottom: '1rem',
-            paddingBottom: '0.75rem',
-            borderBottom: '1px solid var(--border-color)'
+            paddingBottom: '0.85rem',
+            borderBottom: '1px solid #f1f5f9'
           }}>
             {/* Left: Quick Search */}
             <div style={{ position: 'relative', minWidth: '220px', flex: '1 1 240px', maxWidth: '340px' }}>
@@ -726,8 +668,8 @@ const PatientReservation = () => {
                 display: 'inline-flex',
                 background: '#f1f5f9',
                 padding: '0.2rem',
-                borderRadius: '6px',
-                border: '1px solid var(--border-color)'
+                borderRadius: '8px',
+                border: 'none'
               }}>
                 {['all', 'today', 'upcoming', 'past'].map((df) => (
                   <button
@@ -889,7 +831,7 @@ const PatientReservation = () => {
 
       {/* TAB 3: DIREKTORI PASIEN */}
       {activeTab === 'patients' && (
-        <div className="card" style={{ padding: '1.25rem', borderRadius: '12px', background: '#fff', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow-sm)' }}>
+        <div className="service-sheet-band">
           <form onSubmit={(e) => { e.preventDefault(); fetchPatients(patientQuery); }} style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem' }}>
             <div style={{ position: 'relative', flex: 1, maxWidth: '400px' }}>
               <input

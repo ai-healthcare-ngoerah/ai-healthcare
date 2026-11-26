@@ -1,0 +1,248 @@
+.da-ai-fab {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 999;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border-radius: 50%;
+  border: none;
+  background: #047857;
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 10px 24px -4px rgba(4, 120, 87, 0.38);
+  transition: transform 0.16s ease, background-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.da-ai-fab:hover {
+  background: #065f46;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px -4px rgba(4, 120, 87, 0.45);
+}
+
+.da-ai-fab:active {
+  transform: translateY(0);
+}
+
+.da-ai-drawer {
+  position: fixed;
+  bottom: 5.75rem;
+  right: 1.5rem;
+  z-index: 999;
+  width: 410px;
+  max-width: calc(100vw - 2rem);
+  max-height: 76vh;
+  background: #ffffff;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px -10px rgba(15, 23, 42, 0.22);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: daDrawerIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes daDrawerIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.da-ai-drawer-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  background: #f8fafc;
+}
+
+.da-ai-drawer-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.da-ai-drawer-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #ecfdf5;
+  color: #047857;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.da-ai-drawer-title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.da-ai-drawer-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.da-ai-icon-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.da-ai-icon-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.da-ai-drawer-body {
+  padding: 1.15rem 1.25rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.da-ai-loading {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #475569;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.5rem 0;
+}
+
+.da-ai-summary-text {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: #0f172a;
+}
+
+.da-ai-highlights {
+  background: #f8fafc;
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.da-ai-highlights-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #475569;
+}
+
+.da-ai-highlights-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  color: #334155;
+  line-height: 1.45;
+}
+
+.da-ai-quick-prompts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.da-ai-prompt-chip {
+  border: none;
+  background: #f1f5f9;
+  color: #475569;
+  padding: 0.5rem 0.85rem;
+  min-height: 36px;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  text-align: left;
+}
+
+.da-ai-prompt-chip:hover {
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.da-ai-drawer-form {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.25rem;
+  background: #f8fafc;
+}
+
+.da-ai-input {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.85rem;
+  padding: 0.55rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.da-ai-send-btn {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  border: none;
+  background: #047857;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.15s ease, opacity 0.15s ease;
+}
+
+.da-ai-send-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 640px) {
+  .da-ai-fab {
+    bottom: 1rem;
+    right: 1rem;
+  }
+
+  .da-ai-drawer {
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: 4.75rem;
+    width: auto;
+    max-width: none;
+    max-height: 75vh;
+  }
+}

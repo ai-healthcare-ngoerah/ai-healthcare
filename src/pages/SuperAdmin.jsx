@@ -1002,15 +1002,14 @@ const SuperAdmin = () => {
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
-                    gap: '0.35rem',
-                    padding: '0.45rem 0.75rem',
-                    fontSize: '0.825rem',
+                    justifyContent: 'center',
+                    padding: '0.55rem',
                     cursor: 'pointer'
                   }}
                   title="Refresh log aktivitas"
+                  aria-label="Refresh log aktivitas"
                 >
-                  <RefreshCw size={13} className={loadingLogs ? 'animate-spin' : ''} />
-                  <span>{t('admin.refreshBtn')}</span>
+                  <RefreshCw size={14} className={loadingLogs ? 'animate-spin' : ''} />
                 </button>
               </div>
             </div>

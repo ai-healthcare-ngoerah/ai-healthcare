@@ -430,7 +430,7 @@ const SoapFormView = ({
   };
 
   return (
-    <div className="card animate-fade-in" style={{ padding: '2rem', border: '1px solid var(--primary-color)' }}>
+    <div className="service-sheet-band animate-fade-in">
       {/* Save Success Alert */}
       {saveSuccess && (
         <div
@@ -443,7 +443,8 @@ const SoapFormView = ({
             alignItems: 'center',
             gap: '0.6rem',
             marginBottom: '1.5rem',
-            border: '1px solid #a7f3d0',
+            border: 'none',
+            borderLeft: '3px solid #059669',
             fontWeight: 500,
           }}
         >
@@ -547,7 +548,7 @@ const SoapFormView = ({
           padding: '1.25rem',
           borderRadius: 'var(--radius-md)',
           marginBottom: '1.5rem',
-          border: '1px solid #cbd5e1',
+          border: 'none',
           display: 'flex',
           flexDirection: 'column',
           gap: '0.75rem',
@@ -710,7 +711,7 @@ const SoapFormView = ({
       {/* Editable Content Area */}
       <div style={{ position: 'relative' }}>
         {activeTab === 'soap' ? (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', backgroundColor: '#f8fafc', padding: '1.25rem', borderRadius: 'var(--radius-md)', border: '1px solid #e2e8f0' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', backgroundColor: '#f8fafc', padding: '1.25rem', borderRadius: 'var(--radius-md)', border: 'none' }}>
             <div>
               <label style={{ fontWeight: '700', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', color: '#0f172a', fontSize: '0.9rem' }}>
                 <div style={{ width: '28px', height: '28px', backgroundColor: '#e2e8f0', borderRadius: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', marginRight: '0.5rem', color: '#0f172a', fontWeight: 800 }}>S</div>
@@ -785,14 +786,14 @@ const SoapFormView = ({
         )}
       </div>
 
-      {/* Clinical Coding (ICD-10/9) & RAG Control Recommendation Card */}
+      {/* Clinical Coding (ICD-10/9) & RAG Control Recommendation */}
       <div
         style={{
           marginTop: '1.25rem',
           padding: '1.25rem',
           borderRadius: 'var(--radius-md)',
           backgroundColor: '#f8fafc',
-          border: '1px solid #e2e8f0',
+          border: 'none',
           display: 'flex',
           flexDirection: 'column',
           gap: '1rem',

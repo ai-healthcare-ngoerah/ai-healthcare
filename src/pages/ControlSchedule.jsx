@@ -254,10 +254,11 @@ const ControlSchedule = () => {
         <button 
           onClick={fetchControls} 
           className="btn btn-secondary" 
-          style={{ padding: '0.45rem 0.85rem', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}
+          style={{ padding: '0.55rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          title={t('whatsapp.refreshBtn', 'Refresh')}
+          aria-label={t('whatsapp.refreshBtn', 'Refresh')}
         >
-          <RefreshCw size={14} className={loading ? 'spin' : ''} />
-          <span>{t('whatsapp.refreshBtn', 'Refresh')}</span>
+          <RefreshCw size={15} className={loading ? 'spin' : ''} />
         </button>
       </div>
 

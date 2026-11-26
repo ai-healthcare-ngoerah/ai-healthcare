@@ -33,6 +33,8 @@ import settingsEn from './locales/settings/en.json';
 import settingsId from './locales/settings/id.json';
 import modelManagementEn from './locales/model-management/en.json';
 import modelManagementId from './locales/model-management/id.json';
+import analyticsEn from './locales/analytics/en.json';
+import analyticsId from './locales/analytics/id.json';
 
 const resources = {
   en: {
@@ -52,7 +54,8 @@ const resources = {
       common: commonEn,
       guide: guideEn,
       settings: settingsEn,
-      modelManagement: modelManagementEn
+      modelManagement: modelManagementEn,
+      analytics: analyticsEn
     }
   },
   id: {
@@ -72,7 +75,8 @@ const resources = {
       common: commonId,
       guide: guideId,
       settings: settingsId,
-      modelManagement: modelManagementId
+      modelManagement: modelManagementId,
+      analytics: analyticsId
     }
   }
 };

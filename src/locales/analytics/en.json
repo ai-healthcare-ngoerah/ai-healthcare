@@ -1,0 +1,123 @@
+{
+  "title": "Analytics Dashboard",
+  "refreshAria": "Refresh analytics data",
+  "timeframes": {
+    "today": "Today",
+    "d7": "Last 7 Days",
+    "d30": "Last 30 Days",
+    "y1": "Last 1 Year",
+    "custom": "Custom Date",
+    "start": "Start:",
+    "end": "End:",
+    "customRange": "Custom: {{start}} to {{end}}"
+  },
+  "kpi": {
+    "patientVolume": "Patient Volume",
+    "newPatients": "New: {{count}}",
+    "returningPatients": "Follow-up: {{count}}",
+    "diagnosisAccuracy": "Diagnosis Accuracy",
+    "specialistVerified": "Specialist Verified",
+    "optimal": "Optimal",
+    "estimatedBilling": "Estimated Billing",
+    "insuranceMix": "Payer Mix",
+    "bpjsCovered": "{{pct}}% BPJS Covered",
+    "chronicRate": "Follow-up Rate",
+    "followUpPlan": "Follow-up Plan",
+    "erTriage": "{{count}} ER Triage"
+  },
+  "charts": {
+    "revenueTitle": "Revenue Forecast",
+    "patientsTitle": "Patient Visits Forecast",
+    "billingUnit": "M IDR",
+    "patientsUnit": "Patients",
+    "thisPeriod": "this period",
+    "aiForecastPrefix": "AI Forecast:",
+    "baseline": "Baseline",
+    "actualLegend": "Actual",
+    "forecastLegend": "AI Forecast",
+    "tooltipTag": "AI Forecast",
+    "loading": "Loading AI forecast...",
+    "updatedDaily": "Updated: Nov 24, 16:00",
+    "updatedRange": "Period Summary ({{tf}})",
+    "tf1D": "1D",
+    "tf5D": "5D",
+    "tf1M": "1M",
+    "tf6M": "6M",
+    "tfYTD": "YTD",
+    "tf1Y": "1Y"
+  },
+  "diseases": {
+    "title": "Top Diagnoses",
+    "cases": "{{count}} cases",
+    "names": {
+      "I10": "Essential Hypertension",
+      "E11.9": "Type 2 Diabetes Mellitus",
+      "J06.9": "Acute Respiratory Infection",
+      "K29.7": "Chronic Gastritis",
+      "K30": "Functional Dyspepsia",
+      "J02.9": "Acute Pharyngitis"
+    },
+    "categories": {
+      "I10": "Cardiovascular",
+      "E11.9": "Endocrine & Metabolic",
+      "J06.9": "Acute Respiratory",
+      "K29.7": "Gastrointestinal",
+      "K30": "Gastrointestinal",
+      "J02.9": "Acute Respiratory"
+    }
+  },
+  "payer": {
+    "title": "Billing & Payer Mix",
+    "bpjs": "BPJS Health",
+    "mandiri": "Self-Pay",
+    "swasta": "Private Insurance",
+    "share": "Share: {{pct}}%",
+    "avgOutpatient": "Avg. Outpatient Cost per Visit",
+    "avgInpatient": "Avg. Inpatient Cost per Stay",
+    "avgEr": "Avg. Emergency Room Cost"
+  },
+  "demographics": {
+    "title": "Patient Age Distribution",
+    "under18": "Under 18 Years",
+    "under18Sub": "Pediatric & Immunization",
+    "adult": "18 to 59 Years",
+    "adultSub": "Productive Age",
+    "senior": "60 Years & Above",
+    "seniorSub": "Ongoing Care"
+  },
+  "departments": {
+    "title": "Department Performance",
+    "colDept": "Department",
+    "colVolume": "Volume",
+    "colDiagnosis": "Primary Diagnosis",
+    "colBilling": "Est. Billing",
+    "colQuota": "Quota Usage",
+    "names": {
+      "POLI_DALAM": "Internal Medicine Clinic",
+      "POLI_ANAK": "Pediatrics Clinic",
+      "POLI_GIGI": "Dental Clinic",
+      "UGD": "Emergency Department (ER)",
+      "RAWAT_INAP": "Inpatient Ward"
+    },
+    "diagnoses": {
+      "POLI_DALAM": "Hypertension & Diabetes",
+      "POLI_ANAK": "ARI & Pharyngitis",
+      "POLI_GIGI": "Caries & Periodontitis",
+      "UGD": "Trauma & Shock Triage",
+      "RAWAT_INAP": "Dengue & Fever Observation"
+    }
+  },
+  "aiAnalyst": {
+    "fabLabel": "AI Analysis",
+    "fabAria": "Analyze dashboard with AI",
+    "drawerTitle": "Dashboard AI Summary",
+    "closeAria": "Close AI summary",
+    "refreshAria": "Re-analyze dashboard",
+    "loading": "Analyzing dashboard metrics...",
+    "quickPrompt1": "Queue & clinic capacity risk",
+    "quickPrompt2": "Revenue & visit outlook",
+    "inputPlaceholder": "Ask about these metrics...",
+    "sendAria": "Send question",
+    "highlightsLabel": "Key Findings"
+  }
+}

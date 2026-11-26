@@ -151,90 +151,78 @@ const MedicalScribe = () => {
   };
 
   return (
-    <div className="animate-fade-in" style={{ maxWidth: '1000px', margin: '0 auto' }}>
-      {/* Header Page */}
-      <div style={{ marginBottom: '1.75rem', textAlign: 'center' }}>
-        <h1 className="page-title" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem', fontSize: '2rem' }}>
-          <Stethoscope size={28} color="var(--primary-color)" />
-          <span>{t('scribe.workstation.pageTitle')}</span>
-        </h1>
-        <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', margin: '0.25rem 0 0 0' }}>
-          {t('scribe.workstation.pageSubtitle')}
-        </p>
-      </div>
-
-      {/* Mode Switcher Tabs */}
-      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
-        <div style={{ display: 'inline-flex', background: '#f1f5f9', padding: '0.35rem', borderRadius: '12px', border: '1px solid var(--border-color)' }}>
-          <button
-            type="button"
-            onClick={() => setActiveMode('standard')}
+    <div className="service-sheet animate-fade-in" style={{ maxWidth: '1120px', margin: '0 auto 2.5rem' }}>
+      {/* Unified Header & Mode Switcher Band */}
+      <div className="service-sheet-head">
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
+          <div
             style={{
-              padding: '0.6rem 1.5rem',
-              borderRadius: '9px',
-              border: 'none',
-              fontWeight: 600,
-              fontSize: '0.875rem',
-              cursor: 'pointer',
+              width: '44px',
+              height: '44px',
+              borderRadius: '11px',
+              background: '#ecfdf5',
+              color: '#047857',
               display: 'flex',
               alignItems: 'center',
-              gap: '0.5rem',
-              background: activeMode === 'standard' ? '#ffffff' : 'transparent',
-              color: activeMode === 'standard' ? 'var(--primary-color)' : 'var(--text-muted)',
-              boxShadow: activeMode === 'standard' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
-              transition: 'all 0.15s ease'
+              justifyContent: 'center',
+              flexShrink: 0
             }}
           >
-            <Stethoscope size={18} />
+            <Stethoscope size={22} />
+          </div>
+          <div>
+            <h1 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#0f172a', margin: 0, letterSpacing: '-0.02em' }}>
+              {t('scribe.workstation.pageTitle')}
+            </h1>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.84rem', margin: '0.2rem 0 0 0' }}>
+              {t('scribe.workstation.pageSubtitle')}
+            </p>
+          </div>
+        </div>
+
+        <div className="service-segmented-tabs" role="tablist" aria-label="Scribe mode">
+          <button
+            type="button"
+            role="tab"
+            aria-selected={activeMode === 'standard'}
+            onClick={() => setActiveMode('standard')}
+            className={`service-segmented-tab ${activeMode === 'standard' ? 'active' : ''}`}
+          >
+            <Stethoscope size={16} />
             <span>{t('scribe.workstation.standardMode')}</span>
           </button>
 
           <button
             type="button"
+            role="tab"
+            aria-selected={activeMode === 'urgent'}
             onClick={() => setActiveMode('urgent')}
-            style={{
-              padding: '0.6rem 1.5rem',
-              borderRadius: '9px',
-              border: 'none',
-              fontWeight: 600,
-              fontSize: '0.875rem',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              background: activeMode === 'urgent' ? '#ffffff' : 'transparent',
-              color: activeMode === 'urgent' ? '#dc2626' : 'var(--text-muted)',
-              boxShadow: activeMode === 'urgent' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
-              transition: 'all 0.15s ease'
-            }}
+            className={`service-segmented-tab ${activeMode === 'urgent' ? 'active' : ''}`}
+            style={activeMode === 'urgent' ? { color: '#dc2626' } : undefined}
           >
-            <Flame size={18} />
+            <Flame size={16} />
             <span>{t('scribe.workstation.urgentMode')}</span>
           </button>
         </div>
       </div>
 
-      {/* Render Mode Content */}
+      {/* Render Mode Content Inside Same Unified Sheet */}
       {activeMode === 'urgent' ? (
         <UrgentScribeView />
       ) : (
         <>
-          {/* Unsaved Draft Recovery Banner */}
+          {/* Unsaved Draft Recovery Band */}
           {hasSavedDraft && !soapNote && !transcription && (
             <div
+              className="service-sheet-band"
               style={{
-                width: '100%',
-                marginBottom: '1.5rem',
                 backgroundColor: '#eff6ff',
-                border: '1px solid #bfdbfe',
-                borderRadius: '12px',
-                padding: '0.85rem 1.25rem',
+                borderLeft: '3px solid #2563eb',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 flexWrap: 'wrap',
-                gap: '0.75rem',
-                boxSizing: 'border-box'
+                gap: '0.75rem'
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', color: '#1e40af', fontSize: '0.875rem' }}>
@@ -252,8 +240,8 @@ const MedicalScribe = () => {
                     backgroundColor: '#2563eb',
                     color: '#ffffff',
                     border: 'none',
-                    borderRadius: '6px',
-                    padding: '0.4rem 0.85rem',
+                    borderRadius: '8px',
+                    padding: '0.45rem 0.9rem',
                     fontSize: '0.825rem',
                     fontWeight: 600,
                     cursor: 'pointer',
@@ -269,11 +257,11 @@ const MedicalScribe = () => {
                   type="button"
                   onClick={clearDraft}
                   style={{
-                    backgroundColor: 'transparent',
-                    color: '#64748b',
-                    border: '1px solid #cbd5e1',
-                    borderRadius: '6px',
-                    padding: '0.4rem 0.75rem',
+                    backgroundColor: '#ffffff',
+                    color: '#475569',
+                    border: 'none',
+                    borderRadius: '8px',
+                    padding: '0.45rem 0.8rem',
                     fontSize: '0.825rem',
                     cursor: 'pointer'
                   }}
@@ -284,75 +272,66 @@ const MedicalScribe = () => {
             </div>
           )}
 
-          {/* Patient Queue Selector (Wide & Web-Responsive) */}
+          {/* Patient Queue Selector Band */}
           {queue.length > 0 && (
-            <div style={{ width: '100%', marginBottom: '1.5rem', boxSizing: 'border-box' }}>
-              <div
-                style={{
-                  width: '100%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  flexWrap: 'wrap',
-                  gap: '0.85rem',
-                  background: '#ffffff',
-                  padding: '0.75rem 1.25rem',
-                  borderRadius: '12px',
-                  border: '1px solid var(--border-color)',
-                  boxShadow: '0 1px 3px rgba(0,0,0,0.03)',
-                  boxSizing: 'border-box'
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', minWidth: '130px' }}>
-                  <Users size={18} color="var(--primary-color)" />
-                  <span style={{ fontWeight: 600, color: 'var(--text-main)', fontSize: '0.875rem', whiteSpace: 'nowrap' }}>
-                    {t('scribe.patientInfo.queueLabelShort', 'Pasien Antrean:')}
-                  </span>
-                </div>
-
-                <PatientSearchDropdown
-                  queue={queue}
-                  selectedQueueId={selectedQueueId}
-                  onSelectQueue={handleSelectQueue}
-                  placeholder={t('scribe.patientInfo.queuePlaceholder', 'Pilih Antrean Hari Ini')}
-                />
-
-                {patientId && (
-                  <span
-                    style={{
-                      fontSize: '0.75rem',
-                      background: '#ecfdf5',
-                      color: 'var(--primary-color)',
-                      padding: '0.3rem 0.75rem',
-                      borderRadius: 'var(--radius-full)',
-                      fontWeight: 600,
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '0.35rem',
-                      whiteSpace: 'nowrap'
-                    }}
-                  >
-                    <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'var(--primary-color)' }} />
-                    {t('scribe.patientInfo.activeStatus', 'Aktif:')} {patientName}
-                  </span>
-                )}
+            <div
+              className="service-sheet-band"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                flexWrap: 'wrap',
+                gap: '0.85rem',
+                background: '#fcfcfd'
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', minWidth: '130px' }}>
+                <Users size={18} color="var(--primary-color)" />
+                <span style={{ fontWeight: 600, color: 'var(--text-main)', fontSize: '0.875rem', whiteSpace: 'nowrap' }}>
+                  {t('scribe.patientInfo.queueLabelShort', 'Pasien Antrean:')}
+                </span>
               </div>
+
+              <PatientSearchDropdown
+                queue={queue}
+                selectedQueueId={selectedQueueId}
+                onSelectQueue={handleSelectQueue}
+                placeholder={t('scribe.patientInfo.queuePlaceholder', 'Pilih Antrean Hari Ini')}
+              />
+
+              {patientId && (
+                <span
+                  style={{
+                    fontSize: '0.75rem',
+                    background: '#ecfdf5',
+                    color: '#047857',
+                    padding: '0.3rem 0.75rem',
+                    borderRadius: 'var(--radius-full)',
+                    fontWeight: 600,
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.35rem',
+                    whiteSpace: 'nowrap'
+                  }}
+                >
+                  <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'var(--primary-color)' }} />
+                  {t('scribe.patientInfo.activeStatus', 'Aktif:')} {patientName}
+                </span>
+              )}
             </div>
           )}
 
-          {/* Error Alert */}
+          {/* Error Alert Band */}
           {error && (
             <div
+              className="service-sheet-band"
               style={{
                 backgroundColor: '#fef2f2',
+                borderLeft: '3px solid #dc2626',
                 color: '#991b1b',
-                padding: '1rem 1.25rem',
-                borderRadius: 'var(--radius-md)',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '0.75rem',
-                marginBottom: '1.5rem',
-                border: '1px solid #fecaca'
+                gap: '0.75rem'
               }}
             >
               <AlertCircle size={20} />
@@ -360,28 +339,25 @@ const MedicalScribe = () => {
             </div>
           )}
 
-          {/* Recording CTA Card (Hero at the top) */}
+          {/* Recording CTA Workspace Band */}
           <div
-            className="card"
+            className="service-sheet-band"
             style={{
-              padding: '3.5rem 2rem',
+              padding: '3.25rem 2rem',
               textAlign: 'center',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
-              border: (soapNote || transcription) ? '2px solid #bbf7d0' : '2px dashed var(--border-color)',
-              backgroundColor: (soapNote || transcription) ? '#f0fdf4' : '#fcfcfd',
-              borderRadius: 'var(--radius-lg)',
-              transition: 'all 0.3s ease',
-              marginBottom: '1.5rem'
+              backgroundColor: (soapNote || transcription) ? '#f0fdf4' : '#ffffff',
+              transition: 'background-color 0.25s ease'
             }}
           >
             <div
               onClick={handleStartRecording}
               style={{
-                width: '100px',
-                height: '100px',
+                width: '96px',
+                height: '96px',
                 borderRadius: '50%',
                 backgroundColor: 'var(--primary-color)',
                 display: 'flex',
@@ -389,8 +365,8 @@ const MedicalScribe = () => {
                 justifyContent: 'center',
                 cursor: 'pointer',
                 marginBottom: '1.25rem',
-                boxShadow: '0 10px 25px -5px rgba(16, 185, 129, 0.4)',
-                transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+                boxShadow: '0 10px 25px -5px rgba(16, 185, 129, 0.35)',
+                transition: 'transform 0.2s ease'
               }}
               onMouseOver={(e) => {
                 e.currentTarget.style.transform = 'scale(1.05)';
@@ -399,10 +375,10 @@ const MedicalScribe = () => {
                 e.currentTarget.style.transform = 'scale(1)';
               }}
             >
-              <Mic size={44} color="#ffffff" />
+              <Mic size={42} color="#ffffff" />
             </div>
 
-            <h2 style={{ fontSize: '1.35rem', fontWeight: 700, marginBottom: '0.5rem', color: 'var(--text-main)' }}>
+            <h2 style={{ fontSize: '1.3rem', fontWeight: 700, marginBottom: '0.5rem', color: 'var(--text-main)' }}>
               {(soapNote || transcription) ? t('scribe.workstation.rerecordTitle') : t('scribe.landing.title')}
             </h2>
             <p style={{ color: 'var(--text-muted)', maxWidth: '480px', margin: '0 0 1.5rem', lineHeight: '1.6' }}>
@@ -439,9 +415,9 @@ const MedicalScribe = () => {
                     padding: '0.75rem 1.5rem',
                     fontSize: '0.95rem',
                     borderRadius: 'var(--radius-md)',
-                    border: '1px solid var(--border-color)',
-                    background: '#ffffff',
-                    color: 'var(--text-muted)',
+                    border: 'none',
+                    background: '#f1f5f9',
+                    color: '#475569',
                     cursor: 'pointer',
                     fontWeight: 600
                   }}
@@ -452,17 +428,14 @@ const MedicalScribe = () => {
             </div>
           </div>
 
-          {/* Processing Indicator below CTA */}
+          {/* Processing Indicator Band */}
           {isProcessing && (
             <div
-              className="card animate-fade-in"
+              className="service-sheet-band animate-fade-in"
               style={{
-                marginTop: '1.5rem',
                 padding: '2rem',
                 textAlign: 'center',
-                backgroundColor: '#f8fafc',
-                border: '1px solid var(--border-color)',
-                borderRadius: 'var(--radius-lg)'
+                backgroundColor: '#f8fafc'
               }}
             >
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem', color: 'var(--primary-color)', fontWeight: 600 }}>
@@ -475,29 +448,27 @@ const MedicalScribe = () => {
             </div>
           )}
 
-          {/* Result Section: SOAP Form View rendered below recording card */}
+          {/* Result Section: Integrated Inside Same Sheet */}
           {(soapNote || transcription) && (
-            <div className="animate-fade-in" style={{ marginTop: '2rem' }}>
-              <SoapFormView
-                soapNote={soapNote}
-                transcription={transcription}
-                onReset={handleReset}
-                onClearDraft={clearDraft}
-                initialPatient={{
-                  patientId,
-                  patientName,
-                  patientPhone,
-                  medicalRecordNo,
-                  selectedQueueId
-                }}
-                onPatientChange={({ patientId: newPid, patientName: newPName, patientPhone: newPPhone, medicalRecordNo: newRM }) => {
-                  if (newPid !== undefined) setPatientId(newPid);
-                  if (newPName !== undefined) setPatientName(newPName);
-                  if (newPPhone !== undefined) setPatientPhone(newPPhone);
-                  if (newRM !== undefined) setMedicalRecordNo(newRM);
-                }}
-              />
-            </div>
+            <SoapFormView
+              soapNote={soapNote}
+              transcription={transcription}
+              onReset={handleReset}
+              onClearDraft={clearDraft}
+              initialPatient={{
+                patientId,
+                patientName,
+                patientPhone,
+                medicalRecordNo,
+                selectedQueueId
+              }}
+              onPatientChange={({ patientId: newPid, patientName: newPName, patientPhone: newPPhone, medicalRecordNo: newRM }) => {
+                if (newPid !== undefined) setPatientId(newPid);
+                if (newPName !== undefined) setPatientName(newPName);
+                if (newPPhone !== undefined) setPatientPhone(newPPhone);
+                if (newRM !== undefined) setMedicalRecordNo(newRM);
+              }}
+            />
           )}
 
           {/* Realtime Pop-up Modal */}
