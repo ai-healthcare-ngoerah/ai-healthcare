@@ -115,7 +115,7 @@ const RealtimeAudioModal = ({ isOpen, onClose, onFinishRecording, isProcessing }
     showToast({
       type: 'success',
       title: t('scribe.modal.finishToastTitle', 'Perekaman Selesai'),
-      message: t('scribe.modal.finishToastMsg', 'Memproses audio & membuat format SOAP AI...'),
+      message: t('scribe.modal.finishToastMsg', 'Mentranskripsi rekaman suara untuk dikonfirmasi...'),
     });
 
     const finalLiveText = liveText;

@@ -1,5 +1,5 @@
-import React from 'react';
-import { RefreshCw, Search, MessageSquare, ShieldCheck, Filter } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { RefreshCw, Search, MessageSquare, Filter } from 'lucide-react';
 
 const ReservationLogsSection = ({
   loadingLogs,
@@ -12,6 +12,7 @@ const ReservationLogsSection = ({
   setSearchLogText,
   fetchMessageLogs,
 }) => {
+  const { t } = useTranslation();
   const renderVerdictBadge = (verdict) => {
     const v = (verdict || 'REPLIED_BY_AI').toUpperCase();
     if (v === 'REPLIED_BY_AI') {
@@ -44,8 +45,8 @@ const ReservationLogsSection = ({
     <div className="cr-tab-content-card">
       <div className="cr-logs-header-row">
         <div>
-          <h3>Log Percakapan, Filter Jev &amp; Triase Real-Time</h3>
-          <p>Pantau keputusan filter TypeSafe Jev serta riwayat pesan masuk dari WhatsApp, Website, Telegram, dan Gmail.</p>
+          <h3>{t('whatsapp.chatFilter.logsTitle')}</h3>
+          <p>{t('whatsapp.chatFilter.logsSubtitle')}</p>
         </div>
         <button
           className="cr-btn-outline"
@@ -58,7 +59,7 @@ const ReservationLogsSection = ({
         </button>
       </div>
 
-      {/* Filters Bar: Channel and Jev Verdict */}
+      {/* Filters Bar: Channel and Filter Verdict */}
       <div className="cr-logs-filter-bar">
         <div className="cr-channel-pills-filter">
           {['all', 'whatsapp', 'web', 'telegram', 'gmail'].map((ch) => (
@@ -94,7 +95,7 @@ const ReservationLogsSection = ({
       <div className="cr-verdict-filter-row">
         <div className="cr-verdict-label">
           <Filter size={14} />
-          <span>Filter Evaluasi Jev:</span>
+          <span>{t('whatsapp.chatFilter.logsFilterLabel')}</span>
         </div>
         <div className="cr-verdict-pills">
           {[
@@ -140,7 +141,7 @@ const ReservationLogsSection = ({
                 <th>Waktu</th>
                 <th>Pengirim</th>
                 <th>Pesan Pasien</th>
-                <th>Keputusan Filter Jev</th>
+                <th>{t('whatsapp.chatFilter.logsColVerdict')}</th>
                 <th>Kategori &amp; Urgensi</th>
                 <th>Respons Sistem</th>
               </tr>

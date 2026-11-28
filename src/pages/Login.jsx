@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Lock, Mail, AlertCircle, Globe, Sparkles } from 'lucide-react';
+import { Mail, AlertCircle, Globe, Sparkles } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useTranslation } from 'react-i18next';
+import PasswordInput from '../components/common/PasswordInput';
 
 const Login = () => {
   const { t, i18n } = useTranslation();
@@ -104,22 +105,21 @@ const Login = () => {
             </div>
           </div>
 
-          <div style={{ marginBottom: '2rem' }}>
-            <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: 500, marginBottom: '0.5rem', color: 'var(--text-main)' }}>
-              {t('auth.login.passwordLabel')}
-            </label>
-            <div style={{ position: 'relative' }}>
-              <Lock size={18} color="var(--text-muted)" style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)' }} />
-              <input
-                type="password"
-                style={{ width: '100%', padding: '0.75rem 1rem 0.75rem 2.75rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)', outline: 'none' }}
-                placeholder="••••••••"
+            <div style={{ marginBottom: '2rem' }}>
+              <label
+                htmlFor="login-password"
+                style={{ display: 'block', fontSize: '0.875rem', fontWeight: 500, marginBottom: '0.5rem', color: 'var(--text-main)' }}
+              >
+                {t('auth.login.passwordLabel')}
+              </label>
+              <PasswordInput
+                id="login-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                autoComplete="current-password"
               />
             </div>
-          </div>
 
           <button type="submit" className="btn-primary" style={{ width: '100%', justifyContent: 'center', marginBottom: '0.75rem' }} disabled={isLoading}>
             {isLoading ? t('auth.login.submitting') : t('auth.login.submitBtn')}

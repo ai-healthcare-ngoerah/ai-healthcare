@@ -1,4 +1,8 @@
 {
+  "common": {
+    "showPassword": "Tampilkan kata sandi",
+    "hidePassword": "Sembunyikan kata sandi"
+  },
   "login": {
     "title": "Selamat Datang",
     "subtitle": "Masuk ke Workstation AI Healthcare",

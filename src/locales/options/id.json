@@ -12,7 +12,7 @@
     },
     "medicalRecords": {
       "badge": "Klinis",
-      "title": "Rekam Medis & Asisten Klinis",
+      "title": "AI Rekam Medis (Medical Scribe)",
       "desc": "Perekaman konsultasi dokter, penataan format SOAP instan, analisis ICD-10, dan perencanaan kontrol."
     },
     "bpjsClaim": {

@@ -1,7 +1,7 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { Copy, Check, Sparkles, FileText, RotateCcw, Save, X, Download, CheckCircle, UserCheck, Activity } from 'lucide-react';
-import { Document, Packer, Paragraph, TextRun, HeadingLevel } from 'docx';
 import { saveAs } from 'file-saver';
+import { buildSoapDocxBlob } from '../../utils/scribeDocxTemplate';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { saveScribeNote, analyzeClinicalScribe, finalizeConsultation, getTodayQueue } from '../../services/scribeService';
@@ -11,7 +11,9 @@ import useScribeDraft from '../../hooks/useScribeDraft';
 
 const SoapFormView = ({
   soapNote: initialSoap,
+  soapMapping = null,
   transcription: initialTranscription,
+  autoAnalyzeTrigger = 0,
   onReset,
   onClearDraft = null,
   initialPatient = null,
@@ -21,7 +23,6 @@ const SoapFormView = ({
   const navigate = useNavigate();
   const { showToast, confirmAction } = useNotification();
   const [transcription, setTranscription] = useState(initialTranscription || '');
-  const [activeTab, setActiveTab] = useState('soap'); // 'soap' | 'transcription'
   const [copied, setCopied] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
@@ -29,7 +30,7 @@ const SoapFormView = ({
   const [queue, setQueue] = useState([]);
   const [selectedQueueId, setSelectedQueueId] = useState(initialPatient?.selectedQueueId || '');
   const [patientId, setPatientId] = useState(initialPatient?.patientId || '');
-  const [patientName, setPatientName] = useState(initialPatient?.patientName || t('scribe.patientInfo.defaultPatientName', 'Pasien Rekam Medis'));
+  const [patientName, setPatientName] = useState(initialPatient?.patientName || '');
   const [patientPhone, setPatientPhone] = useState(initialPatient?.patientPhone || '');
   const [medicalRecordNo, setMedicalRecordNo] = useState(initialPatient?.medicalRecordNo || '');
 
@@ -37,7 +38,7 @@ const SoapFormView = ({
   const [prevPatient, setPrevPatient] = useState(initialPatient);
   if (initialPatient !== prevPatient) {
     setPrevPatient(initialPatient);
-    if (initialPatient?.patientName !== undefined && initialPatient?.patientName !== '') {
+    if (initialPatient?.patientName !== undefined) {
       setPatientName(initialPatient.patientName);
     }
     if (initialPatient?.patientPhone !== undefined) setPatientPhone(initialPatient.patientPhone);
@@ -112,7 +113,7 @@ const SoapFormView = ({
       }
     }
 
-    if (matches.length >= 2) {
+    if (matches.length >= 1) {
       for (let i = 0; i < matches.length; i++) {
         const cur = matches[i];
         const next = matches[i + 1];
@@ -145,25 +146,46 @@ const SoapFormView = ({
     return { s, o, a, p };
   };
 
-  const [initialParsed] = useState(() => parseSoap(initialSoap || ''));
+  const resolveFields = (soapStr, mappingObj) => {
+    if (mappingObj && typeof mappingObj === 'object') {
+      return {
+        s: mappingObj.subjective || '',
+        o: mappingObj.objective || '',
+        a: mappingObj.assessment || '',
+        p: mappingObj.plan || '',
+      };
+    }
+    return parseSoap(soapStr || '');
+  };
+
+  const [initialParsed] = useState(() => resolveFields(initialSoap || '', soapMapping));
   const [sText, setSText] = useState(() => initialParsed.s);
   const [oText, setOText] = useState(() => initialParsed.o);
   const [aText, setAText] = useState(() => initialParsed.a);
   const [pText, setPText] = useState(() => initialParsed.p);
 
-  // Sync state if initialSoap changes from parent without cascading render effects
+  // Sync state if initialSoap or soapMapping changes from parent without cascading render effects
   const [prevSoapProp, setPrevSoapProp] = useState(initialSoap);
-  if (initialSoap !== prevSoapProp) {
+  const [prevMappingProp, setPrevMappingProp] = useState(soapMapping);
+  if (initialSoap !== prevSoapProp || soapMapping !== prevMappingProp) {
     setPrevSoapProp(initialSoap);
-    const parsed = parseSoap(initialSoap || '');
+    setPrevMappingProp(soapMapping);
+    const parsed = resolveFields(initialSoap || '', soapMapping);
     setSText(parsed.s);
     setOText(parsed.o);
     setAText(parsed.a);
     setPText(parsed.p);
   }
 
-  // Derived active soapNote for Saving/Exporting
-  const soapNote = `S (Subjective):\n${sText}\n\nO (Objective):\n${oText}\n\nA (Assessment):\n${aText}\n\nP (Plan):\n${pText}`;
+  // Derived active soapNote for Saving/Exporting (only populated sections)
+  const soapNote = [
+    sText ? `S (Subjective):\n${sText}` : '',
+    oText ? `O (Objective):\n${oText}` : '',
+    aText ? `A (Assessment):\n${aText}` : '',
+    pText ? `P (Plan):\n${pText}` : '',
+  ]
+    .filter(Boolean)
+    .join('\n\n');
 
 
   // Auto-sync draft as user modifies individual fields
@@ -181,107 +203,18 @@ const SoapFormView = ({
   });
 
   const handleCopy = () => {
-    const textToCopy = activeTab === 'soap' ? soapNote : transcription;
-    navigator.clipboard.writeText(textToCopy);
+    navigator.clipboard.writeText(soapNote);
     setCopied(true);
     showToast({ type: 'info', message: 'Teks berhasil disalin ke clipboard.' });
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handleSave = useCallback(async () => {
-    setIsSaving(true);
-    try {
-      await saveScribeNote({
-        patient_id: patientId || null,
-        patient_name: patientName,
-        medical_record_no: medicalRecordNo || null,
-        raw_text: soapNote,
-        transcription: transcription,
-      });
-      if (onClearDraft) {
-        onClearDraft();
-      }
-      setSaveSuccess(true);
-      showToast({
-        type: 'success',
-        title: t('scribe.form.saveSuccessTitle', 'Berhasil Disimpan'),
-        message: t('scribe.form.saveSuccessMsg', 'Catatan SOAP berhasil disimpan ke database.'),
-      });
-      setTimeout(() => {
-        setSaveSuccess(false);
-        navigate('/app/asisten-medis/riwayat');
-      }, 1200);
-    } catch (err) {
-      console.error('Save error:', err);
-      showToast({
-        type: 'error',
-        title: t('scribe.form.saveErrorTitle', 'Gagal Menyimpan'),
-        message: err.message || t('scribe.form.saveErrorMsg', 'Gagal menyimpan ke database.'),
-      });
-    } finally {
-      setIsSaving(false);
-    }
-  }, [patientId, patientName, medicalRecordNo, soapNote, transcription, onClearDraft, t, showToast, navigate]);
-
-  // Clinical Hotkey: Ctrl+Enter (Quick Save)
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
-        e.preventDefault();
-        if (!isSaving && !isFinalizing) {
-          handleSave();
-        }
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [handleSave, isSaving, isFinalizing]);
-
-  const handleAnalyzeClinical = async () => {
-    if (!sText && !aText) {
-      showToast({
-        type: 'warning',
-        title: 'Form Kosong',
-        message: 'Silakan isi bagian Subjektif atau Asesmen SOAP sebelum evaluasi klinis.'
-      });
-      return;
-    }
-
-    setIsAnalyzingClinical(true);
-    try {
-      const res = await analyzeClinicalScribe(
-        {
-          subjective: sText,
-          objective: oText,
-          assessment: aText,
-          plan: pText
-        },
-        patientId || null
-      );
-      setClinicalResult(res);
-      showToast({
-        type: 'success',
-        title: t('scribe.form.evalSuccessTitle', 'Evaluasi Klinis Selesai'),
-        message: `ICD-10: ${res.icd_10 || '-'} | Kontrol: ${res.must_control ? 'Wajib' : 'Opsional'}`
-      });
-    } catch (err) {
-      console.error('Clinical analysis error:', err);
-      showToast({
-        type: 'error',
-        title: t('scribe.form.evalErrorTitle', 'Gagal Analisis'),
-        message: err.message || t('scribe.form.evalErrorMsg', 'Gagal menganalisis kode klinis dan kontrol RAG.')
-      });
-    } finally {
-      setIsAnalyzingClinical(false);
-    }
-  };
-
-  const executeFinalize = async () => {
+  const executeFinalize = useCallback(async () => {
     setIsFinalizing(true);
     try {
       const payload = {
         patient_id: patientId || null,
-        patient_name: patientName || 'Pasien Umum',
+        patient_name: patientName.trim() || 'Pasien Umum',
         phone: patientPhone || null,
         medical_record_no: medicalRecordNo || null,
         soap: {
@@ -300,8 +233,8 @@ const SoapFormView = ({
         },
         raw_text: soapNote,
         transcription: transcription,
-        doctor_name: "dr. Umum",
-        poli_name: "Poli Umum"
+        doctor_name: 'dr. Umum',
+        poli_name: 'Poli Umum'
       };
 
       const res = await finalizeConsultation(payload);
@@ -311,37 +244,103 @@ const SoapFormView = ({
       setSaveSuccess(true);
       showToast({
         type: 'success',
-        title: t('scribe.form.finalizeSuccessTitle', 'Konsultasi Selesai'),
-        message: res.message || t('scribe.form.finalizeSuccessMsg', 'Catatan SOAP & jadwal kontrol berhasil disinkronkan ke Database & Google Sheets!')
+        title: t('scribe.form.saveSuccessTitle', 'Berhasil Disimpan'),
+        message: res.message || t('scribe.form.saveSuccessMsg', 'Catatan SOAP berhasil disimpan.')
       });
       setTimeout(() => {
         setSaveSuccess(false);
         navigate('/app/asisten-medis/riwayat');
       }, 1200);
     } catch (err) {
-      console.error('Finalize error:', err);
+      console.error('Save consultation error:', err);
       showToast({
         type: 'error',
-        title: t('scribe.form.finalizeErrorTitle', 'Gagal Finalisasi'),
-        message: err.message || t('scribe.form.finalizeErrorMsg', 'Gagal memfinalisasi konsultasi medis.')
+        title: t('scribe.form.saveErrorTitle', 'Gagal Menyimpan'),
+        message: err.message || t('scribe.form.saveErrorMsg', 'Gagal menyimpan catatan medis.')
       });
     } finally {
       setIsFinalizing(false);
     }
-  };
+  }, [
+    patientId,
+    patientName,
+    patientPhone,
+    medicalRecordNo,
+    sText,
+    oText,
+    aText,
+    pText,
+    clinicalResult,
+    soapNote,
+    transcription,
+    onClearDraft,
+    t,
+    showToast,
+    navigate
+  ]);
 
-  const handleFinalize = () => {
-    confirmAction({
-      title: t('scribe.form.finalizeConfirmTitle', 'Konfirmasi Finalisasi Konsultasi'),
-      message: t('scribe.form.finalizeConfirmMsg', 'Simpan catatan SOAP ke database dan sinkronkan jadwal kontrol pasien ke Google Sheets?'),
-      type: 'info',
-      confirmText: t('scribe.form.finalizeConfirmBtn', 'Ya, Simpan & Finalisasi'),
-      cancelText: t('common.cancelBtn', 'Batal'),
-      onConfirm: () => {
-        executeFinalize();
+  // Clinical Hotkey: Ctrl+Enter (Quick Save)
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        e.preventDefault();
+        if (!isSaving && !isFinalizing) {
+          executeFinalize();
+        }
       }
-    });
-  };
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [executeFinalize, isSaving, isFinalizing]);
+
+  const handleAnalyzeClinical = useCallback(async () => {
+    if (!sText.trim() && !oText.trim() && !aText.trim() && !pText.trim()) {
+      showToast({
+        type: 'warning',
+        title: 'Form Kosong',
+        message: 'Silakan isi minimal salah satu bagian SOAP sebelum evaluasi klinis.'
+      });
+      return;
+    }
+
+    setIsAnalyzingClinical(true);
+    try {
+      const res = await analyzeClinicalScribe(
+        {
+          subjective: sText,
+          objective: oText,
+          assessment: aText,
+          plan: pText
+        },
+        patientId || null
+      );
+      const clinicalData = res?.clinical || res;
+      setClinicalResult(clinicalData);
+      showToast({
+        type: 'success',
+        title: t('scribe.form.evalSuccessTitle', 'Evaluasi Klinis Selesai'),
+        message: `ICD-10: ${clinicalData?.icd_10 || '-'} | ICD-9: ${clinicalData?.icd_9 || '-'} | Kontrol: ${clinicalData?.must_control ? 'Wajib' : 'Opsional'}`
+      });
+    } catch (err) {
+      console.error('Clinical analysis error:', err);
+      showToast({
+        type: 'error',
+        title: t('scribe.form.evalErrorTitle', 'Gagal Analisis'),
+        message: err.message || t('scribe.form.evalErrorMsg', 'Gagal menganalisis kode dan jadwal kontrol.')
+      });
+    } finally {
+      setIsAnalyzingClinical(false);
+    }
+  }, [sText, oText, aText, pText, patientId, showToast, t]);
+
+  // Automatically trigger ICD-10/9 & follow-up evaluation right after SOAP creation from recording
+  const lastAutoTriggerRef = useRef(0);
+  useEffect(() => {
+    if (autoAnalyzeTrigger > 0 && autoAnalyzeTrigger !== lastAutoTriggerRef.current) {
+      lastAutoTriggerRef.current = autoAnalyzeTrigger;
+      handleAnalyzeClinical();
+    }
+  }, [autoAnalyzeTrigger, handleAnalyzeClinical]);
 
   const handleCancel = () => {
     confirmAction({
@@ -351,7 +350,7 @@ const SoapFormView = ({
       confirmText: t('scribe.form.cancelEditConfirmBtn', 'Ya, Batalkan'),
       cancelText: t('common.cancelBtn', 'Batal'),
       onConfirm: () => {
-        const p = parseSoap(initialSoap || '');
+        const p = resolveFields(initialSoap || '', soapMapping);
         setSText(p.s);
         setOText(p.o);
         setAText(p.a);
@@ -364,65 +363,27 @@ const SoapFormView = ({
 
   const handleExport = async () => {
     try {
-      const doc = new Document({
-        sections: [
-          {
-            properties: {},
-            children: [
-              new Paragraph({
-                text: 'REKAM MEDIS CPPT - SOAP',
-                heading: HeadingLevel.HEADING_1,
-                spacing: { after: 300 },
-              }),
-              new Paragraph({
-                children: [
-                  new TextRun({ text: 'Tanggal Pemeriksaan: ', bold: true }),
-                  new TextRun({
-                    text: new Date().toLocaleDateString('id-ID', { dateStyle: 'full' }),
-                  }),
-                ],
-                spacing: { after: 400 },
-              }),
-              new Paragraph({
-                text: 'CATATAN SOAP (CPPT)',
-                heading: HeadingLevel.HEADING_2,
-                spacing: { before: 200, after: 200 },
-              }),
-              ...soapNote.split('\n').map(
-                (line) =>
-                  new Paragraph({
-                    children: [new TextRun({ text: line, font: 'Calibri' })],
-                    spacing: { after: 100 },
-                  })
-              ),
-              new Paragraph({
-                text: 'TRANSKRIPSI KONSULTASI',
-                heading: HeadingLevel.HEADING_2,
-                spacing: { before: 400, after: 200 },
-              }),
-              ...transcription.split('\n').map(
-                (line) =>
-                  new Paragraph({
-                    children: [new TextRun({ text: line, font: 'Calibri' })],
-                    spacing: { after: 100 },
-                  })
-              ),
-              new Paragraph({
-                children: [
-                  new TextRun({
-                    text: '\n\nTanda Tangan Pemeriksa,\n\n\n_________________________\nDokter Penanggung Jawab',
-                    bold: true,
-                  }),
-                ],
-                spacing: { before: 600 },
-              }),
-            ],
-          },
-        ],
+      const blob = await buildSoapDocxBlob({
+        patientName: patientName.trim() || 'Pasien Umum',
+        medicalRecordNo: medicalRecordNo || '-',
+        doctorName: 'dr. Umum',
+        poliName: 'Poli Umum',
+        soap: {
+          subjective: sText,
+          objective: oText,
+          assessment: aText,
+          plan: pText,
+        },
+        soapNote,
+        clinical: clinicalResult,
+        transcription,
       });
-
-      const blob = await Packer.toBlob(doc);
-      saveAs(blob, `Rekam_Medis_SOAP_${new Date().toISOString().slice(0, 10)}.docx`);
+      const nameSlug = patientName
+        .trim()
+        .replace(/[^a-zA-Z0-9_-]+/g, '_')
+        .replace(/^_+|_+$/g, '');
+      const fileSuffix = nameSlug ? `${nameSlug}_` : '';
+      saveAs(blob, `Rekam_Medis_SOAP_${fileSuffix}${new Date().toISOString().slice(0, 10)}.docx`);
     } catch (err) {
       console.error('Export docx error:', err);
       alert('Gagal mengekspor ke file Word.');
@@ -541,7 +502,61 @@ const SoapFormView = ({
         </div>
       </div>
 
-      {/* Patient Information & Queue Selector */}
+      {/* Draft / Record Name Form */}
+      <div
+        style={{
+          backgroundColor: '#f8fafc',
+          padding: '0.9rem 1.1rem',
+          borderRadius: 'var(--radius-md)',
+          marginBottom: '1.25rem',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '0.35rem',
+        }}
+      >
+        <label
+          htmlFor="scribe-draft-name"
+          style={{
+            fontSize: '0.8rem',
+            fontWeight: 700,
+            color: '#1e293b',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.4rem',
+          }}
+        >
+          <FileText size={15} aria-hidden="true" color="var(--primary-color)" />
+          <span>{t('scribe.form.draftNameLabel', 'Nama Draf / Catatan')}</span>
+        </label>
+        <input
+          id="scribe-draft-name"
+          type="text"
+          value={patientName}
+          onChange={(e) => {
+            const val = e.target.value;
+            setPatientName(val);
+            if (onPatientChange) {
+              onPatientChange({ patientId, patientName: val, patientPhone, medicalRecordNo });
+            }
+          }}
+          placeholder={t('scribe.form.draftNamePlaceholder', 'Contoh: Draf Konsultasi Budi Santoso')}
+          style={{
+            width: '100%',
+            minHeight: '42px',
+            padding: '0.5rem 0.75rem',
+            borderRadius: '8px',
+            border: '1px solid #cbd5e1',
+            fontSize: '0.925rem',
+            backgroundColor: '#ffffff',
+            color: '#0f172a',
+          }}
+        />
+        <span style={{ fontSize: '0.75rem', color: '#64748b' }}>
+          {t('scribe.form.draftNameHint', 'Nama ini disimpan bersama draf dan digunakan sebagai nama catatan di Riwayat.')}
+        </span>
+      </div>
+
+      {/* Patient Information & Queue Selector (Commented Out)
       <div
         style={{
           backgroundColor: '#f8fafc',
@@ -655,63 +670,29 @@ const SoapFormView = ({
           </div>
         </div>
       </div>
+      */}
 
-      {/* Tabs */}
+      {/* SOAP Content Section Heading */}
       <div
         style={{
           display: 'flex',
+          alignItems: 'center',
           borderBottom: '1px solid var(--border-color)',
+          paddingBottom: '0.75rem',
           marginBottom: '1.25rem',
-          gap: '1.5rem',
+          gap: '0.5rem',
+          fontWeight: 600,
+          fontSize: '1rem',
+          color: 'var(--primary-color)',
         }}
       >
-        <button
-          type="button"
-          onClick={() => setActiveTab('soap')}
-          style={{
-            background: 'none',
-            border: 'none',
-            paddingBottom: '0.75rem',
-            fontWeight: 600,
-            fontSize: '1rem',
-            color: activeTab === 'soap' ? 'var(--primary-color)' : 'var(--text-muted)',
-            borderBottom: activeTab === 'soap' ? '2px solid var(--primary-color)' : '2px solid transparent',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-          }}
-        >
-          <Sparkles size={18} />
-          {t('scribe.form.tabSoap')}
-        </button>
-
-        <button
-          type="button"
-          onClick={() => setActiveTab('transcription')}
-          style={{
-            background: 'none',
-            border: 'none',
-            paddingBottom: '0.75rem',
-            fontWeight: 600,
-            fontSize: '1rem',
-            color: activeTab === 'transcription' ? 'var(--primary-color)' : 'var(--text-muted)',
-            borderBottom: activeTab === 'transcription' ? '2px solid var(--primary-color)' : '2px solid transparent',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-          }}
-        >
-          <FileText size={18} />
-          {t('scribe.form.tabTranscription')}
-        </button>
+        <Sparkles size={18} />
+        <span>{t('scribe.form.tabSoap')}</span>
       </div>
 
       {/* Editable Content Area */}
       <div style={{ position: 'relative' }}>
-        {activeTab === 'soap' ? (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', backgroundColor: '#f8fafc', padding: '1.25rem', borderRadius: 'var(--radius-md)', border: 'none' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', backgroundColor: '#f8fafc', padding: '1.25rem', borderRadius: 'var(--radius-md)', border: 'none' }}>
             <div>
               <label style={{ fontWeight: '700', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', color: '#0f172a', fontSize: '0.9rem' }}>
                 <div style={{ width: '28px', height: '28px', backgroundColor: '#e2e8f0', borderRadius: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', marginRight: '0.5rem', color: '#0f172a', fontWeight: 800 }}>S</div>
@@ -764,26 +745,6 @@ const SoapFormView = ({
               />
             </div>
           </div>
-        ) : (
-          <textarea
-            value={transcription}
-            onChange={(e) => setTranscription(e.target.value)}
-            placeholder={t('scribe.form.placeholderTranscription')}
-            style={{
-              width: '100%',
-              minHeight: '340px',
-              padding: '1rem',
-              borderRadius: 'var(--radius-md)',
-              border: '1px solid var(--border-color)',
-              fontFamily: 'inherit',
-              fontSize: '0.95rem',
-              lineHeight: '1.6',
-              resize: 'vertical',
-              backgroundColor: '#ffffff',
-              color: 'var(--text-main)',
-            }}
-          />
-        )}
       </div>
 
       {/* Clinical Coding (ICD-10/9) & RAG Control Recommendation */}
@@ -926,6 +887,7 @@ const SoapFormView = ({
               </div>
             </div>
 
+            {/* Control Reason / Clinical Advice (Commented Out)
             <div>
               <span style={{ fontSize: '0.75rem', color: '#64748b', fontWeight: 600, display: 'block', marginBottom: '0.2rem' }}>
                 {t('scribe.clinical.controlReasonLabel')}
@@ -944,26 +906,28 @@ const SoapFormView = ({
                 }}
               />
             </div>
+            */}
 
-            {/* RAG Clinical Citations & Grounding Candidates */}
-            {(clinicalResult.rag_citations?.length > 0 || clinicalResult.icd_candidates?.icd10?.length > 0) && (
+            {/* Clinical Citations & ICD-10 / ICD-9 Grounding Candidates */}
+            {(clinicalResult.rag_citations?.length > 0 || clinicalResult.icd_candidates?.icd10?.length > 0 || clinicalResult.icd_candidates?.icd9?.length > 0) && (
               <div
                 style={{
                   marginTop: '0.25rem',
-                  padding: '0.75rem',
+                  padding: '0.85rem',
                   backgroundColor: '#f8fafc',
-                  borderRadius: '6px',
-                  border: '1px dashed #cbd5e1',
+                  borderRadius: '8px',
+                  border: 'none',
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: '0.5rem',
+                  gap: '0.6rem',
                 }}
               >
                 {/* Citations */}
                 {clinicalResult.rag_citations?.length > 0 && (
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
-                    <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#059669', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                      📚 Pedoman RAG:
+                    <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#047857', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                      <FileText size={14} aria-hidden="true" />
+                      {t('scribe.clinical.guidelinesLabel', 'Pedoman Klinis:')}
                     </span>
                     {clinicalResult.rag_citations.map((cite, idx) => (
                       <span
@@ -971,10 +935,10 @@ const SoapFormView = ({
                         style={{
                           fontSize: '0.75rem',
                           backgroundColor: '#ecfdf5',
-                          color: '#047857',
-                          border: '1px solid #a7f3d0',
-                          padding: '0.15rem 0.5rem',
-                          borderRadius: '4px',
+                          color: '#065f46',
+                          border: 'none',
+                          padding: '0.2rem 0.55rem',
+                          borderRadius: '6px',
                           fontWeight: 500,
                         }}
                       >
@@ -984,49 +948,66 @@ const SoapFormView = ({
                   </div>
                 )}
 
-                {/* ICD-10 Grounding Candidates */}
-                {clinicalResult.icd_candidates?.icd10?.length > 0 && (
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexWrap: 'wrap' }}>
-                    <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#64748b' }}>
-                      Kandidat ICD-10:
-                    </span>
-                    {clinicalResult.icd_candidates.icd10.map((c, idx) => (
-                      <button
-                        key={idx}
-                        type="button"
-                        onClick={() => setClinicalResult({ ...clinicalResult, icd_10: `${c.code} - ${c.name_id || c.name_en}` })}
-                        title={`Pilih ${c.code}`}
-                        style={{
-                          fontSize: '0.75rem',
-                          padding: '0.15rem 0.45rem',
-                          backgroundColor: '#ffffff',
-                          border: '1px solid #cbd5e1',
-                          borderRadius: '4px',
-                          cursor: 'pointer',
-                          color: '#1e293b',
-                          transition: 'all 0.15s ease',
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.borderColor = 'var(--primary-color)';
-                          e.currentTarget.style.color = 'var(--primary-color)';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.borderColor = '#cbd5e1';
-                          e.currentTarget.style.color = '#1e293b';
-                        }}
-                      >
-                        <strong>{c.code}</strong>: {c.name_id || c.name_en}
-                      </button>
-                    ))}
-                  </div>
-                )}
+                {/* ICD-10 & ICD-9-CM Candidates (Max 3, neutral styling without highlight) */}
+                {[
+                  {
+                    key: 'icd10',
+                    label: t('scribe.clinical.icd10CandidatesLabel', 'Kandidat ICD-10:'),
+                    items: (clinicalResult.icd_candidates?.icd10 || []).slice(0, 3),
+                    getText: (c) => `${c.code} - ${c.name_id || c.name_en}`,
+                    onPick: (c) =>
+                      setClinicalResult({
+                        ...clinicalResult,
+                        icd_10: `${c.code} - ${c.name_id || c.name_en}`,
+                      }),
+                  },
+                  {
+                    key: 'icd9',
+                    label: t('scribe.clinical.icd9CandidatesLabel', 'Kandidat ICD-9-CM:'),
+                    items: (clinicalResult.icd_candidates?.icd9 || []).slice(0, 3),
+                    getText: (c) => `${c.code} - ${c.desc_indo || c.desc}`,
+                    onPick: (c) =>
+                      setClinicalResult({
+                        ...clinicalResult,
+                        icd_9: `${c.code} - ${c.desc_indo || c.desc}`,
+                      }),
+                  },
+                ]
+                  .filter((group) => group.items.length > 0)
+                  .map((group) => (
+                    <div key={group.key} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexWrap: 'wrap' }}>
+                      <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#64748b' }}>
+                        {group.label}
+                      </span>
+                      {group.items.map((c, idx) => (
+                        <button
+                          key={idx}
+                          type="button"
+                          onClick={() => group.onPick(c)}
+                          title={`Pilih ${c.code}`}
+                          style={{
+                            fontSize: '0.75rem',
+                            padding: '0.25rem 0.55rem',
+                            backgroundColor: '#ffffff',
+                            border: '1px solid #e2e8f0',
+                            borderRadius: '6px',
+                            cursor: 'pointer',
+                            color: '#475569',
+                            fontWeight: 400,
+                          }}
+                        >
+                          {group.getText(c)}
+                        </button>
+                      ))}
+                    </div>
+                  ))}
               </div>
             )}
           </div>
         )}
       </div>
 
-      {/* Footer Action Buttons: Save, Finalize, Cancel, Export */}
+      {/* Footer Action Buttons: Cancel, Single Save, Export */}
       <div
         style={{
           marginTop: '1.5rem',
@@ -1051,8 +1032,9 @@ const SoapFormView = ({
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.45rem',
-              padding: '0.65rem 1.25rem',
-              border: '1px solid #cbd5e1',
+              minHeight: '44px',
+              padding: '0.6rem 1.2rem',
+              border: '1px solid #e2e8f0',
               borderRadius: 'var(--radius-md)',
               backgroundColor: '#ffffff',
               color: '#475569',
@@ -1060,66 +1042,8 @@ const SoapFormView = ({
               cursor: 'pointer',
             }}
           >
-            <X size={18} />
+            <X size={18} aria-hidden="true" />
             <span>{t('scribe.form.cancelBtn')}</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={handleSave}
-            disabled={isSaving}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.45rem',
-              padding: '0.65rem 1.3rem',
-              border: '1px solid #cbd5e1',
-              borderRadius: 'var(--radius-md)',
-              backgroundColor: '#f8fafc',
-              color: '#334155',
-              fontWeight: 600,
-              cursor: isSaving ? 'not-allowed' : 'pointer',
-            }}
-            title="Simpan Draf SOAP (Ctrl + Enter)"
-          >
-            <Save size={18} />
-            <span>{isSaving ? t('scribe.form.savingDraft') : t('scribe.form.saveDraftBtn')}</span>
-            <kbd
-              style={{
-                fontSize: '0.68rem',
-                padding: '1px 5px',
-                borderRadius: '4px',
-                backgroundColor: '#e2e8f0',
-                color: '#64748b',
-                fontFamily: 'monospace',
-                marginLeft: '4px'
-              }}
-            >
-              Ctrl+↵
-            </kbd>
-          </button>
-
-          <button
-            type="button"
-            onClick={handleFinalize}
-            disabled={isFinalizing}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              padding: '0.65rem 1.4rem',
-              border: 'none',
-              borderRadius: 'var(--radius-md)',
-              backgroundColor: isFinalizing ? '#94a3b8' : '#059669',
-              color: '#ffffff',
-              fontWeight: 600,
-              cursor: isFinalizing ? 'not-allowed' : 'pointer',
-              boxShadow: '0 2px 8px rgba(5, 150, 105, 0.3)',
-            }}
-            title="Simpan SOAP, Rekomendasi Kontrol, dan Sinkronkan ke Google Sheets"
-          >
-            <CheckCircle size={18} />
-            <span>{isFinalizing ? t('scribe.form.finalizing') : t('scribe.form.finalizeBtn')}</span>
           </button>
 
           <button
@@ -1129,8 +1053,9 @@ const SoapFormView = ({
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.45rem',
-              padding: '0.65rem 1.3rem',
-              border: '1px solid #cbd5e1',
+              minHeight: '44px',
+              padding: '0.6rem 1.2rem',
+              border: '1px solid #e2e8f0',
               borderRadius: 'var(--radius-md)',
               backgroundColor: '#ffffff',
               color: '#334155',
@@ -1139,10 +1064,33 @@ const SoapFormView = ({
               transition: 'all 0.15s ease'
             }}
             onMouseOver={(e) => { e.currentTarget.style.borderColor = 'var(--primary-color)'; }}
-            onMouseOut={(e) => { e.currentTarget.style.borderColor = '#cbd5e1'; }}
+            onMouseOut={(e) => { e.currentTarget.style.borderColor = '#e2e8f0'; }}
           >
-            <Download size={18} />
+            <Download size={18} aria-hidden="true" />
             <span>{t('scribe.form.exportBtn')}</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={executeFinalize}
+            disabled={isFinalizing || isSaving}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              minHeight: '44px',
+              padding: '0.6rem 1.45rem',
+              border: 'none',
+              borderRadius: 'var(--radius-md)',
+              backgroundColor: (isFinalizing || isSaving) ? '#94a3b8' : '#059669',
+              color: '#ffffff',
+              fontWeight: 600,
+              cursor: (isFinalizing || isSaving) ? 'not-allowed' : 'pointer',
+              boxShadow: '0 2px 6px rgba(5, 150, 105, 0.22)',
+            }}
+          >
+            <Save size={18} aria-hidden="true" />
+            <span>{(isFinalizing || isSaving) ? t('scribe.form.saveBtnSaving', 'Menyimpan...') : t('scribe.form.saveBtn', 'Simpan')}</span>
           </button>
         </div>
       </div>

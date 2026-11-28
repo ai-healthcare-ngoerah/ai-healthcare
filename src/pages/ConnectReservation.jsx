@@ -409,14 +409,14 @@ const ConnectReservation = () => {
       });
       showToast({
         type: 'success',
-        title: 'Filter Jev Disimpan',
-        message: 'Pengaturan filter relevansi TypeSafe Jev berhasil diperbarui.'
+        title: t('whatsapp.chatFilter.toastSaveTitle'),
+        message: t('whatsapp.chatFilter.toastSaveMsg')
       });
     } catch (err) {
       showToast({
         type: 'error',
-        title: 'Gagal Menyimpan',
-        message: err?.message || 'Terjadi kesalahan saat menyimpan pengaturan filter Jev.'
+        title: t('whatsapp.chatFilter.toastErrorTitle'),
+        message: err?.message || t('whatsapp.chatFilter.toastErrorMsg')
       });
     } finally {
       setSavingJev(false);
@@ -1171,21 +1171,21 @@ const ConnectReservation = () => {
                   </form>
                 )}
 
-                {/* TypeSafe Jev Relevance Filter & AI Response Control */}
+                {/* AI Relevance Filter & Chat Handling Control */}
                 <div className="cr-jev-card">
                   <div className="cr-jev-card-header">
                     <div className="cr-jev-card-title-group">
                       <Zap size={18} color="#059669" />
                       <div>
-                        <h4 className="cr-jev-card-title">Filter Relevansi TypeSafe Jev &amp; Penanganan Chat</h4>
+                        <h4 className="cr-jev-card-title">{t('whatsapp.chatFilter.title')}</h4>
                         <p className="cr-jev-card-subtitle">
-                          Engine keputusan Sistem 1 berkecepatan milidetik untuk menyaring pesan WhatsApp faskes secara akurat tanpa membuang token LLM.
+                          {t('whatsapp.chatFilter.subtitle')}
                         </p>
                       </div>
                     </div>
                     <div className="cr-jev-badge">
                       <Sparkles size={12} />
-                      <span>Sistem 1 Cepat</span>
+                      <span>{t('whatsapp.chatFilter.badge')}</span>
                     </div>
                   </div>
 
@@ -1193,9 +1193,9 @@ const ConnectReservation = () => {
                     {/* Toggle: AI Chat Filter Enabled */}
                     <div className="cr-jev-toggle-row">
                       <div className="cr-jev-toggle-info">
-                        <span className="cr-jev-toggle-label">Aktifkan Filter Relevansi AI - TypeSafe Jev</span>
+                        <span className="cr-jev-toggle-label">{t('whatsapp.chatFilter.enableLabel')}</span>
                         <span className="cr-jev-toggle-desc">
-                          Menilai intent pesan secara instan sebelum diteruskan ke alur reservasi atau RAG klinis.
+                          {t('whatsapp.chatFilter.enableDesc')}
                         </span>
                       </div>
                       <input
@@ -1209,9 +1209,9 @@ const ConnectReservation = () => {
                     {/* Toggle: Irrelevant Reply Enabled */}
                     <div className="cr-jev-toggle-row">
                       <div className="cr-jev-toggle-info">
-                        <span className="cr-jev-toggle-label">Kirim Panduan Sopan untuk Obrolan di Luar Konteks</span>
+                        <span className="cr-jev-toggle-label">{t('whatsapp.chatFilter.fallbackLabel')}</span>
                         <span className="cr-jev-toggle-desc">
-                          Mengirimkan pesan panduan resmi faskes hanya sekali per rentang jeda 24 jam untuk mencegah lingkaran spam.
+                          {t('whatsapp.chatFilter.fallbackDesc')}
                         </span>
                       </div>
                       <input
@@ -1224,19 +1224,19 @@ const ConnectReservation = () => {
 
                     {/* Textarea: Fallback Text */}
                     <div className="cr-jev-field">
-                      <label>Teks Panduan Resmi untuk Obrolan di Luar Konteks</label>
+                      <label>{t('whatsapp.chatFilter.fallbackTextLabel')}</label>
                       <textarea
                         rows={3}
                         value={irrelevantFallbackText}
                         onChange={(e) => setIrrelevantFallbackText(e.target.value)}
-                        placeholder="Contoh: Halo, terima kasih telah menghubungi kami. Nomor ini khusus melayani pendaftaran mandiri dan informasi layanan poliklinik faskes..."
+                        placeholder={t('whatsapp.chatFilter.fallbackTextPlaceholder')}
                       />
-                      <p className="cr-jev-hint">Pesan ini dikirim tepat sekali jika pasien mengirimkan topik di luar reservasi atau medis.</p>
+                      <p className="cr-jev-hint">{t('whatsapp.chatFilter.fallbackTextHint')}</p>
                     </div>
 
                     {/* Handover Cooldown Hours */}
                     <div className="cr-jev-field">
-                      <label>Jeda AI Pasca Alih Staf Medis, jam</label>
+                      <label>{t('whatsapp.chatFilter.cooldownLabel')}</label>
                       <input
                         type="number"
                         min={1}
@@ -1244,19 +1244,19 @@ const ConnectReservation = () => {
                         value={humanHandoverCooldownHours}
                         onChange={(e) => setHumanHandoverCooldownHours(e.target.value)}
                       />
-                      <p className="cr-jev-hint">Bot AI akan membisu selama periode ini agar staf administrasi faskes dapat berinteraksi langsung tanpa interupsi bot.</p>
+                      <p className="cr-jev-hint">{t('whatsapp.chatFilter.cooldownHint')}</p>
                     </div>
 
-                    {/* TypeSafe API Key */}
+                    {/* Optional API Key */}
                     <div className="cr-jev-field">
-                      <label>Kunci API TypeSafe Jev Opsional</label>
+                      <label>{t('whatsapp.chatFilter.apiKeyLabel')}</label>
                       <input
                         type="password"
                         value={typesafeApiKey}
                         onChange={(e) => setTypesafeApiKey(e.target.value)}
-                        placeholder="Kosongkan untuk otomatis menggunakan mesin heuristik lokal cepat tanpa kuota eksternal"
+                        placeholder={t('whatsapp.chatFilter.apiKeyPlaceholder')}
                       />
-                      <p className="cr-jev-hint">Jika dikosongkan, sistem menjalankan mesin evaluasi deterministik lokal berkecepatan 0 milidetik.</p>
+                      <p className="cr-jev-hint">{t('whatsapp.chatFilter.apiKeyHint')}</p>
                     </div>
 
                     {/* Action Button */}
@@ -1268,7 +1268,7 @@ const ConnectReservation = () => {
                         disabled={savingJev}
                       >
                         <Save size={14} />
-                        <span>{savingJev ? 'Menyimpan...' : 'Simpan Pengaturan Filter Jev'}</span>
+                        <span>{savingJev ? t('whatsapp.chatFilter.savingBtn') : t('whatsapp.chatFilter.saveBtn')}</span>
                       </button>
                     </div>
                   </div>

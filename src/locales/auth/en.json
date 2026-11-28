@@ -1,4 +1,8 @@
 {
+  "common": {
+    "showPassword": "Show password",
+    "hidePassword": "Hide password"
+  },
   "login": {
     "title": "Welcome Back",
     "subtitle": "Sign in to AI Healthcare Workstation",

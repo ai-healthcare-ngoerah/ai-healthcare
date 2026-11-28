@@ -20,7 +20,7 @@
     "dropzoneDesc": "PDF only (Max. 100 pages)",
     "pdfError": "Only PDF files are supported at this time.",
     "deleteBtn": "Delete",
-    "analyzingBtn": "Extracting OCR & Analyzing LLM...",
+    "analyzingBtn": "Checking Claim Documents...",
     "startBtn": "Start AI Check"
   },
   "result": {

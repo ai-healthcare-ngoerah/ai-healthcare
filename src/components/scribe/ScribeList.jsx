@@ -3,8 +3,8 @@ import {
   Trash2, Edit3, Download, Search, RefreshCw, AlertCircle,
   CheckSquare, Square, FileText, X, Save, Eye, Check, MoreVertical
 } from 'lucide-react';
-import { Document, Packer, Paragraph, TextRun, HeadingLevel } from 'docx';
 import { saveAs } from 'file-saver';
+import { buildSoapDocxBlob, buildBatchSoapDocxBlob } from '../../utils/scribeDocxTemplate';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -220,52 +220,27 @@ const ScribeList = () => {
   // Export DOCX
   const handleExportDocx = async (note) => {
     try {
-      const textToExport = note.raw_text || (note.subjective ? `S (Subjective):\n${note.subjective}\n\nO (Objective):\n${note.objective || '-'}\n\nA (Assessment):\n${note.assessment || '-'}\n\nP (Plan):\n${note.plan || '-'}` : '');
-      const lines = textToExport.split('\n');
-      const paragraphs = [
-        new Paragraph({
-          text: `REKAM MEDIS - CPPT / SOAP NOTE`,
-          heading: HeadingLevel.HEADING_1,
-          spacing: { after: 200 },
-        }),
-        new Paragraph({
-          children: [
-            new TextRun({ text: `Nama Pasien: `, bold: true }),
-            new TextRun({ text: note.patient_name || 'Pasien Umum' }),
-          ],
-          spacing: { after: 100 },
-        }),
-        new Paragraph({
-          children: [
-            new TextRun({ text: `Tanggal: `, bold: true }),
-            new TextRun({ text: new Date(note.created_at).toLocaleString('id-ID') }),
-          ],
-          spacing: { after: 300 },
-        }),
-      ];
-
-      lines.forEach((line) => {
-        const trimmed = line.trim();
-        if (trimmed) {
-          paragraphs.push(
-            new Paragraph({
-              children: [new TextRun({ text: trimmed })],
-              spacing: { after: 120 },
-            })
-          );
-        }
+      const blob = await buildSoapDocxBlob({
+        patientName: note.patient_name || 'Pasien Umum',
+        medicalRecordNo: note.medical_record_no || '-',
+        doctorName: note.doctor_name || 'dr. Umum',
+        poliName: note.poli_name || 'Poli Umum',
+        createdAt: note.created_at,
+        soap: {
+          subjective: note.subjective || '',
+          objective: note.objective || '',
+          assessment: note.assessment || '',
+          plan: note.plan || '',
+        },
+        soapNote: note.raw_text || '',
+        clinical: {
+          icd_10: note.icd_10 || '',
+          icd_9: note.icd_9 || '',
+          must_control: Boolean(note.follow_up_recommended),
+          control_date: note.follow_up_date || null,
+        },
+        transcription: note.transcription || '',
       });
-
-      const doc = new Document({
-        sections: [
-          {
-            properties: {},
-            children: paragraphs,
-          },
-        ],
-      });
-
-      const blob = await Packer.toBlob(doc);
       saveAs(blob, `SOAP_${(note.patient_name || 'pasien').replace(/\s+/g, '_')}_${new Date().toISOString().slice(0, 10)}.docx`);
     } catch (err) {
       console.error('Export docx error:', err);
@@ -278,63 +253,28 @@ const ScribeList = () => {
     if (selectedIds.length === 0) return;
     try {
       const selectedNotes = notes.filter((n) => selectedIds.includes(n.id));
-      const paragraphs = [
-        new Paragraph({
-          text: `LAPORAN REKAM MEDIS - CPPT / SOAP NOTE (MASSAL)`,
-          heading: HeadingLevel.HEADING_1,
-          spacing: { after: 300 },
-        }),
-      ];
-
-      selectedNotes.forEach((note, index) => {
-        paragraphs.push(
-          new Paragraph({
-            text: `${index + 1}. Pasien: ${note.patient_name || 'Pasien Umum'}`,
-            heading: HeadingLevel.HEADING_2,
-            spacing: { before: 240, after: 120 },
-          }),
-          new Paragraph({
-            children: [
-              new TextRun({ text: `Tanggal: `, bold: true }),
-              new TextRun({ text: new Date(note.created_at).toLocaleString('id-ID') }),
-            ],
-            spacing: { after: 200 },
-          })
-        );
-
-        const lines = (note.raw_text || '').split('\n');
-        lines.forEach((line) => {
-          const trimmed = line.trim();
-          if (trimmed) {
-            paragraphs.push(
-              new Paragraph({
-                children: [new TextRun({ text: trimmed })],
-                spacing: { after: 120 },
-              })
-            );
-          }
-        });
-
-        if (index < selectedNotes.length - 1) {
-          paragraphs.push(
-            new Paragraph({
-              text: `-------------------------------------------------------------------------`,
-              spacing: { before: 200, after: 200 },
-            })
-          );
-        }
-      });
-
-      const doc = new Document({
-        sections: [
-          {
-            properties: {},
-            children: paragraphs,
-          },
-        ],
-      });
-
-      const blob = await Packer.toBlob(doc);
+      const records = selectedNotes.map((note) => ({
+        patientName: note.patient_name || 'Pasien Umum',
+        medicalRecordNo: note.medical_record_no || '-',
+        doctorName: note.doctor_name || 'dr. Umum',
+        poliName: note.poli_name || 'Poli Umum',
+        createdAt: note.created_at,
+        soap: {
+          subjective: note.subjective || '',
+          objective: note.objective || '',
+          assessment: note.assessment || '',
+          plan: note.plan || '',
+        },
+        soapNote: note.raw_text || '',
+        clinical: {
+          icd_10: note.icd_10 || '',
+          icd_9: note.icd_9 || '',
+          must_control: Boolean(note.follow_up_recommended),
+          control_date: note.follow_up_date || null,
+        },
+        transcription: note.transcription || '',
+      }));
+      const blob = await buildBatchSoapDocxBlob(records);
       saveAs(blob, `Laporan_SOAP_Massal_${new Date().toISOString().slice(0, 10)}.docx`);
     } catch (err) {
       console.error('Export batch docx error:', err);

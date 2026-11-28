@@ -185,5 +185,32 @@
     "editConfigBtn": "Edit Data",
     "cancelEditBtn": "Cancel",
     "editTooltip": "Edit WhatsApp Channel Settings"
+  },
+  "chatFilter": {
+    "title": "AI Message Relevance Filter & Chat Handling",
+    "subtitle": "Millisecond decision engine to filter clinic WhatsApp messages accurately without wasting AI token quota.",
+    "badge": "Instant Filter",
+    "enableLabel": "Enable AI Message Relevance Filter",
+    "enableDesc": "Evaluates message intent instantly before routing to the booking flow or clinical assistant.",
+    "fallbackLabel": "Send Polite Guidance for Off-Topic Messages",
+    "fallbackDesc": "Sends the facility's official guidance message once per 24-hour window to avoid repetitive reply loops.",
+    "fallbackTextLabel": "Official Guidance Text for Off-Topic Messages",
+    "fallbackTextPlaceholder": "Example: Hello, thank you for contacting us. This number only handles self-registration and clinic outpatient information...",
+    "fallbackTextHint": "Sent exactly once when a patient sends topics unrelated to reservations or medical inquiries.",
+    "cooldownLabel": "AI Pause After Staff Handover (hours)",
+    "cooldownHint": "The AI bot stays silent during this window so clinic staff can reply directly without bot interruption.",
+    "apiKeyLabel": "Optional Message Evaluation API Key",
+    "apiKeyPlaceholder": "Leave blank to automatically use the fast local evaluation engine without external quota",
+    "apiKeyHint": "When left blank, the system runs a local deterministic evaluation engine in 0 milliseconds.",
+    "saveBtn": "Save Filter Settings",
+    "savingBtn": "Saving...",
+    "toastSaveTitle": "Filter Settings Saved",
+    "toastSaveMsg": "Message relevance filter and chat handling settings updated successfully.",
+    "toastErrorTitle": "Save Failed",
+    "toastErrorMsg": "An error occurred while saving chat filter settings.",
+    "logsTitle": "Conversation Logs, Message Filter & Real-Time Triage",
+    "logsSubtitle": "Monitor automated message filtering decisions alongside incoming history from WhatsApp, Website, Telegram, and Gmail.",
+    "logsFilterLabel": "Message Evaluation Filter:",
+    "logsColVerdict": "Filter Decision"
   }
 }

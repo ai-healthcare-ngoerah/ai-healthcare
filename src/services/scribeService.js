@@ -8,18 +8,17 @@ const getAuthHeaders = () => {
   return token ? { Authorization: `Bearer ${token}` } : {};
 };
 
-/**
- * Uploads an audio file (.wav, .mp3, .m4a) or recorded audio Blob to be transcribed
- * and summarized into a SOAP CPPT note.
- */
-export const uploadAudioScribe = async (fileBlob, filename = 'recording.wav', language = null) => {
+const postAudioForm = async (endpoint, fileBlob, filename, { language = null, customSchema = null, fallbackError }) => {
   const formData = new FormData();
   formData.append('file', fileBlob, filename);
   if (language && language !== 'auto') {
     formData.append('language', language);
   }
+  if (customSchema) {
+    formData.append('custom_schema', typeof customSchema === 'string' ? customSchema : JSON.stringify(customSchema));
+  }
 
-  const response = await fetch(`${API_BASE}/upload-audio`, {
+  const response = await fetch(`${API_BASE}/${endpoint}`, {
     method: 'POST',
     headers: {
       ...getAuthHeaders(),
@@ -28,7 +27,7 @@ export const uploadAudioScribe = async (fileBlob, filename = 'recording.wav', la
   });
 
   if (!response.ok) {
-    let detail = 'Gagal memproses rekaman suara.';
+    let detail = fallbackError;
     try {
       const data = await response.json();
       detail = data.detail || detail;
@@ -42,16 +41,40 @@ export const uploadAudioScribe = async (fileBlob, filename = 'recording.wav', la
 };
 
 /**
+ * Transcribes an audio file or recorded audio Blob without running SOAP mapping yet.
+ */
+export const transcribeAudioScribe = (fileBlob, filename = 'recording.webm', language = null) =>
+  postAudioForm('transcribe', fileBlob, filename, {
+    language,
+    fallbackError: 'Gagal mentranskripsi rekaman suara.',
+  });
+
+/**
+ * Uploads an audio file (.wav, .mp3, .m4a) or recorded audio Blob to be transcribed
+ * and summarized into a SOAP CPPT note.
+ */
+export const uploadAudioScribe = (fileBlob, filename = 'recording.wav', language = null, customSchema = null) =>
+  postAudioForm('upload-audio', fileBlob, filename, {
+    language,
+    customSchema,
+    fallbackError: 'Gagal memproses rekaman suara.',
+  });
+
+/**
  * Sends manual clinical notes/text to be structured into a standard SOAP CPPT note.
  */
-export const generateSoapFromText = async (text) => {
+export const generateSoapFromText = async (text, customSchema = null, language = null) => {
+  const body = { text };
+  if (customSchema) body.custom_schema = customSchema;
+  if (language && language !== 'auto') body.language = language;
+
   const response = await fetch(`${API_BASE}/soap`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       ...getAuthHeaders(),
     },
-    body: JSON.stringify({ text }),
+    body: JSON.stringify(body),
   });
 
   if (!response.ok) {
