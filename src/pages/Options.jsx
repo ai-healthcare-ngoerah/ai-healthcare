@@ -77,7 +77,7 @@ const Options = () => {
     {
       id: 'medical-records',
       badge: t('options.features.medicalRecords.badge', 'Klinis'),
-      title: t('options.features.medicalRecords.title', 'Rekam Medis & Asisten Klinis'),
+      title: t('options.features.medicalRecords.title', 'AI Rekam Medis (Medical Scribe)'),
       icon: <img src="/illustrations/medical-scribe.svg" alt={t('options.features.medicalRecords.title')} className="option-icon-img" />,
       iconBg: '#ecfdf5',
       iconBorder: 'rgba(5, 150, 105, 0.2)',

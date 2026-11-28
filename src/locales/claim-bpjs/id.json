@@ -20,7 +20,7 @@
     "dropzoneDesc": "Hanya PDF (Maks. 100 halaman)",
     "pdfError": "Hanya berkas PDF yang didukung saat ini.",
     "deleteBtn": "Hapus",
-    "analyzingBtn": "Mengekstrak OCR & Menganalisis LLM...",
+    "analyzingBtn": "Memeriksa Dokumen Klaim...",
     "startBtn": "Mulai Pengecekan AI"
   },
   "result": {

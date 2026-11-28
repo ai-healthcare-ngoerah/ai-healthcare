@@ -185,5 +185,32 @@
     "editConfigBtn": "Ubah Data",
     "cancelEditBtn": "Batal",
     "editTooltip": "Ubah Pengaturan Saluran WhatsApp"
+  },
+  "chatFilter": {
+    "title": "Filter Relevansi Pesan AI & Penanganan Chat",
+    "subtitle": "Mesin evaluasi cepat berkecepatan milidetik untuk menyaring pesan WhatsApp faskes secara akurat tanpa membuang kuota AI.",
+    "badge": "Filter Cepat",
+    "enableLabel": "Aktifkan Filter Relevansi Pesan AI",
+    "enableDesc": "Menilai maksud pesan secara instan sebelum diteruskan ke alur reservasi atau panduan klinis.",
+    "fallbackLabel": "Kirim Panduan Sopan untuk Obrolan di Luar Konteks",
+    "fallbackDesc": "Mengirimkan pesan panduan resmi faskes hanya sekali per rentang jeda 24 jam untuk mencegah lingkaran spam.",
+    "fallbackTextLabel": "Teks Panduan Resmi untuk Obrolan di Luar Konteks",
+    "fallbackTextPlaceholder": "Contoh: Halo, terima kasih telah menghubungi kami. Nomor ini khusus melayani pendaftaran mandiri dan informasi layanan poliklinik faskes...",
+    "fallbackTextHint": "Pesan ini dikirim tepat sekali jika pasien mengirimkan topik di luar reservasi atau medis.",
+    "cooldownLabel": "Jeda AI Pasca Alih Staf Medis, jam",
+    "cooldownHint": "Bot AI akan membisu selama periode ini agar staf administrasi faskes dapat berinteraksi langsung tanpa interupsi bot.",
+    "apiKeyLabel": "Kunci API Evaluasi Pesan (Opsional)",
+    "apiKeyPlaceholder": "Kosongkan untuk otomatis menggunakan mesin heuristik lokal cepat tanpa kuota eksternal",
+    "apiKeyHint": "Jika dikosongkan, sistem menjalankan mesin evaluasi deterministik lokal berkecepatan 0 milidetik.",
+    "saveBtn": "Simpan Pengaturan Filter",
+    "savingBtn": "Menyimpan...",
+    "toastSaveTitle": "Pengaturan Filter Disimpan",
+    "toastSaveMsg": "Pengaturan filter relevansi pesan dan penanganan chat berhasil diperbarui.",
+    "toastErrorTitle": "Gagal Menyimpan",
+    "toastErrorMsg": "Terjadi kesalahan saat menyimpan pengaturan filter chat.",
+    "logsTitle": "Log Percakapan, Filter Pesan & Triase Real-Time",
+    "logsSubtitle": "Pantau keputusan penyaringan pesan otomatis serta riwayat pesan masuk dari WhatsApp, Website, Telegram, dan Gmail.",
+    "logsFilterLabel": "Filter Evaluasi Pesan:",
+    "logsColVerdict": "Keputusan Filter Pesan"
   }
 }

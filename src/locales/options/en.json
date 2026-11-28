@@ -12,7 +12,7 @@
     },
     "medicalRecords": {
       "badge": "Clinical",
-      "title": "Medical Records & Clinical Scribe",
+      "title": "AI Medical Scribe",
       "desc": "Doctor consultation scribe, structured SOAP notes, ICD-10 analysis, and follow-up planning."
     },
     "bpjsClaim": {

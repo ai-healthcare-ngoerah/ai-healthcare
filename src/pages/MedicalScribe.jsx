@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Mic, Stethoscope, AlertCircle, Flame, Users, FileText, RotateCcw } from 'lucide-react';
-import { uploadAudioScribe, generateSoapFromText, getTodayQueue } from '../services/scribeService';
+import { transcribeAudioScribe, generateSoapFromText, getTodayQueue } from '../services/scribeService';
 import RealtimeAudioModal from '../components/scribe/RealtimeAudioModal';
+import TranscriptConfirmModal from '../components/scribe/TranscriptConfirmModal';
 import SoapFormView from '../components/scribe/SoapFormView';
 import UrgentScribeView from '../components/scribe/UrgentScribeView';
 import PatientSearchDropdown from '../components/scribe/PatientSearchDropdown';
@@ -25,19 +26,34 @@ const MedicalScribe = () => {
   };
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [isTranscriptModalOpen, setIsTranscriptModalOpen] = useState(false);
+  const [pendingTranscript, setPendingTranscript] = useState('');
+  const [pendingLanguage, setPendingLanguage] = useState(null);
+  const [isGeneratingSoap, setIsGeneratingSoap] = useState(false);
   const [error, setError] = useState(null);
 
   // Patient Identity & Queue State
   const [queue, setQueue] = useState([]);
   const [selectedQueueId, setSelectedQueueId] = useState('');
   const [patientId, setPatientId] = useState('');
-  const [patientName, setPatientName] = useState(() => t('scribe.patientInfo.defaultPatientName', 'Pasien Rekam Medis'));
+  const [patientName, setPatientName] = useState('');
   const [patientPhone, setPatientPhone] = useState('');
   const [medicalRecordNo, setMedicalRecordNo] = useState('');
 
   // Result state
   const [transcription, setTranscription] = useState('');
   const [soapNote, setSoapNote] = useState('');
+  const [soapMapping, setSoapMapping] = useState(null);
+  const [autoAnalyzeTrigger, setAutoAnalyzeTrigger] = useState(0);
+
+  const getSavedCustomSchema = () => {
+    try {
+      const saved = localStorage.getItem('ternak_scribe_custom_mapping_v3');
+      return saved ? JSON.parse(saved) : null;
+    } catch {
+      return null;
+    }
+  };
 
   // Draft persistence hook
   const { hasSavedDraft, getDraft, clearDraft } = useScribeDraft({
@@ -87,7 +103,7 @@ const MedicalScribe = () => {
     setSelectedQueueId(qId);
     if (!qId) {
       setPatientId('');
-      setPatientName(t('scribe.patientInfo.defaultPatientName', 'Pasien Rekam Medis'));
+      setPatientName('');
       setPatientPhone('');
       setMedicalRecordNo('');
       return;
@@ -114,41 +130,79 @@ const MedicalScribe = () => {
     try {
       if (audioBlob && audioBlob.size > 500) {
         try {
-          // 1. Send recorded audio to backend Whisper Large v3 Turbo (Auto-Detect Language) & Groq LLM
-          const response = await uploadAudioScribe(audioBlob, 'recording.webm');
-          setTranscription(response.transcription || liveText || '');
-          setSoapNote(response.soap_note || '');
+          // 1. Transcribe recorded audio via Whisper first without running SOAP mapping yet
+          const response = await transcribeAudioScribe(audioBlob, 'recording.webm', null);
+          setPendingTranscript(response.transcription || liveText || '');
+          setPendingLanguage(response.language || null);
           setIsModalOpen(false);
-          setIsProcessing(false);
+          setIsTranscriptModalOpen(true);
           return;
         } catch (uploadErr) {
-          console.warn('Audio upload/Whisper failed, attempting Smart Fallback with liveText:', uploadErr);
+          console.warn('Audio upload/Whisper failed, falling back to liveText transcript:', uploadErr);
         }
       }
 
-      // 2. Smart Fallback: if audio upload failed or blob is too small, use liveText from Web Speech API
+      // 2. Fallback: show Web Speech API liveText in transcript confirmation modal
       if (liveText && liveText.trim().length > 0) {
-        const fallbackResponse = await generateSoapFromText(liveText);
-        setTranscription(liveText);
-        setSoapNote(fallbackResponse.soap_note || '');
+        setPendingTranscript(liveText.trim());
+        setPendingLanguage(null);
         setIsModalOpen(false);
+        setIsTranscriptModalOpen(true);
       } else {
         throw new Error(t('scribe.modal.idleText', 'Rekaman audio kosong atau tidak dapat dikenali. Silakan coba lagi dan pastikan berbicara di dekat mikrofon.'));
       }
     } catch (err) {
       console.error('Audio scribe error:', err);
-      setError(err.message || 'Terjadi kesalahan saat memproses audio dengan AI.');
+      setError(err.message || 'Terjadi kesalahan saat memproses transkripsi audio.');
     } finally {
       setIsProcessing(false);
     }
   };
 
+  const handleConfirmTranscriptToSoap = async (confirmedText) => {
+    setIsGeneratingSoap(true);
+    setError(null);
+    const customSchema = getSavedCustomSchema();
+
+    try {
+      const response = await generateSoapFromText(confirmedText, customSchema, pendingLanguage);
+      setTranscription(confirmedText);
+      setSoapNote(response.soap_note || '');
+      setSoapMapping(response.soap_mapping || null);
+      setAutoAnalyzeTrigger((prev) => prev + 1);
+      setIsTranscriptModalOpen(false);
+    } catch (err) {
+      console.error('SOAP generation error:', err);
+      setError(err.message || 'Terjadi kesalahan saat membuat catatan SOAP.');
+    } finally {
+      setIsGeneratingSoap(false);
+    }
+  };
+
+  const handleRerecordFromTranscript = () => {
+    setIsTranscriptModalOpen(false);
+    setPendingTranscript('');
+    setPendingLanguage(null);
+    setError(null);
+    setIsModalOpen(true);
+  };
+
   const handleReset = () => {
     setTranscription('');
     setSoapNote('');
+    setSoapMapping(null);
+    setPendingTranscript('');
+    setPendingLanguage(null);
+    setIsTranscriptModalOpen(false);
+    if (!selectedQueueId) {
+      setPatientName('');
+    }
     setError(null);
     clearDraft();
   };
+
+  const savedDraft = hasSavedDraft ? getDraft() : null;
+  const savedDraftName = (savedDraft?.patientInfo?.patientName || '').trim();
 
   return (
     <div className="service-sheet animate-fade-in" style={{ maxWidth: '1120px', margin: '0 auto 2.5rem' }}>
@@ -228,7 +282,11 @@ const MedicalScribe = () => {
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', color: '#1e40af', fontSize: '0.875rem' }}>
                 <FileText size={18} color="#2563eb" />
                 <span>
-                  <strong>{t('scribe.draft.detectedTitle', 'Draf Catatan Ditemukan:')}</strong>{' '}
+                  <strong>
+                    {savedDraftName
+                      ? `${t('scribe.draft.detectedTitle', 'Draf Catatan Ditemukan:')} "${savedDraftName}"`
+                      : t('scribe.draft.detectedTitle', 'Draf Catatan Ditemukan:')}
+                  </strong>{' '}
                   {t('scribe.draft.detectedMsg', 'Terdapat draf SOAP tersimpan dari sesi sebelumnya.')}
                 </span>
               </div>
@@ -449,10 +507,12 @@ const MedicalScribe = () => {
           )}
 
           {/* Result Section: Integrated Inside Same Sheet */}
-          {(soapNote || transcription) && (
+          {(soapNote || soapMapping) && (
             <SoapFormView
               soapNote={soapNote}
+              soapMapping={soapMapping}
               transcription={transcription}
+              autoAnalyzeTrigger={autoAnalyzeTrigger}
               onReset={handleReset}
               onClearDraft={clearDraft}
               initialPatient={{
@@ -477,6 +537,20 @@ const MedicalScribe = () => {
             onClose={() => setIsModalOpen(false)}
             onFinishRecording={handleFinishRecording}
             isProcessing={isProcessing}
+          />
+
+          {/* Transcript Confirmation Modal before SOAP creation */}
+          <TranscriptConfirmModal
+            isOpen={isTranscriptModalOpen}
+            initialTranscript={pendingTranscript}
+            isSubmitting={isGeneratingSoap}
+            onConfirm={handleConfirmTranscriptToSoap}
+            onRerecord={handleRerecordFromTranscript}
+            onClose={() => {
+              if (!isGeneratingSoap) {
+                setIsTranscriptModalOpen(false);
+              }
+            }}
           />
         </>
       )}
